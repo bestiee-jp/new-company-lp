@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SmartHRLogo from './SmartHRLogo';
 
 // Chevron Down Icon
@@ -63,6 +63,17 @@ function NavItem({ label, hasDropdown = false, isExternal = false }: {
 
 export default function Header() {
   const [lang, setLang] = useState<'ja' | 'en'>('ja');
+  const [showFixedHamburger, setShowFixedHamburger] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show fixed hamburger when scrolled past 600px
+      setShowFixedHamburger(window.scrollY > 600);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <header className="relative w-full bg-white">
@@ -124,19 +135,54 @@ export default function Header() {
         </div>
 
         {/* Right Section - Separator + Hamburger (spans both rows) */}
-        <div className="flex items-center self-stretch" style={{ paddingRight: '5%' }}>
+        <div className="flex items-center self-stretch">
           {/* Vertical Separator Line - extends to bottom */}
           <div className="w-px bg-black self-stretch mr-6"></div>
 
           {/* Hamburger Menu Button */}
-          <button className="w-[100px] h-[100px] bg-black rounded-full flex items-center justify-center hover:bg-gray-800 transition-colors">
+          <button
+            className="w-[100px] h-[100px] bg-black flex items-center justify-center mr-[5%]"
+            style={{
+              borderRadius: '50px',
+              transition: 'border-radius 0.5s ease',
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.borderRadius = '8px'}
+            onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
+          >
             <HamburgerIcon />
           </button>
         </div>
       </div>
 
-      {/* Bottom horizontal line - connects to vertical separator */}
-      <div className="h-px bg-black" style={{ marginRight: '130px' }}></div>
+      {/* Bottom horizontal line - full width */}
+      <div className="h-px bg-black w-full"></div>
+
+      {/* Fixed Hamburger Button - appears when scrolled */}
+      {showFixedHamburger && (
+        <button
+          className="fixed bg-black flex items-center justify-center animate-fadeIn"
+          style={{
+            top: '20px',
+            right: '2%',
+            width: '100px',
+            height: '100px',
+            borderRadius: '50px',
+            transition: 'border-radius 0.5s ease',
+            zIndex: 1000,
+            animation: 'fadeIn 0.5s ease',
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.borderRadius = '8px'}
+          onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
+        >
+          <HamburgerIcon />
+        </button>
+      )}
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+      `}</style>
     </header>
   );
 }

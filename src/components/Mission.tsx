@@ -139,6 +139,9 @@ export default function Mission() {
             gap: '24px',
             animation: 'scroll 40s linear infinite',
             width: 'fit-content',
+            willChange: 'transform',
+            backfaceVisibility: 'hidden',
+            transform: 'translateZ(0)',
           }}
         >
           {/* Photos - duplicated for seamless loop */}
@@ -165,10 +168,12 @@ export default function Mission() {
                 <img
                   src={photo.src}
                   alt={`Office photo ${photo.id}`}
+                  loading="lazy"
                   style={{
                     width: '100%',
                     height: '100%',
                     objectFit: 'cover',
+                    willChange: 'transform',
                   }}
                 />
               </div>

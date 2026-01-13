@@ -220,9 +220,11 @@ export default function Footer() {
               </div>
 
               <div style={{ marginTop: '120px' }}>
-                <FooterTitle>お問い合わせ</FooterTitle>
+                <FooterLink href="/contact">
+                  <span style={{ fontSize: '16px', fontWeight: '600', letterSpacing: '0.05em' }}>お問い合わせ</span>
+                </FooterLink>
 
-                <div style={{ marginTop: '10px' }}>
+                <div style={{ marginTop: '20px' }}>
                   <FooterLink href="#" external>
                     <span className="text-[22px] font-bold text-white">採用サイト</span>
                   </FooterLink>

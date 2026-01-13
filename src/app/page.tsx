@@ -3,6 +3,7 @@ import Hero from "@/components/Hero";
 import Mission from "@/components/Mission";
 import AboutUs from "@/components/AboutUs";
 import Services from "@/components/Services";
+import ServicesMercari from "@/components/ServicesMercari";
 import News from "@/components/News";
 import Careers from "@/components/Careers";
 import CyanBackground from "@/components/CyanBackground";
@@ -22,6 +23,7 @@ export default function Home() {
         </div>
       </div>
       <Services />
+      <ServicesMercari />
       <News />
       <Careers />
       <Footer />

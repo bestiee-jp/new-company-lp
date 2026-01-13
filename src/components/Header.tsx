@@ -49,7 +49,6 @@ const menuItems = [
   { label: 'サービス', sublabel: 'Service', href: '/service' },
   { label: 'ニュース', sublabel: 'News', href: '/news' },
   { label: '会社情報', sublabel: 'Company', href: '/company' },
-  { label: '採用サイト', sublabel: 'Careers', isExternal: true },
 ];
 
 // Dropdown menu data
@@ -188,11 +187,6 @@ export default function Header() {
                 hasDropdown
                 isOpen={openDropdown === '会社情報'}
                 onMouseEnter={() => setOpenDropdown('会社情報')}
-              />
-              <NavItem
-                label="採用サイト"
-                isExternal
-                onMouseEnter={() => setOpenDropdown(null)}
               />
             </nav>
           </div>

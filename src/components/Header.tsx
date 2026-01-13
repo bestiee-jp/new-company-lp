@@ -397,7 +397,6 @@ export default function Header() {
                     {item.label}
                     <span className="absolute left-0 bottom-[-2px] h-[1px] bg-black transition-all duration-[400ms] w-0 group-hover:w-full"></span>
                   </span>
-                  {item.isExternal && <span style={{ marginLeft: '8px', display: 'inline-block' }}><ExternalLink /></span>}
                 </div>
                 <div style={{ fontSize: '14px', color: '#888' }}>
                   {item.sublabel}

@@ -195,6 +195,7 @@ export default function Footer() {
             <div>
               <FooterTitle>ニュース</FooterTitle>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <FooterLink href="/news">ニュース一覧</FooterLink>
                 <FooterLink href="#">プレスキット</FooterLink>
               </div>
 

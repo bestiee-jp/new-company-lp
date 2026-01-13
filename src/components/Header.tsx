@@ -47,7 +47,7 @@ function CloseIcon() {
 const menuItems = [
   { label: '私たちについて', sublabel: 'About Us' },
   { label: 'サービス', sublabel: 'Service', href: '/service' },
-  { label: 'ニュース', sublabel: 'News' },
+  { label: 'ニュース', sublabel: 'News', href: '/news' },
   { label: '会社情報', sublabel: 'Company', href: '/company' },
   { label: '採用サイト', sublabel: 'Careers', isExternal: true },
 ];
@@ -180,6 +180,7 @@ export default function Header() {
               />
               <NavItem
                 label="ニュース"
+                href="/news"
                 onMouseEnter={() => setOpenDropdown(null)}
               />
               <NavItem

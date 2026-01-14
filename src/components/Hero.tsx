@@ -23,15 +23,45 @@ export default function Hero() {
 
       {/* Main content */}
       <div className="relative z-10 flex flex-col justify-center" style={{ minHeight: '90vh', padding: '0 5%' }}>
-        {/* Tagline */}
-        <h1
-          className="text-black font-bold leading-tight"
+        {/* Tagline with transparent card */}
+        <div
           style={{
-            fontSize: 'clamp(24px, 4vw, 48px)',
-            maxWidth: '100%',
             position: 'absolute',
-            top: '42%',
+            top: '35%',
             transform: 'translateY(-50%)',
+            padding: '40px 50px',
+            background: 'rgba(255, 255, 255, 0.35)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            borderRadius: '16px',
+          }}
+        >
+          <h1
+            className="leading-tight"
+            style={{
+              fontSize: 'clamp(28px, 4.5vw, 56px)',
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              color: '#1a1a1a',
+              textShadow: '0 0 8px rgba(0, 229, 229, 0.6), 0 0 20px rgba(0, 229, 229, 0.4)',
+            }}
+          >
+            学びと出会いに、ワクワクを
+          </h1>
+        </div>
+
+        {/* Tagline without transparent card */}
+        <h1
+          className="leading-tight"
+          style={{
+            position: 'absolute',
+            top: '58%',
+            transform: 'translateY(-50%)',
+            fontSize: 'clamp(28px, 4.5vw, 56px)',
+            fontWeight: 700,
+            letterSpacing: '0.1em',
+            color: '#1a1a1a',
+            textShadow: '0 0 8px rgba(0, 229, 229, 0.6), 0 0 20px rgba(0, 229, 229, 0.4)',
           }}
         >
           学びと出会いに、ワクワクを

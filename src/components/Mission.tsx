@@ -11,41 +11,19 @@ export default function Mission() {
         </div>
       </div>
 
-      {/* well-working text */}
-      <div
-        style={{
-          paddingLeft: '5%',
-          paddingTop: '40px',
-          paddingBottom: '40px'
-        }}
-      >
-        <h2
-          className="text-black"
-          style={{
-            fontSize: 'clamp(60px, 12vw, 180px)',
-            fontFamily: 'Georgia, serif',
-            fontWeight: 300,
-            letterSpacing: '-0.02em',
-            lineHeight: '1'
-          }}
-        >
-          well-working
-        </h2>
-      </div>
-
       {/* Main content area with image and text */}
       <div
         style={{
           display: 'flex',
           padding: '30px 5%',
-          marginTop: '-50px',
+          marginTop: '40px',
           gap: '60px',
         }}
       >
         {/* Left side - Image and Caption */}
         <div style={{ flex: '0 0 45%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
           <img
-            src="/mission-image.png"
+            src="/kou2.jpg"
             alt="Mission"
             style={{
               width: '100%',

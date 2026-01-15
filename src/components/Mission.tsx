@@ -31,7 +31,7 @@ export default function Mission() {
               height: 'auto',
               objectFit: 'cover',
               borderRadius: '8px',
-              transform: 'scale(1.2)',
+              transform: 'scale(1.02)',
             }}
           />
           <div style={{ marginTop: '80px', textAlign: 'center', fontSize: '20px', lineHeight: '2', color: '#333' }}>

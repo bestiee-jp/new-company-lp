@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 
 // Arrow Icon
-function ArrowIcon() {
+function ArrowIcon({ size = 20 }: { size?: number }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M5 12h14M12 5l7 7-7 7" />
     </svg>
   );
@@ -55,6 +55,16 @@ export default function Services() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     // Progress animation
@@ -84,32 +94,45 @@ export default function Services() {
   const slide = slides[currentSlide];
 
   return (
-    <section className="bg-white" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
+    <section className="bg-white" style={{ paddingTop: isMobile ? '40px' : '80px', paddingBottom: isMobile ? '40px' : '80px' }}>
       {/* サービス label with full-width border */}
-      <div style={{ borderBottom: '1px solid #e5e7eb', marginBottom: '60px' }}>
-        <div className="flex items-center gap-4" style={{ padding: '0 5%', paddingBottom: '20px' }}>
-          <div style={{ width: '4px', height: '28px', backgroundColor: '#4dd9d9' }}></div>
-          <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.2em', fontWeight: '500' }}>サービス</span>
+      <div style={{ borderBottom: '1px solid #e5e7eb', marginBottom: isMobile ? '32px' : '60px' }}>
+        <div
+          className="flex items-center"
+          style={{
+            padding: isMobile ? '0 5% 16px' : '0 5% 20px',
+            gap: isMobile ? '12px' : '16px'
+          }}
+        >
+          <div style={{ width: '4px', height: isMobile ? '24px' : '28px', backgroundColor: '#4dd9d9' }}></div>
+          <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>サービス</span>
         </div>
       </div>
 
       {/* Content area with wipe animation */}
-      <div style={{ position: 'relative', minHeight: '500px', overflow: 'hidden' }}>
+      <div style={{ position: 'relative', minHeight: isMobile ? '600px' : '500px', overflow: 'hidden' }}>
         <div
           style={{
             clipPath: isAnimating ? 'inset(0 100% 0 0)' : 'inset(0 0% 0 0)',
             transition: 'clip-path 0.7s ease-in-out',
           }}
         >
-          <div className="flex" style={{ gap: '60px', padding: '0 5%' }}>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: isMobile ? 'column' : 'row',
+              gap: isMobile ? '32px' : '60px',
+              padding: '0 5%'
+            }}
+          >
             {/* Left side - Text and Button */}
-            <div style={{ flex: '0 0 35%', paddingTop: '40px' }}>
+            <div style={{ flex: isMobile ? 'none' : '0 0 35%', paddingTop: isMobile ? '0' : '40px' }}>
               <p
                 className="text-black"
                 style={{
-                  fontSize: 'clamp(16px, 1.8vw, 20px)',
-                  lineHeight: '2',
-                  marginBottom: '40px',
+                  fontSize: isMobile ? '14px' : 'clamp(16px, 1.8vw, 20px)',
+                  lineHeight: isMobile ? '1.8' : '2',
+                  marginBottom: isMobile ? '24px' : '40px',
                 }}
               >
                 {slide.description}
@@ -120,9 +143,9 @@ export default function Services() {
                 href="#"
                 className="inline-flex items-center justify-between bg-black text-white"
                 style={{
-                  padding: '20px 30px',
-                  minWidth: '280px',
-                  fontSize: '18px',
+                  padding: isMobile ? '14px 20px' : '20px 30px',
+                  minWidth: isMobile ? '180px' : '280px',
+                  fontSize: isMobile ? '14px' : '18px',
                   borderRadius: '50px',
                   transition: 'border-radius 0.5s ease',
                 }}
@@ -130,157 +153,160 @@ export default function Services() {
                 onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
               >
                 <span>{slide.buttonText}</span>
-                <ArrowIcon />
+                <ArrowIcon size={isMobile ? 16 : 20} />
               </a>
             </div>
 
             {/* Right side - Device Mockups */}
-            <div style={{ flex: '1', position: 'relative', minHeight: '500px' }}>
-            {/* Laptop mockup */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '0',
-                right: '0',
-                width: '85%',
-                height: '400px',
-                backgroundColor: '#f3f4f6',
-                borderRadius: '8px',
-                border: '8px solid #1f2937',
-                borderBottom: '24px solid #1f2937',
-                overflow: 'hidden',
-              }}
-            >
-              {/* Laptop screen content */}
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  background: 'linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%)',
-                  padding: '20px',
-                }}
-              >
-                {/* Header bar */}
+            <div style={{ flex: '1', position: 'relative', minHeight: isMobile ? '350px' : '500px' }}>
+              {/* Laptop mockup - hidden on mobile */}
+              {!isMobile && (
                 <div
                   style={{
-                    backgroundColor: '#0d9488',
-                    padding: '8px 16px',
-                    borderRadius: '4px 4px 0 0',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
+                    position: 'absolute',
+                    top: '0',
+                    right: '0',
+                    width: '85%',
+                    height: '400px',
+                    backgroundColor: '#f3f4f6',
+                    borderRadius: '8px',
+                    border: '8px solid #1f2937',
+                    borderBottom: '24px solid #1f2937',
+                    overflow: 'hidden',
                   }}
                 >
-                  <span style={{ color: 'white', fontSize: '12px', fontWeight: 'bold' }}>SmartHR</span>
-                  <span style={{ color: 'white', fontSize: '10px', opacity: 0.8 }}>株式会社＊＊＊＊＊</span>
-                </div>
-                {/* Content area */}
-                <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '0 0 4px 4px' }}>
-                  <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '12px' }}>{slide.title}</div>
-                  <div style={{ display: 'flex', gap: '20px' }}>
-                    {/* Stats */}
-                    <div>
-                      <div style={{ fontSize: '10px', color: '#6b7280' }}>{slide.subtitle}</div>
-                      <div style={{ fontSize: '24px', fontWeight: 'bold' }}>{slide.value}<span style={{ fontSize: '12px' }}>{slide.unit}</span></div>
-                    </div>
-                    {/* Chart placeholder */}
-                    <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: '4px', height: '80px' }}>
-                      {slide.chartData.map((h, i) => (
-                        <div
-                          key={i}
-                          style={{
-                            flex: 1,
-                            height: `${h}%`,
-                            backgroundColor: i % 2 === 0 ? '#0891b2' : '#22d3ee',
-                            borderRadius: '2px 2px 0 0',
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Phone mockup */}
-            <div
-              style={{
-                position: 'absolute',
-                bottom: '0',
-                left: '5%',
-                width: '160px',
-                height: '320px',
-                backgroundColor: '#1f2937',
-                borderRadius: '24px',
-                padding: '8px',
-                boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
-              }}
-            >
-              {/* Phone screen */}
-              <div
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  backgroundColor: 'white',
-                  borderRadius: '16px',
-                  overflow: 'hidden',
-                }}
-              >
-                {/* Phone header */}
-                <div
-                  style={{
-                    backgroundColor: '#0d9488',
-                    padding: '8px 12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                  }}
-                >
-                  <span style={{ color: 'white', fontSize: '10px', fontWeight: 'bold' }}>SmartHR</span>
-                </div>
-                {/* Phone content */}
-                <div style={{ padding: '12px' }}>
-                  {/* Profile section */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                  {/* Laptop screen content */}
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      background: 'linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%)',
+                      padding: '20px',
+                    }}
+                  >
+                    {/* Header bar */}
                     <div
                       style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        background: 'linear-gradient(135deg, #94a3b8 0%, #cbd5e1 100%)',
-                      }}
-                    />
-                    <div>
-                      <div style={{ fontSize: '10px', fontWeight: 'bold' }}>{slide.phoneUser}</div>
-                      <div style={{ fontSize: '8px', color: '#6b7280' }}>{slide.phoneLocation}</div>
-                    </div>
-                  </div>
-                  {/* Info rows */}
-                  {slide.phoneItems.map((label, i) => (
-                    <div
-                      key={i}
-                      style={{
-                        borderBottom: '1px solid #e5e7eb',
-                        padding: '6px 0',
-                        fontSize: '8px',
-                        color: '#374151',
+                        backgroundColor: '#0d9488',
+                        padding: '8px 16px',
+                        borderRadius: '4px 4px 0 0',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '8px',
                       }}
                     >
-                      {label}
+                      <span style={{ color: 'white', fontSize: '12px', fontWeight: 'bold' }}>SmartHR</span>
+                      <span style={{ color: 'white', fontSize: '10px', opacity: 0.8 }}>株式会社＊＊＊＊＊</span>
                     </div>
-                  ))}
+                    {/* Content area */}
+                    <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '0 0 4px 4px' }}>
+                      <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '12px' }}>{slide.title}</div>
+                      <div style={{ display: 'flex', gap: '20px' }}>
+                        {/* Stats */}
+                        <div>
+                          <div style={{ fontSize: '10px', color: '#6b7280' }}>{slide.subtitle}</div>
+                          <div style={{ fontSize: '24px', fontWeight: 'bold' }}>{slide.value}<span style={{ fontSize: '12px' }}>{slide.unit}</span></div>
+                        </div>
+                        {/* Chart placeholder */}
+                        <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: '4px', height: '80px' }}>
+                          {slide.chartData.map((h, i) => (
+                            <div
+                              key={i}
+                              style={{
+                                flex: 1,
+                                height: `${h}%`,
+                                backgroundColor: i % 2 === 0 ? '#0891b2' : '#22d3ee',
+                                borderRadius: '2px 2px 0 0',
+                              }}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Phone mockup */}
+              <div
+                style={{
+                  position: isMobile ? 'relative' : 'absolute',
+                  bottom: isMobile ? 'auto' : '0',
+                  left: isMobile ? '50%' : '5%',
+                  transform: isMobile ? 'translateX(-50%)' : 'none',
+                  width: isMobile ? '180px' : '160px',
+                  height: isMobile ? '360px' : '320px',
+                  backgroundColor: '#1f2937',
+                  borderRadius: '24px',
+                  padding: '8px',
+                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                }}
+              >
+                {/* Phone screen */}
+                <div
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'white',
+                    borderRadius: '16px',
+                    overflow: 'hidden',
+                  }}
+                >
+                  {/* Phone header */}
+                  <div
+                    style={{
+                      backgroundColor: '#0d9488',
+                      padding: isMobile ? '10px 14px' : '8px 12px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                    }}
+                  >
+                    <span style={{ color: 'white', fontSize: isMobile ? '12px' : '10px', fontWeight: 'bold' }}>SmartHR</span>
+                  </div>
+                  {/* Phone content */}
+                  <div style={{ padding: isMobile ? '14px' : '12px' }}>
+                    {/* Profile section */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                      <div
+                        style={{
+                          width: isMobile ? '48px' : '40px',
+                          height: isMobile ? '48px' : '40px',
+                          borderRadius: '50%',
+                          background: 'linear-gradient(135deg, #94a3b8 0%, #cbd5e1 100%)',
+                        }}
+                      />
+                      <div>
+                        <div style={{ fontSize: isMobile ? '12px' : '10px', fontWeight: 'bold' }}>{slide.phoneUser}</div>
+                        <div style={{ fontSize: isMobile ? '10px' : '8px', color: '#6b7280' }}>{slide.phoneLocation}</div>
+                      </div>
+                    </div>
+                    {/* Info rows */}
+                    {slide.phoneItems.map((label, i) => (
+                      <div
+                        key={i}
+                        style={{
+                          borderBottom: '1px solid #e5e7eb',
+                          padding: isMobile ? '8px 0' : '6px 0',
+                          fontSize: isMobile ? '10px' : '8px',
+                          color: '#374151',
+                        }}
+                      >
+                        {label}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
             </div>
           </div>
         </div>
 
         {/* Slide indicators - outside wipe animation */}
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px', marginTop: '30px' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: isMobile ? '12px' : '16px', marginTop: isMobile ? '24px' : '30px' }}>
           {slides.map((_, index) => {
             const isActive = currentSlide === index;
-            const size = isActive ? 24 : 8;
+            const size = isActive ? (isMobile ? 20 : 24) : 8;
             const strokeWidth = 2;
             const radius = (size - strokeWidth) / 2;
             const circumference = 2 * Math.PI * radius;

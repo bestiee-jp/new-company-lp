@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 // X (Twitter) Icon
 function XIcon() {
@@ -59,7 +60,7 @@ function ExternalLinkIcon() {
 }
 
 // Footer Link Component
-function FooterLink({ href, children, external = false }: { href: string; children: React.ReactNode; external?: boolean }) {
+function FooterLink({ href, children, external = false, isMobile = false }: { href: string; children: React.ReactNode; external?: boolean; isMobile?: boolean }) {
   const content = (
     <>
       <span className="relative inline-block">
@@ -70,10 +71,12 @@ function FooterLink({ href, children, external = false }: { href: string; childr
     </>
   );
 
+  const fontSize = isMobile ? '14px' : '18px';
+
   // Use Link for internal links (starting with /)
   if (href.startsWith('/') && !external) {
     return (
-      <Link href={href} className="group text-[18px] text-white flex items-center gap-2 w-fit">
+      <Link href={href} className="group text-white flex items-center gap-2 w-fit" style={{ fontSize }}>
         {content}
       </Link>
     );
@@ -82,7 +85,8 @@ function FooterLink({ href, children, external = false }: { href: string; childr
   return (
     <a
       href={href}
-      className="group text-[18px] text-white flex items-center gap-2 w-fit"
+      className="group text-white flex items-center gap-2 w-fit"
+      style={{ fontSize }}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
     >
@@ -92,14 +96,14 @@ function FooterLink({ href, children, external = false }: { href: string; childr
 }
 
 // Footer Section Title
-function FooterTitle({ children }: { children: React.ReactNode }) {
-  return <h3 className="text-[22px] font-bold text-white mb-5">{children}</h3>;
+function FooterTitle({ children, isMobile = false }: { children: React.ReactNode; isMobile?: boolean }) {
+  return <h3 style={{ fontSize: isMobile ? '16px' : '22px', fontWeight: 'bold', color: 'white', marginBottom: isMobile ? '12px' : '20px' }}>{children}</h3>;
 }
 
 // Social Link Component
-function SocialLink({ icon, label }: { icon: React.ReactNode; label: string }) {
+function SocialLink({ icon, label, isMobile = false }: { icon: React.ReactNode; label: string; isMobile?: boolean }) {
   return (
-    <a href="#" className="group flex items-center gap-3 text-[18px] text-white w-fit">
+    <a href="#" className="group flex items-center gap-3 text-white w-fit" style={{ fontSize: isMobile ? '14px' : '18px' }}>
       {icon}
       <span className="relative inline-block">
         {label}
@@ -110,119 +114,135 @@ function SocialLink({ icon, label }: { icon: React.ReactNode; label: string }) {
 }
 
 export default function Footer() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
-    <footer className="bg-[#1a1a1a] text-white min-h-screen flex flex-col">
-      {/* Top Spacer - 20% of viewport */}
-      <div className="h-[20vh]"></div>
+    <footer className="bg-[#1a1a1a] text-white flex flex-col" style={{ minHeight: isMobile ? 'auto' : '100vh' }}>
+      {/* Top Spacer */}
+      <div style={{ height: isMobile ? '40px' : '20vh' }}></div>
 
       {/* Main Footer Content */}
       <div style={{ padding: '0 5%' }} className="flex-1">
-        <div className="flex">
+        <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '48px' : '0' }}>
           {/* Left Half - Logo, SNS, YouTube/Facebook */}
-          <div className="w-1/2 flex flex-col justify-between">
+          <div style={{ width: isMobile ? '100%' : '50%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
               {/* Logo at top */}
-              <div className="flex items-center gap-3 mb-12">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <div className="flex items-center gap-3" style={{ marginBottom: isMobile ? '32px' : '48px' }}>
+                <svg width={isMobile ? 32 : 40} height={isMobile ? 32 : 40} viewBox="0 0 40 40" fill="none">
                   <circle cx="20" cy="20" r="19" stroke="white" strokeWidth="2"/>
                   <path
                     d="M20.5 10C16.5 10 14 12 14 14.8C14 17.8 16.5 19 20 19.8C23 20.5 24 21.2 24 22.5C24 24 22.5 25 20 25C17 25 15.5 23.5 15.2 21.5H11.5C11.8 25.5 15 28.5 20 28.5C24.5 28.5 27.5 26 27.5 22.3C27.5 19 25 17.5 21 16.7C18.2 16.1 17 15.5 17 14.3C17 13 18.3 12 20.3 12C22.5 12 24 13.2 24.3 15H28C27.5 11.5 24.5 10 20.5 10Z"
                     fill="white"
                   />
                 </svg>
-                <span className="text-white font-bold text-[28px]">SmartHR</span>
+                <span className="text-white font-bold" style={{ fontSize: isMobile ? '22px' : '28px' }}>SmartHR</span>
               </div>
 
-              {/* SNS Links - X column and YouTube column side by side */}
-              <div className="flex gap-16">
+              {/* SNS Links */}
+              <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '24px' : '64px' }}>
                 {/* Column 1 - X, note, TechBlog, Real SmartHR */}
-                <div className="space-y-5">
-                  <SocialLink icon={<XIcon />} label="X" />
-                  <SocialLink icon={<NoteIcon />} label="note" />
-                  <SocialLink icon={<SmartHRIcon />} label="TechBlog" />
-                  <SocialLink icon={<SmartHRIcon />} label="Real SmartHR (Official Blog)" />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '12px' : '20px' }}>
+                  <SocialLink icon={<XIcon />} label="X" isMobile={isMobile} />
+                  <SocialLink icon={<NoteIcon />} label="note" isMobile={isMobile} />
+                  <SocialLink icon={<SmartHRIcon />} label="TechBlog" isMobile={isMobile} />
+                  <SocialLink icon={<SmartHRIcon />} label="Real SmartHR (Official Blog)" isMobile={isMobile} />
                 </div>
 
                 {/* Column 2 - YouTube & Facebook */}
-                <div className="space-y-5">
-                  <SocialLink icon={<YouTubeIcon />} label="YouTube (Corporate)" />
-                  <SocialLink icon={<YouTubeIcon />} label="YouTube (Service)" />
-                  <div className="pt-5">
-                    <SocialLink icon={<FacebookIcon />} label="Facebook (Corporate)" />
+                <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '12px' : '20px' }}>
+                  <SocialLink icon={<YouTubeIcon />} label="YouTube (Corporate)" isMobile={isMobile} />
+                  <SocialLink icon={<YouTubeIcon />} label="YouTube (Service)" isMobile={isMobile} />
+                  <div style={{ paddingTop: isMobile ? '12px' : '20px' }}>
+                    <SocialLink icon={<FacebookIcon />} label="Facebook (Corporate)" isMobile={isMobile} />
                   </div>
-                  <SocialLink icon={<FacebookIcon />} label="Facebook (Service)" />
+                  <SocialLink icon={<FacebookIcon />} label="Facebook (Service)" isMobile={isMobile} />
                 </div>
               </div>
             </div>
 
             {/* Certification Badges at bottom */}
-            <div className="flex items-center gap-4 pb-8">
-              <div className="w-16 h-16 bg-[#1e3a5f] rounded-full flex items-center justify-center">
-                <span className="text-white text-[10px] text-center leading-tight">AICPA<br/>SOC</span>
+            <div className="flex items-center" style={{ gap: isMobile ? '12px' : '16px', paddingBottom: isMobile ? '32px' : '32px', marginTop: isMobile ? '40px' : '0' }}>
+              <div style={{ width: isMobile ? '48px' : '64px', height: isMobile ? '48px' : '64px' }} className="bg-[#1e3a5f] rounded-full flex items-center justify-center">
+                <span className="text-white text-center leading-tight" style={{ fontSize: isMobile ? '8px' : '10px' }}>AICPA<br/>SOC</span>
               </div>
-              <div className="w-12 h-12 bg-white rounded flex items-center justify-center">
-                <span className="text-[#1e3a5f] text-[10px] font-bold">MSA</span>
+              <div style={{ width: isMobile ? '40px' : '48px', height: isMobile ? '40px' : '48px' }} className="bg-white rounded flex items-center justify-center">
+                <span className="text-[#1e3a5f] font-bold" style={{ fontSize: isMobile ? '8px' : '10px' }}>MSA</span>
               </div>
-              <div className="w-12 h-12 bg-white rounded flex items-center justify-center">
-                <span className="text-[#1e3a5f] text-[10px] font-bold">ISMS</span>
+              <div style={{ width: isMobile ? '40px' : '48px', height: isMobile ? '40px' : '48px' }} className="bg-white rounded flex items-center justify-center">
+                <span className="text-[#1e3a5f] font-bold" style={{ fontSize: isMobile ? '8px' : '10px' }}>ISMS</span>
               </div>
-              <span className="text-gray-500 text-[14px] ml-2">認証組織：本社</span>
+              <span className="text-gray-500 ml-2" style={{ fontSize: isMobile ? '12px' : '14px' }}>認証組織：本社</span>
             </div>
           </div>
 
           {/* Right Half - Navigation */}
-          <div className="w-1/2 flex gap-16">
+          <div style={{
+            width: isMobile ? '100%' : '50%',
+            display: isMobile ? 'grid' : 'flex',
+            gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'none',
+            gap: isMobile ? '32px' : '64px'
+          }}>
             {/* 私たちについて & サービス */}
             <div>
-              <FooterTitle>私たちについて</FooterTitle>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <FooterLink href="#">ミッション・バリュー</FooterLink>
-                <FooterLink href="#">事業から見るSmartHR</FooterLink>
-                <FooterLink href="#">組織から見るSmartHR</FooterLink>
-                <FooterLink href="#">- DEIBに関する取り組み</FooterLink>
-                <FooterLink href="#">ブランドとしての取り組み</FooterLink>
+              <FooterTitle isMobile={isMobile}>私たちについて</FooterTitle>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '8px' : '10px' }}>
+                <FooterLink href="#" isMobile={isMobile}>ミッション・バリュー</FooterLink>
+                <FooterLink href="#" isMobile={isMobile}>事業から見るSmartHR</FooterLink>
+                <FooterLink href="#" isMobile={isMobile}>組織から見るSmartHR</FooterLink>
+                <FooterLink href="#" isMobile={isMobile}>- DEIBに関する取り組み</FooterLink>
+                <FooterLink href="#" isMobile={isMobile}>ブランドとしての取り組み</FooterLink>
               </div>
 
-              <div style={{ marginTop: '120px' }}>
-                <FooterTitle>サービス</FooterTitle>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  <FooterLink href="#" external>サービスサイト</FooterLink>
+              <div style={{ marginTop: isMobile ? '32px' : '120px' }}>
+                <FooterTitle isMobile={isMobile}>サービス</FooterTitle>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '8px' : '10px' }}>
+                  <FooterLink href="#" external isMobile={isMobile}>サービスサイト</FooterLink>
                 </div>
               </div>
             </div>
 
             {/* ニュース & 会社情報 */}
             <div>
-              <FooterTitle>ニュース</FooterTitle>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <FooterLink href="/news">ニュース一覧</FooterLink>
-                <FooterLink href="#">プレスキット</FooterLink>
+              <FooterTitle isMobile={isMobile}>ニュース</FooterTitle>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '8px' : '10px' }}>
+                <FooterLink href="/news" isMobile={isMobile}>ニュース一覧</FooterLink>
+                <FooterLink href="#" isMobile={isMobile}>プレスキット</FooterLink>
               </div>
 
-              <div style={{ marginTop: '120px' }}>
-                <FooterTitle>会社情報</FooterTitle>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                  <FooterLink href="/company">会社概要</FooterLink>
-                  <FooterLink href="/company/executives">役員紹介</FooterLink>
-                  <FooterLink href="#">沿革</FooterLink>
+              <div style={{ marginTop: isMobile ? '32px' : '120px' }}>
+                <FooterTitle isMobile={isMobile}>会社情報</FooterTitle>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '8px' : '10px' }}>
+                  <FooterLink href="/company" isMobile={isMobile}>会社概要</FooterLink>
+                  <FooterLink href="/company/executives" isMobile={isMobile}>役員紹介</FooterLink>
+                  <FooterLink href="#" isMobile={isMobile}>沿革</FooterLink>
                 </div>
               </div>
             </div>
 
-            {/* サステナビリティ & お問い合わせ & 採用 */}
-            <div>
-              <FooterTitle>サステナビリティ</FooterTitle>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <FooterLink href="#">マテリアリティ</FooterLink>
-                <FooterLink href="#">人的資本に関する取り組み</FooterLink>
-                <FooterLink href="#">環境</FooterLink>
-                <FooterLink href="#">社会</FooterLink>
-                <FooterLink href="#">ガバナンス</FooterLink>
+            {/* サステナビリティ & お問い合わせ */}
+            <div style={{ gridColumn: isMobile ? 'span 2' : 'auto' }}>
+              <FooterTitle isMobile={isMobile}>サステナビリティ</FooterTitle>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '8px' : '10px' }}>
+                <FooterLink href="#" isMobile={isMobile}>マテリアリティ</FooterLink>
+                <FooterLink href="#" isMobile={isMobile}>人的資本に関する取り組み</FooterLink>
+                <FooterLink href="#" isMobile={isMobile}>環境</FooterLink>
+                <FooterLink href="#" isMobile={isMobile}>社会</FooterLink>
+                <FooterLink href="#" isMobile={isMobile}>ガバナンス</FooterLink>
               </div>
 
-              <div style={{ marginTop: '120px' }}>
-                <FooterLink href="/contact">
-                  <span style={{ fontSize: '16px', fontWeight: '600', letterSpacing: '0.05em' }}>お問い合わせ</span>
+              <div style={{ marginTop: isMobile ? '32px' : '120px' }}>
+                <FooterLink href="/contact" isMobile={isMobile}>
+                  <span style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: '600', letterSpacing: '0.05em' }}>お問い合わせ</span>
                 </FooterLink>
               </div>
             </div>
@@ -231,25 +251,39 @@ export default function Footer() {
       </div>
 
       {/* Bottom Bar */}
-      <div style={{ padding: '0 5% 100px 5%' }}>
-        <div className="flex items-center justify-between">
-          <span className="text-white text-[16px]">© SmartHR, Inc.</span>
-          <div style={{ marginRight: '15%' }} className="flex items-center gap-8">
-            <a href="#" className="group text-white text-[16px]">
+      <div style={{ padding: isMobile ? '32px 5%' : '0 5% 100px 5%' }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
+          alignItems: isMobile ? 'flex-start' : 'center',
+          justifyContent: 'space-between',
+          gap: isMobile ? '24px' : '0'
+        }}>
+          <span className="text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>© SmartHR, Inc.</span>
+          <div style={{
+            marginRight: isMobile ? '0' : '15%',
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+            alignItems: 'flex-start',
+            gap: isMobile ? '12px' : '32px'
+          }}>
+            <a href="#" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">アクセシビリティ方針<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
-            <a href="#" className="group text-white text-[16px]">
+            <a href="#" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">情報セキュリティ基本方針<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
-            <a href="#" className="group text-white text-[16px]">
+            <a href="#" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">プライバシーポリシー<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
-            <a href="#" className="group text-white text-[16px]">
+            <a href="#" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">AI活用ポリシー<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
-            <a href="#" className="group text-white text-[16px]">
-              <span className="relative inline-block">カスタマーハラスメントに対する行動指針<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
-            </a>
+            {!isMobile && (
+              <a href="#" className="group text-white" style={{ fontSize: '16px' }}>
+                <span className="relative inline-block">カスタマーハラスメントに対する行動指針<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
+              </a>
+            )}
           </div>
         </div>
       </div>

@@ -1,12 +1,14 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 // Arrow Icon in circle
-function ArrowCircleIcon({ hover = false }: { hover?: boolean }) {
+function ArrowCircleIcon({ hover = false, size = 40 }: { hover?: boolean; size?: number }) {
   return (
     <div
       style={{
-        width: '40px',
-        height: '40px',
+        width: `${size}px`,
+        height: `${size}px`,
         borderRadius: '50%',
         backgroundColor: hover ? '#00c8c8' : 'black',
         display: 'flex',
@@ -15,7 +17,7 @@ function ArrowCircleIcon({ hover = false }: { hover?: boolean }) {
         transition: 'background-color 0.3s',
       }}
     >
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+      <svg width={size * 0.4} height={size * 0.4} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
         <path d="M5 12h14M12 5l7 7-7 7" />
       </svg>
     </div>
@@ -23,9 +25,9 @@ function ArrowCircleIcon({ hover = false }: { hover?: boolean }) {
 }
 
 // Arrow Icon
-function ArrowIcon() {
+function ArrowIcon({ size = 20 }: { size?: number }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M5 12h14M12 5l7 7-7 7" />
     </svg>
   );
@@ -61,13 +63,30 @@ const newsItems = [
 ];
 
 export default function News() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
-    <section className="bg-white" style={{ paddingTop: '80px', paddingBottom: '80px', position: 'relative' }}>
+    <section className="bg-white" style={{ paddingTop: isMobile ? '40px' : '80px', paddingBottom: isMobile ? '40px' : '80px', position: 'relative' }}>
       {/* ニュース label with full-width border */}
-      <div style={{ borderBottom: '1px solid #e5e7eb', marginBottom: '80px' }}>
-        <div className="flex items-center gap-4" style={{ padding: '0 5%', paddingBottom: '20px' }}>
-          <div style={{ width: '4px', height: '28px', backgroundColor: '#4dd9d9' }}></div>
-          <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.2em', fontWeight: '500' }}>ニュース</span>
+      <div style={{ borderBottom: '1px solid #e5e7eb', marginBottom: isMobile ? '40px' : '80px' }}>
+        <div
+          className="flex items-center"
+          style={{
+            padding: isMobile ? '0 5% 16px' : '0 5% 20px',
+            gap: isMobile ? '12px' : '16px'
+          }}
+        >
+          <div style={{ width: '4px', height: isMobile ? '24px' : '28px', backgroundColor: '#4dd9d9' }}></div>
+          <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>ニュース</span>
         </div>
       </div>
 
@@ -77,48 +96,72 @@ export default function News() {
           <a
             key={index}
             href="#"
-            className="flex items-center justify-between group"
+            className="group"
             style={{
-              padding: '30px 0',
+              display: 'flex',
+              flexDirection: isMobile ? 'column' : 'row',
+              alignItems: isMobile ? 'flex-start' : 'center',
+              justifyContent: 'space-between',
+              padding: isMobile ? '20px 0' : '30px 0',
               borderBottom: '1px solid #e5e7eb',
               textDecoration: 'none',
+              gap: isMobile ? '12px' : '0',
             }}
           >
             {/* Left side: Date, Category, Title */}
-            <div className="flex items-center" style={{ gap: '30px', flex: 1 }}>
-              {/* Date */}
-              <span
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: isMobile ? 'column' : 'row',
+                alignItems: isMobile ? 'flex-start' : 'center',
+                gap: isMobile ? '8px' : '30px',
+                flex: 1
+              }}
+            >
+              {/* Date and Category row on mobile */}
+              <div
                 style={{
-                  color: '#6b7280',
-                  fontSize: '15px',
-                  minWidth: '110px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: isMobile ? '12px' : '30px',
                 }}
               >
-                {item.date}
-              </span>
+                {/* Date */}
+                <span
+                  style={{
+                    color: '#6b7280',
+                    fontSize: isMobile ? '13px' : '15px',
+                    minWidth: isMobile ? 'auto' : '110px',
+                  }}
+                >
+                  {item.date}
+                </span>
 
-              {/* Category tag */}
-              <span
-                style={{
-                  border: '1px solid #00c8c8',
-                  color: '#00c8c8',
-                  padding: '6px 20px',
-                  borderRadius: '20px',
-                  fontSize: '13px',
-                  minWidth: '100px',
-                  textAlign: 'center',
-                }}
-              >
-                {item.category}
-              </span>
+                {/* Category tag */}
+                <span
+                  style={{
+                    border: '1px solid #00c8c8',
+                    color: '#00c8c8',
+                    padding: isMobile ? '4px 12px' : '6px 20px',
+                    borderRadius: '20px',
+                    fontSize: isMobile ? '11px' : '13px',
+                    minWidth: isMobile ? 'auto' : '100px',
+                    textAlign: 'center',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
+                  {item.category}
+                </span>
+              </div>
 
               {/* Title */}
               <span
                 className="group-hover:text-[#00c8c8] transition-colors"
                 style={{
                   color: 'black',
-                  fontSize: '16px',
+                  fontSize: isMobile ? '14px' : '16px',
                   flex: 1,
+                  lineHeight: '1.6',
                 }}
               >
                 {item.title}
@@ -126,22 +169,28 @@ export default function News() {
             </div>
 
             {/* Right side: Arrow */}
-            <div className="group-hover:scale-110 transition-transform">
-              <ArrowCircleIcon />
+            <div
+              className="group-hover:scale-110 transition-transform"
+              style={{
+                alignSelf: isMobile ? 'flex-end' : 'center',
+                marginTop: isMobile ? '8px' : '0',
+              }}
+            >
+              <ArrowCircleIcon size={isMobile ? 32 : 40} />
             </div>
           </a>
         ))}
       </div>
 
       {/* ニュース一覧 Button */}
-      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '60px', padding: '0 5%' }}>
+      <div style={{ display: 'flex', justifyContent: isMobile ? 'center' : 'flex-end', marginTop: isMobile ? '32px' : '60px', padding: '0 5%' }}>
         <a
           href="#"
           className="inline-flex items-center justify-between bg-black text-white"
           style={{
-            padding: '24px 32px',
-            minWidth: '280px',
-            fontSize: '18px',
+            padding: isMobile ? '16px 24px' : '24px 32px',
+            minWidth: isMobile ? '200px' : '280px',
+            fontSize: isMobile ? '14px' : '18px',
             borderRadius: '50px',
             transition: 'border-radius 0.5s ease',
           }}
@@ -149,65 +198,88 @@ export default function News() {
           onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
         >
           <span>ニュース一覧</span>
-          <ArrowIcon />
+          <ArrowIcon size={isMobile ? 16 : 20} />
         </a>
       </div>
 
       {/* Office Photos Section */}
-      <div style={{ position: 'relative', marginTop: '100px' }}>
-        {/* Cyan decorative shapes */}
-        <div
-          style={{
-            position: 'absolute',
-            top: '-80px',
-            left: '-10%',
-            width: '400px',
-            height: '350px',
-            backgroundColor: '#00c8c8',
-            transform: 'skewY(-8deg) skewX(-5deg)',
-            zIndex: 0,
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: '50px',
-            left: '-15%',
-            width: '350px',
-            height: '200px',
-            backgroundColor: '#00c8c8',
-            transform: 'skewY(5deg) skewX(-10deg)',
-            zIndex: 0,
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            top: '180px',
-            left: '-5%',
-            width: '300px',
-            height: '250px',
-            backgroundColor: '#00c8c8',
-            transform: 'skewY(-3deg)',
-            zIndex: 0,
-          }}
-        />
+      <div style={{ position: 'relative', marginTop: isMobile ? '60px' : '100px' }}>
+        {/* Cyan decorative shapes - hidden on mobile */}
+        {!isMobile && (
+          <>
+            <div
+              style={{
+                position: 'absolute',
+                top: '-80px',
+                left: '-10%',
+                width: '400px',
+                height: '350px',
+                backgroundColor: '#00c8c8',
+                transform: 'skewY(-8deg) skewX(-5deg)',
+                zIndex: 0,
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                top: '50px',
+                left: '-15%',
+                width: '350px',
+                height: '200px',
+                backgroundColor: '#00c8c8',
+                transform: 'skewY(5deg) skewX(-10deg)',
+                zIndex: 0,
+              }}
+            />
+            <div
+              style={{
+                position: 'absolute',
+                top: '180px',
+                left: '-5%',
+                width: '300px',
+                height: '250px',
+                backgroundColor: '#00c8c8',
+                transform: 'skewY(-3deg)',
+                zIndex: 0,
+              }}
+            />
+          </>
+        )}
+
+        {/* Mobile: Simple cyan background */}
+        {isMobile && (
+          <div
+            style={{
+              position: 'absolute',
+              top: '-20px',
+              left: '-5%',
+              width: '60%',
+              height: '200px',
+              backgroundColor: '#00c8c8',
+              transform: 'skewY(-5deg)',
+              zIndex: 0,
+            }}
+          />
+        )}
 
         {/* Photos container */}
         <div
-          className="flex gap-8"
           style={{
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: isMobile ? '16px' : '32px',
             position: 'relative',
             zIndex: 1,
-            paddingTop: '80px',
-            paddingLeft: '10%',
+            paddingTop: isMobile ? '40px' : '80px',
+            paddingLeft: isMobile ? '5%' : '10%',
+            paddingRight: isMobile ? '5%' : '0',
           }}
         >
           {/* Left photo - Dark office */}
           <div
             style={{
               flex: '1',
-              height: '450px',
+              height: isMobile ? '250px' : '450px',
               borderRadius: '8px',
               overflow: 'hidden',
               boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
@@ -233,8 +305,8 @@ export default function News() {
                 }}
               />
               {/* Hanging lamps */}
-              <div style={{ position: 'absolute', top: '35%', left: '30%', width: '20px', height: '30px', backgroundColor: '#f59e0b', borderRadius: '50%' }} />
-              <div style={{ position: 'absolute', top: '38%', left: '60%', width: '20px', height: '30px', backgroundColor: '#ea580c', borderRadius: '50%' }} />
+              <div style={{ position: 'absolute', top: '35%', left: '30%', width: isMobile ? '14px' : '20px', height: isMobile ? '20px' : '30px', backgroundColor: '#f59e0b', borderRadius: '50%' }} />
+              <div style={{ position: 'absolute', top: '38%', left: '60%', width: isMobile ? '14px' : '20px', height: isMobile ? '20px' : '30px', backgroundColor: '#ea580c', borderRadius: '50%' }} />
               {/* Window silhouettes */}
               <div
                 style={{
@@ -249,12 +321,12 @@ export default function News() {
               />
               {/* People silhouettes */}
               <div className="flex justify-center gap-4" style={{ position: 'absolute', bottom: '15%', left: '20%', right: '20%' }}>
-                {[...Array(6)].map((_, i) => (
+                {[...Array(isMobile ? 4 : 6)].map((_, i) => (
                   <div
                     key={i}
                     style={{
-                      width: '25px',
-                      height: '40px',
+                      width: isMobile ? '18px' : '25px',
+                      height: isMobile ? '28px' : '40px',
                       backgroundColor: 'rgba(0,0,0,0.6)',
                       borderRadius: '50% 50% 0 0',
                     }}
@@ -264,11 +336,11 @@ export default function News() {
               <span
                 style={{
                   position: 'absolute',
-                  bottom: '20px',
+                  bottom: '12px',
                   left: '50%',
                   transform: 'translateX(-50%)',
                   color: 'rgba(255,255,255,0.5)',
-                  fontSize: '12px',
+                  fontSize: isMobile ? '10px' : '12px',
                 }}
               >
                 Office Photo 1
@@ -280,7 +352,7 @@ export default function News() {
           <div
             style={{
               flex: '1',
-              height: '450px',
+              height: isMobile ? '250px' : '450px',
               borderRadius: '8px',
               overflow: 'hidden',
               boxShadow: '0 10px 40px rgba(0,0,0,0.15)',
@@ -307,28 +379,29 @@ export default function News() {
               />
               {/* People placeholders */}
               <div
-                className="flex items-end justify-center gap-6"
+                className="flex items-end justify-center"
                 style={{
                   position: 'absolute',
                   bottom: '20%',
                   left: '15%',
                   right: '15%',
+                  gap: isMobile ? '16px' : '24px',
                 }}
               >
                 {/* Person 1 */}
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', backgroundColor: '#374151', marginBottom: '8px' }} />
-                  <div style={{ width: '40px', height: '60px', backgroundColor: '#1f2937', borderRadius: '8px 8px 0 0' }} />
+                  <div style={{ width: isMobile ? '35px' : '50px', height: isMobile ? '35px' : '50px', borderRadius: '50%', backgroundColor: '#374151', marginBottom: '8px' }} />
+                  <div style={{ width: isMobile ? '28px' : '40px', height: isMobile ? '42px' : '60px', backgroundColor: '#1f2937', borderRadius: '8px 8px 0 0' }} />
                 </div>
                 {/* Person 2 - center */}
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', backgroundColor: '#374151', marginBottom: '8px' }} />
-                  <div style={{ width: '40px', height: '60px', backgroundColor: '#dc2626', borderRadius: '8px 8px 0 0' }} />
+                  <div style={{ width: isMobile ? '35px' : '50px', height: isMobile ? '35px' : '50px', borderRadius: '50%', backgroundColor: '#374151', marginBottom: '8px' }} />
+                  <div style={{ width: isMobile ? '28px' : '40px', height: isMobile ? '42px' : '60px', backgroundColor: '#dc2626', borderRadius: '8px 8px 0 0' }} />
                 </div>
                 {/* Person 3 */}
                 <div style={{ textAlign: 'center' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', backgroundColor: '#374151', marginBottom: '8px' }} />
-                  <div style={{ width: '40px', height: '60px', backgroundColor: '#6b7280', borderRadius: '8px 8px 0 0' }} />
+                  <div style={{ width: isMobile ? '35px' : '50px', height: isMobile ? '35px' : '50px', borderRadius: '50%', backgroundColor: '#374151', marginBottom: '8px' }} />
+                  <div style={{ width: isMobile ? '28px' : '40px', height: isMobile ? '42px' : '60px', backgroundColor: '#6b7280', borderRadius: '8px 8px 0 0' }} />
                 </div>
               </div>
               {/* Laptop */}
@@ -337,8 +410,8 @@ export default function News() {
                   position: 'absolute',
                   bottom: '25%',
                   right: '25%',
-                  width: '60px',
-                  height: '40px',
+                  width: isMobile ? '40px' : '60px',
+                  height: isMobile ? '28px' : '40px',
                   backgroundColor: '#d1d5db',
                   borderRadius: '4px',
                 }}
@@ -346,11 +419,11 @@ export default function News() {
               <span
                 style={{
                   position: 'absolute',
-                  bottom: '20px',
+                  bottom: '12px',
                   left: '50%',
                   transform: 'translateX(-50%)',
                   color: 'rgba(0,0,0,0.3)',
-                  fontSize: '12px',
+                  fontSize: isMobile ? '10px' : '12px',
                 }}
               >
                 Office Photo 2

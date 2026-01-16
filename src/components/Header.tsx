@@ -25,9 +25,9 @@ function ExternalLink() {
 }
 
 // Hamburger Menu Icon
-function HamburgerIcon() {
+function HamburgerIcon({ size = 40 }: { size?: number }) {
   return (
-    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M4 9H20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
       <path d="M4 15H20" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
     </svg>
@@ -129,18 +129,28 @@ export default function Header() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [lang, setLang] = useState<'ja' | 'en'>('ja');
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show fixed hamburger when scrolled past 600px
-      setShowFixedHamburger(window.scrollY > 600);
+      // Show fixed hamburger when scrolled past 600px (300px on mobile)
+      setShowFixedHamburger(window.scrollY > (isMobile ? 300 : 600));
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [isMobile]);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -160,55 +170,63 @@ export default function Header() {
         {/* Left + Center Content */}
         <div className="flex-1">
           {/* Logo and Navigation */}
-          <div className="flex items-center justify-between" style={{ padding: '24px 5%' }}>
+          <div
+            className="flex items-center justify-between"
+            style={{ padding: isMobile ? '16px 5%' : '24px 5%' }}
+          >
             {/* Logo */}
             <SmartHRLogo />
 
-            {/* Main Navigation */}
-            <nav className="flex items-center gap-10">
-              <NavItem
-                label="私たちについて"
-                hasDropdown
-                isOpen={openDropdown === '私たちについて'}
-                onMouseEnter={() => setOpenDropdown('私たちについて')}
-              />
-              <NavItem
-                label="サービス"
-                href="/service"
-                onMouseEnter={() => setOpenDropdown(null)}
-              />
-              <NavItem
-                label="ニュース"
-                href="/news"
-                onMouseEnter={() => setOpenDropdown(null)}
-              />
-              <NavItem
-                label="会社情報"
-                hasDropdown
-                isOpen={openDropdown === '会社情報'}
-                onMouseEnter={() => setOpenDropdown('会社情報')}
-              />
-            </nav>
+            {/* Main Navigation - hidden on mobile */}
+            {!isMobile && (
+              <nav className="flex items-center gap-10">
+                <NavItem
+                  label="私たちについて"
+                  hasDropdown
+                  isOpen={openDropdown === '私たちについて'}
+                  onMouseEnter={() => setOpenDropdown('私たちについて')}
+                />
+                <NavItem
+                  label="サービス"
+                  href="/service"
+                  onMouseEnter={() => setOpenDropdown(null)}
+                />
+                <NavItem
+                  label="ニュース"
+                  href="/news"
+                  onMouseEnter={() => setOpenDropdown(null)}
+                />
+                <NavItem
+                  label="会社情報"
+                  hasDropdown
+                  isOpen={openDropdown === '会社情報'}
+                  onMouseEnter={() => setOpenDropdown('会社情報')}
+                />
+              </nav>
+            )}
           </div>
         </div>
 
         {/* Right Section - Separator + Hamburger (spans both rows) */}
         <div className="flex items-center self-stretch">
-          {/* Vertical Separator Line - extends to bottom */}
-          <div className="w-px bg-black self-stretch mr-6"></div>
+          {/* Vertical Separator Line - extends to bottom (hidden on mobile) */}
+          {!isMobile && <div className="w-px bg-black self-stretch mr-6"></div>}
 
           {/* Hamburger Menu Button */}
           <button
-            className="w-[100px] h-[100px] bg-black flex items-center justify-center mr-[5%]"
+            className="bg-black flex items-center justify-center"
             style={{
-              borderRadius: '50px',
+              width: isMobile ? '56px' : '100px',
+              height: isMobile ? '56px' : '100px',
+              borderRadius: isMobile ? '12px' : '50px',
               transition: 'border-radius 0.5s ease',
+              marginRight: '5%',
             }}
-            onMouseEnter={(e) => e.currentTarget.style.borderRadius = '8px'}
-            onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
+            onMouseEnter={(e) => !isMobile && (e.currentTarget.style.borderRadius = '8px')}
+            onMouseLeave={(e) => !isMobile && (e.currentTarget.style.borderRadius = '50px')}
             onClick={() => setIsMenuOpen(true)}
           >
-            <HamburgerIcon />
+            <HamburgerIcon size={isMobile ? 28 : 40} />
           </button>
         </div>
       </div>
@@ -216,8 +234,8 @@ export default function Header() {
       {/* Bottom horizontal line - full width */}
       <div className="h-px bg-black w-full"></div>
 
-      {/* Full-width Mega Menu Dropdown */}
-      {openDropdown && dropdownMenus[openDropdown] && (
+      {/* Full-width Mega Menu Dropdown - only on desktop */}
+      {!isMobile && openDropdown && dropdownMenus[openDropdown] && (
         <div
           onMouseLeave={() => setOpenDropdown(null)}
           style={{
@@ -305,20 +323,20 @@ export default function Header() {
         <button
           className="fixed bg-black flex items-center justify-center animate-fadeIn"
           style={{
-            top: '20px',
-            right: '2%',
-            width: '100px',
-            height: '100px',
-            borderRadius: '50px',
+            top: isMobile ? '12px' : '20px',
+            right: isMobile ? '4%' : '2%',
+            width: isMobile ? '48px' : '100px',
+            height: isMobile ? '48px' : '100px',
+            borderRadius: isMobile ? '12px' : '50px',
             transition: 'border-radius 0.5s ease',
             zIndex: 1000,
             animation: 'fadeIn 0.5s ease',
           }}
-          onMouseEnter={(e) => e.currentTarget.style.borderRadius = '8px'}
-          onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
+          onMouseEnter={(e) => !isMobile && (e.currentTarget.style.borderRadius = '8px')}
+          onMouseLeave={(e) => !isMobile && (e.currentTarget.style.borderRadius = '50px')}
           onClick={() => setIsMenuOpen(true)}
         >
-          <HamburgerIcon />
+          <HamburgerIcon size={isMobile ? 24 : 40} />
         </button>
       )}
 
@@ -346,9 +364,9 @@ export default function Header() {
           position: 'fixed',
           top: 0,
           right: 0,
-          width: '40%',
-          minWidth: '400px',
-          maxWidth: '600px',
+          width: isMobile ? '100%' : '40%',
+          minWidth: isMobile ? '100%' : '400px',
+          maxWidth: isMobile ? '100%' : '600px',
           height: '100vh',
           backgroundColor: 'white',
           zIndex: 2000,
@@ -358,11 +376,16 @@ export default function Header() {
         }}
       >
         {/* Menu Header */}
-        <div style={{ padding: '40px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{
+          padding: isMobile ? '20px' : '40px',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center'
+        }}>
           <SmartHRLogo />
-          <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '12px' : '20px' }}>
             {/* Language Switcher */}
-            <div className="flex items-center gap-2 text-[16px]">
+            <div className="flex items-center gap-2" style={{ fontSize: isMobile ? '14px' : '16px' }}>
               <button
                 onClick={() => setLang('ja')}
                 className={lang === 'ja' ? 'font-medium' : 'opacity-50'}
@@ -380,7 +403,11 @@ export default function Header() {
             {/* Close Button */}
             <button
               onClick={() => setIsMenuOpen(false)}
-              className="w-[50px] h-[50px] bg-black rounded-full flex items-center justify-center text-white"
+              className="bg-black rounded-full flex items-center justify-center text-white"
+              style={{
+                width: isMobile ? '40px' : '50px',
+                height: isMobile ? '40px' : '50px',
+              }}
             >
               <CloseIcon />
             </button>
@@ -388,17 +415,22 @@ export default function Header() {
         </div>
 
         {/* Menu Items */}
-        <div style={{ padding: '40px' }}>
+        <div style={{ padding: isMobile ? '20px' : '40px' }}>
           {menuItems.map((item, index) => {
             const content = (
               <>
-                <div style={{ fontSize: '20px', fontWeight: '500', color: 'black', marginBottom: '4px' }}>
+                <div style={{
+                  fontSize: isMobile ? '18px' : '20px',
+                  fontWeight: '500',
+                  color: 'black',
+                  marginBottom: '4px'
+                }}>
                   <span className="relative inline-block">
                     {item.label}
                     <span className="absolute left-0 bottom-[-2px] h-[1px] bg-black transition-all duration-[400ms] w-0 group-hover:w-full"></span>
                   </span>
                 </div>
-                <div style={{ fontSize: '14px', color: '#888' }}>
+                <div style={{ fontSize: isMobile ? '12px' : '14px', color: '#888' }}>
                   {item.sublabel}
                 </div>
               </>
@@ -410,7 +442,7 @@ export default function Header() {
                 href={item.href}
                 className="group block"
                 style={{
-                  padding: '24px 0',
+                  padding: isMobile ? '16px 0' : '24px 0',
                   borderBottom: '1px solid #e5e7eb',
                 }}
                 onClick={() => setIsMenuOpen(false)}
@@ -423,7 +455,7 @@ export default function Header() {
                 href="#"
                 className="group block"
                 style={{
-                  padding: '24px 0',
+                  padding: isMobile ? '16px 0' : '24px 0',
                   borderBottom: '1px solid #e5e7eb',
                 }}
                 onClick={() => setIsMenuOpen(false)}

@@ -273,7 +273,7 @@ export default function Footer() {
             <a href="#" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">情報セキュリティ基本方針<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
-            <a href="#" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
+            <a href="/privacy" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">プライバシーポリシー<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
             <a href="#" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>

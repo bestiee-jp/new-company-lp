@@ -111,11 +111,68 @@ export default function ContactPage() {
 
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      // Send to Discord webhook
+      const discordWebhookUrl = 'https://discord.com/api/webhooks/1464471802486194438/Sv21dT-OaenKaYCt_mEp6uO7PGLJLj3Pun1Ce4qb55JsCvLtGZSk43DzaqPj1_aicLyo';
+
+      const embedMessage = {
+        embeds: [{
+          title: '新しいお問い合わせ',
+          color: 0x4dd9d9,
+          fields: [
+            { name: '氏名', value: `${formData.lastName} ${formData.firstName}`, inline: true },
+            { name: '会社名', value: formData.companyName, inline: true },
+            { name: '部署', value: formData.department || '未入力', inline: true },
+            { name: '役職', value: formData.position || '未入力', inline: true },
+            { name: '電話番号', value: formData.phone, inline: true },
+            { name: 'メールアドレス', value: formData.email, inline: true },
+            { name: '採用領域', value: formData.recruitmentAreas.join(', '), inline: false },
+            { name: 'お問い合わせ内容', value: formData.message, inline: false },
+          ],
+          timestamp: new Date().toISOString(),
+        }],
+      };
+
+      // Send to Google Sheets
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycby7DUJUyeheEEzBERMubK5tCH-M51leF7Pbp4jaA3YxeytjeU-hmTCo68MIyALufFzp/exec';
+
+      // Send both requests in parallel
+      await Promise.all([
+        fetch(discordWebhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(embedMessage),
+        }),
+        fetch(googleScriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            lastName: formData.lastName,
+            firstName: formData.firstName,
+            companyName: formData.companyName,
+            department: formData.department,
+            position: formData.position,
+            phone: formData.phone,
+            email: formData.email,
+            recruitmentAreas: formData.recruitmentAreas,
+            message: formData.message,
+          }),
+        }),
+      ]);
+
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('Submission failed:', error);
+      // Still show success to user even if notification fails
+      setIsSubmitted(true);
+    }
 
     setIsSubmitting(false);
-    setIsSubmitted(true);
   };
 
   return (
@@ -907,16 +964,14 @@ export default function ContactPage() {
                       プライバシーポリシー
                     </p>
                     <a
-                      href="https://talent.supporterz.jp/privacy/"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="/privacy"
                       style={{
                         fontSize: '14px',
                         color: '#1a73e8',
                         textDecoration: 'none',
                       }}
                     >
-                      (https://talent.supporterz.jp/privacy/)
+                      (プライバシーポリシーを見る)
                     </a>
                   </div>
 

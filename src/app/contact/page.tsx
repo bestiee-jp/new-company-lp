@@ -298,104 +298,6 @@ export default function ContactPage() {
                   </p>
                 </div>
 
-                {/* Awards Section */}
-                <div style={{ marginTop: '40px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-                    <div style={{ width: '4px', height: '24px', backgroundColor: '#4dd9d9' }}></div>
-                    <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>受賞歴</h3>
-                  </div>
-
-                  {/* Award Badges */}
-                  <div style={{
-                    display: 'flex',
-                    gap: '16px',
-                    flexWrap: 'wrap',
-                    marginBottom: '24px',
-                    justifyContent: 'flex-start',
-                  }}>
-                    <div style={{
-                      width: '80px',
-                      height: '80px',
-                      backgroundColor: '#f5f5f5',
-                      borderRadius: '8px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '10px',
-                      color: '#666',
-                      textAlign: 'center',
-                      padding: '8px',
-                    }}>
-                      HR Award 2023
-                    </div>
-                    <div style={{
-                      width: '80px',
-                      height: '80px',
-                      backgroundColor: '#f5f5f5',
-                      borderRadius: '8px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '10px',
-                      color: '#666',
-                      textAlign: 'center',
-                      padding: '8px',
-                    }}>
-                      HR 2025
-                    </div>
-                    <div style={{
-                      width: '80px',
-                      height: '80px',
-                      backgroundColor: '#f5f5f5',
-                      borderRadius: '8px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '10px',
-                      color: '#666',
-                      textAlign: 'center',
-                      padding: '8px',
-                    }}>
-                      デジタル人材育成大賞
-                    </div>
-                    <div style={{
-                      width: '80px',
-                      height: '80px',
-                      backgroundColor: '#f5f5f5',
-                      borderRadius: '8px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '10px',
-                      color: '#666',
-                      textAlign: 'center',
-                      padding: '8px',
-                    }}>
-                      GOOD DESIGN 2025
-                    </div>
-                  </div>
-
-                  {/* Award List */}
-                  <ul style={{
-                    fontSize: '14px',
-                    color: '#333',
-                    lineHeight: '2',
-                    listStyle: 'disc',
-                    paddingLeft: '20px',
-                  }}>
-                    <li>第14回 日本HRチャレンジ大賞 人材サービス優秀賞</li>
-                    <li>HRアワード2023 人材開発・育成部門 優秀賞</li>
-                    <li>第2回 デジタル人材育成大賞</li>
-                    <li>GOOD DESIGN AWARD2025 グッドデザイン賞</li>
-                  </ul>
-
-                  {/* Divider */}
-                  <div style={{
-                    borderBottom: '1px solid #e5e7eb',
-                    marginTop: '32px',
-                  }}></div>
-                </div>
-
                 {/* Past Support Section */}
                 <div style={{ marginTop: '40px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
@@ -438,14 +340,14 @@ export default function ContactPage() {
                   }}></div>
                 </div>
 
-                {/* Consultant Support Section */}
+                {/* Media Section */}
                 <div style={{ marginTop: '40px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
                     <div style={{ width: '4px', height: '24px', backgroundColor: '#4dd9d9' }}></div>
-                    <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>経験豊富なコンサルタントが徹底サポート</h3>
+                    <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>過去のメディア実績</h3>
                   </div>
 
-                  {/* Team Photo Placeholder */}
+                  {/* Media Placeholder */}
                   <div style={{
                     width: '100%',
                     height: '250px',
@@ -457,7 +359,7 @@ export default function ContactPage() {
                     color: '#999',
                     fontSize: '14px',
                   }}>
-                    チーム写真
+                    メディア実績
                   </div>
                 </div>
               </div>

@@ -24,29 +24,13 @@ body {
   font-family: var(--font-noto-sans-jp), "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 }
 
-/* テキスト選択を無効化 */
-body, body * {
-  -webkit-user-select: none !important;
-  -moz-user-select: none !important;
-  -ms-user-select: none !important;
-  user-select: none !important;
-  -webkit-touch-callout: none !important;
-}
-
-/* フォーム入力欄は選択可能にする */
-input, textarea, select, input *, textarea *, select * {
-  -webkit-user-select: text !important;
-  -moz-user-select: text !important;
-  -ms-user-select: text !important;
-  user-select: text !important;
-}
 
 html {
   scroll-behavior: smooth;
 }
 
 ::selection {
-  background-color: transparent;
+  background-color: rgba(0, 196, 204, 0.2);
 }
 
 /* Employee photos auto scroll animation */

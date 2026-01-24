@@ -63,10 +63,6 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Sparkle icon */}
-        <div className="absolute right-[5%] bottom-[20%] text-white text-5xl md:text-7xl">
-          ✦
-        </div>
 
       </div>
     </section>

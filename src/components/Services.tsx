@@ -157,147 +157,17 @@ export default function Services() {
               </a>
             </div>
 
-            {/* Right side - Device Mockups */}
-            <div style={{ flex: '1', position: 'relative', minHeight: isMobile ? '350px' : '500px' }}>
-              {/* Laptop mockup - hidden on mobile */}
-              {!isMobile && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '0',
-                    right: '0',
-                    width: '85%',
-                    height: '400px',
-                    backgroundColor: '#f3f4f6',
-                    borderRadius: '8px',
-                    border: '8px solid #1f2937',
-                    borderBottom: '24px solid #1f2937',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {/* Laptop screen content */}
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      background: 'linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%)',
-                      padding: '20px',
-                    }}
-                  >
-                    {/* Header bar */}
-                    <div
-                      style={{
-                        backgroundColor: '#0d9488',
-                        padding: '8px 16px',
-                        borderRadius: '4px 4px 0 0',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '8px',
-                      }}
-                    >
-                      <span style={{ color: 'white', fontSize: '12px', fontWeight: 'bold' }}>SmartHR</span>
-                      <span style={{ color: 'white', fontSize: '10px', opacity: 0.8 }}>株式会社＊＊＊＊＊</span>
-                    </div>
-                    {/* Content area */}
-                    <div style={{ backgroundColor: 'white', padding: '16px', borderRadius: '0 0 4px 4px' }}>
-                      <div style={{ fontSize: '14px', fontWeight: 'bold', marginBottom: '12px' }}>{slide.title}</div>
-                      <div style={{ display: 'flex', gap: '20px' }}>
-                        {/* Stats */}
-                        <div>
-                          <div style={{ fontSize: '10px', color: '#6b7280' }}>{slide.subtitle}</div>
-                          <div style={{ fontSize: '24px', fontWeight: 'bold' }}>{slide.value}<span style={{ fontSize: '12px' }}>{slide.unit}</span></div>
-                        </div>
-                        {/* Chart placeholder */}
-                        <div style={{ flex: 1, display: 'flex', alignItems: 'flex-end', gap: '4px', height: '80px' }}>
-                          {slide.chartData.map((h, i) => (
-                            <div
-                              key={i}
-                              style={{
-                                flex: 1,
-                                height: `${h}%`,
-                                backgroundColor: i % 2 === 0 ? '#0891b2' : '#22d3ee',
-                                borderRadius: '2px 2px 0 0',
-                              }}
-                            />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Phone mockup */}
-              <div
+            {/* Right side - Service Image */}
+            <div style={{ flex: '1', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: isMobile ? '300px' : '400px' }}>
+              <img
+                src="/images/service-mockup.png"
+                alt="サービスイメージ"
                 style={{
-                  position: isMobile ? 'relative' : 'absolute',
-                  bottom: isMobile ? 'auto' : '0',
-                  left: isMobile ? '50%' : '5%',
-                  transform: isMobile ? 'translateX(-50%)' : 'none',
-                  width: isMobile ? '180px' : '160px',
-                  height: isMobile ? '360px' : '320px',
-                  backgroundColor: '#1f2937',
-                  borderRadius: '24px',
-                  padding: '8px',
-                  boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+                  maxWidth: '100%',
+                  maxHeight: isMobile ? '300px' : '400px',
+                  objectFit: 'contain',
                 }}
-              >
-                {/* Phone screen */}
-                <div
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    backgroundColor: 'white',
-                    borderRadius: '16px',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {/* Phone header */}
-                  <div
-                    style={{
-                      backgroundColor: '#0d9488',
-                      padding: isMobile ? '10px 14px' : '8px 12px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                    }}
-                  >
-                    <span style={{ color: 'white', fontSize: isMobile ? '12px' : '10px', fontWeight: 'bold' }}>SmartHR</span>
-                  </div>
-                  {/* Phone content */}
-                  <div style={{ padding: isMobile ? '14px' : '12px' }}>
-                    {/* Profile section */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
-                      <div
-                        style={{
-                          width: isMobile ? '48px' : '40px',
-                          height: isMobile ? '48px' : '40px',
-                          borderRadius: '50%',
-                          background: 'linear-gradient(135deg, #94a3b8 0%, #cbd5e1 100%)',
-                        }}
-                      />
-                      <div>
-                        <div style={{ fontSize: isMobile ? '12px' : '10px', fontWeight: 'bold' }}>{slide.phoneUser}</div>
-                        <div style={{ fontSize: isMobile ? '10px' : '8px', color: '#6b7280' }}>{slide.phoneLocation}</div>
-                      </div>
-                    </div>
-                    {/* Info rows */}
-                    {slide.phoneItems.map((label, i) => (
-                      <div
-                        key={i}
-                        style={{
-                          borderBottom: '1px solid #e5e7eb',
-                          padding: isMobile ? '8px 0' : '6px 0',
-                          fontSize: isMobile ? '10px' : '8px',
-                          color: '#374151',
-                        }}
-                      >
-                        {label}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              />
             </div>
           </div>
         </div>

@@ -134,7 +134,7 @@ export default function ContactPage() {
       };
 
       // Send to Google Sheets
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycby7DUJUyeheEEzBERMubK5tCH-M51leF7Pbp4jaA3YxeytjeU-hmTCo68MIyALufFzp/exec';
+      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbynKNbbnhch2Fz5-laFU-pRp6rYHhx5FjCJMN_HR2kJuJHKHtMeVKpLqZmtYFcUh2c8/exec';
 
       // Send both requests in parallel
       await Promise.all([
@@ -149,7 +149,7 @@ export default function ContactPage() {
           method: 'POST',
           mode: 'no-cors',
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'text/plain',
           },
           body: JSON.stringify({
             lastName: formData.lastName,

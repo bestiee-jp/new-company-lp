@@ -169,20 +169,6 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-
-            {/* Certification Badges at bottom */}
-            <div className="flex items-center" style={{ gap: isMobile ? '12px' : '16px', paddingBottom: isMobile ? '32px' : '32px', marginTop: isMobile ? '40px' : '0' }}>
-              <div style={{ width: isMobile ? '48px' : '64px', height: isMobile ? '48px' : '64px' }} className="bg-[#1e3a5f] rounded-full flex items-center justify-center">
-                <span className="text-white text-center leading-tight" style={{ fontSize: isMobile ? '8px' : '10px' }}>AICPA<br/>SOC</span>
-              </div>
-              <div style={{ width: isMobile ? '40px' : '48px', height: isMobile ? '40px' : '48px' }} className="bg-white rounded flex items-center justify-center">
-                <span className="text-[#1e3a5f] font-bold" style={{ fontSize: isMobile ? '8px' : '10px' }}>MSA</span>
-              </div>
-              <div style={{ width: isMobile ? '40px' : '48px', height: isMobile ? '40px' : '48px' }} className="bg-white rounded flex items-center justify-center">
-                <span className="text-[#1e3a5f] font-bold" style={{ fontSize: isMobile ? '8px' : '10px' }}>ISMS</span>
-              </div>
-              <span className="text-gray-500 ml-2" style={{ fontSize: isMobile ? '12px' : '14px' }}>認証組織：本社</span>
-            </div>
           </div>
 
           {/* Right Half - Navigation */}
@@ -270,13 +256,13 @@ export default function Footer() {
             <a href="#" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">アクセシビリティ方針<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
-            <a href="#" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
+            <a href="/security" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">情報セキュリティ基本方針<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
             <a href="/privacy" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">プライバシーポリシー<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
-            <a href="#" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
+            <a href="/ai-policy" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">AI活用ポリシー<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
             {!isMobile && (

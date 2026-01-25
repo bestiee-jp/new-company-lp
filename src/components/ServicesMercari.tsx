@@ -53,6 +53,16 @@ export default function ServicesMercari() {
   const [progress, setProgress] = useState(0);
   const [resetTrigger, setResetTrigger] = useState(0);
   const [targetSlide, setTargetSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     if (isAnimating) return; // Stop timer during animation
@@ -108,18 +118,36 @@ export default function ServicesMercari() {
   const wipeBgColor = slides[targetSlide].bgColor;
 
   return (
-    <section
-      style={{
-        backgroundColor: slide.bgColor,
-        minHeight: '600px',
-        position: 'relative',
-        overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '80px 5%',
-      }}
-    >
+    <>
+      {/* サービス header */}
+      <section className="bg-white" style={{ paddingTop: isMobile ? '40px' : '80px' }}>
+        <div style={{ borderBottom: '1px solid #e5e7eb' }}>
+          <div
+            className="flex items-center"
+            style={{
+              padding: isMobile ? '0 5% 16px' : '0 5% 20px',
+              gap: isMobile ? '12px' : '16px'
+            }}
+          >
+            <div style={{ width: '4px', height: isMobile ? '24px' : '28px', backgroundColor: '#4dd9d9' }}></div>
+            <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>サービス</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Main content */}
+      <section
+        style={{
+          backgroundColor: slide.bgColor,
+          minHeight: '600px',
+          position: 'relative',
+          overflow: 'hidden',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '80px 5%',
+        }}
+      >
       {/* Inject keyframe styles */}
       <style dangerouslySetInnerHTML={{ __html: diagonalWipeKeyframes }} />
 
@@ -247,44 +275,14 @@ export default function ServicesMercari() {
             </p>
           </div>
 
-          {/* Button and indicators row */}
+          {/* Dot indicators */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'space-between',
+              justifyContent: 'flex-start',
             }}
           >
-            {/* Button */}
-            <a
-              href={slide.buttonLink}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '12px',
-                textDecoration: 'none',
-                color: '#333',
-                fontSize: '16px',
-                fontWeight: '500',
-              }}
-            >
-              <div
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  backgroundColor: '#4dd9d9',
-                  borderRadius: '50%',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'white',
-                }}
-              >
-                <ExternalLinkIcon />
-              </div>
-              <span>{slide.buttonText}</span>
-            </a>
-
             {/* Dot indicators with progress */}
             <div
               style={{
@@ -405,5 +403,6 @@ export default function ServicesMercari() {
         </div>
       </div>
     </section>
+    </>
   );
 }

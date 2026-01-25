@@ -1,8 +1,6 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Mission from "@/components/Mission";
-import AboutUs from "@/components/AboutUs";
-import Services from "@/components/Services";
 import ServicesMercari from "@/components/ServicesMercari";
 import News from "@/components/News";
 import Careers from "@/components/Careers";
@@ -19,10 +17,8 @@ export default function Home() {
         <div style={{ position: 'relative', zIndex: 2 }}>
           <Hero />
           <Mission />
-          <AboutUs />
         </div>
       </div>
-      <Services />
       <ServicesMercari />
       <News />
       <Careers />

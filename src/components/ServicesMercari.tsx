@@ -28,22 +28,32 @@ function ExternalLinkIcon() {
 // Slide data
 const slides = [
   {
-    logoText: 'mercari',
-    logoIcon: 'm',
-    description: '「メルカリ」は、個人が簡単にモノの売り買いが楽しめるフリマアプリです。AIによる不正の監視や独自の入金システムにより、誰でも安心・安全な取引が行えます。',
-    buttonText: 'サイトを開く',
-    buttonLink: '#',
+    name: 'FastPass',
+    category: 'Services',
+    description: '「FastPass」は、AI面接練習データを活用した、ハイクラス学生特化の採用マッチングサービスです。AIが解析した面接データをもとに、エージェントが貴社に最適な学生を紹介します。',
     bgColor: '#4dd9d9',
-    visualType: 'phone',
+    image: '/images/service-fastpass.png',
   },
   {
-    logoText: 'Pay',
-    logoIcon: 'm',
-    description: '「メルペイ」は、スマホ決済サービスです。メルカリの売上金や、銀行口座からチャージしたお金を使って、メルカリアプリ内や、さまざまなお店でお買い物が楽しめます。',
-    buttonText: 'サイトを開く',
-    buttonLink: '#',
+    name: 'AIチャレンジャーズフェス',
+    category: 'Events',
+    description: '「AIチャレンジャーズフェス」は、日本で最も「AIに熱中」しているハイクラス学生150名が集まる大規模採用イベントです。コードを書きながら事業も語れる、AI時代の企業競争力を担う人材と出会えます。',
+    bgColor: '#1a1a2e',
+    image: '/images/service-aicf.png',
+  },
+  {
+    name: 'FastPass meetup',
+    category: 'Events',
+    description: '「FastPass meetup」は、AIが厳選した成長意欲の高いハイクラス学生と、少人数でじっくり向き合える採用イベントです。大規模イベントでは難しい、深い対話と相互理解を実現します。',
     bgColor: '#e8eef4',
-    visualType: 'illustration',
+    image: '/images/service-meetup.png',
+  },
+  {
+    name: 'ベストティーチ',
+    category: 'Services',
+    description: '「ベストティーチ」は、AIがお子さまにぴったりの先生を提案してくれる家庭教師サービスです。出身塾や出身高、趣味など350以上の項目から指導経験豊富な先生を選べて、単発1回からお試しできます。',
+    bgColor: '#fff5e6',
+    image: '/images/service-bestteach.png',
   },
 ];
 
@@ -194,7 +204,7 @@ export default function ServicesMercari() {
             flexDirection: 'column',
           }}
         >
-          {/* Services label */}
+          {/* Category label */}
           <div
             style={{
               color: '#4dd9d9',
@@ -202,57 +212,31 @@ export default function ServicesMercari() {
               fontWeight: '600',
               letterSpacing: '0.1em',
               marginBottom: '24px',
+              opacity: isAnimating ? 0 : 1,
+              transition: 'opacity 0.3s ease',
             }}
           >
-            Services
+            {slide.category}
           </div>
 
-          {/* Logo */}
+          {/* Service Name */}
           <div
             style={{
               marginBottom: '24px',
-              height: '50px',
-              display: 'flex',
-              alignItems: 'center',
             }}
           >
-            {/* Placeholder for logo - using text for now */}
-            <div
+            <span
               style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '8px',
+                fontSize: '32px',
+                fontWeight: '700',
+                color: '#333',
+                letterSpacing: '-0.02em',
+                opacity: isAnimating ? 0 : 1,
+                transition: 'opacity 0.3s ease',
               }}
             >
-              <div
-                style={{
-                  width: '40px',
-                  height: '40px',
-                  backgroundColor: '#4dd9d9',
-                  borderRadius: '8px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  color: 'white',
-                  fontWeight: 'bold',
-                  fontSize: '20px',
-                }}
-              >
-                m
-              </div>
-              <span
-                style={{
-                  fontSize: '32px',
-                  fontWeight: '700',
-                  color: '#333',
-                  letterSpacing: '-0.02em',
-                  opacity: isAnimating ? 0 : 1,
-                  transition: 'opacity 0.3s ease',
-                }}
-              >
-                {slide.logoText}
-              </span>
-            </div>
+              {slide.name}
+            </span>
           </div>
 
           {/* Description */}
@@ -388,17 +372,23 @@ export default function ServicesMercari() {
               opacity: isAnimating ? 0 : 1,
               transform: isAnimating ? 'translateX(30px)' : 'translateX(0)',
               transition: 'opacity 0.3s ease, transform 0.4s ease',
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: 'rgba(255,255,255,0.3)',
+              borderRadius: '16px',
             }}
           >
-            <img
-              src="/images/service-mockup.png"
-              alt="サービスイメージ"
-              style={{
-                maxWidth: '100%',
-                maxHeight: '450px',
-                objectFit: 'contain',
-              }}
-            />
+            {/* Placeholder for image */}
+            <div style={{
+              color: '#999',
+              fontSize: '18px',
+              textAlign: 'center',
+            }}>
+              {slide.name}<br />画像
+            </div>
           </div>
         </div>
       </div>

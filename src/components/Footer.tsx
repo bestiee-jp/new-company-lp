@@ -174,64 +174,17 @@ export default function Footer() {
           {/* Right Half - Navigation */}
           <div style={{
             width: isMobile ? '100%' : '50%',
-            display: isMobile ? 'grid' : 'flex',
-            gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'none',
-            gap: isMobile ? '32px' : '64px'
+            display: 'flex',
+            flexDirection: isMobile ? 'column' : 'row',
+            gap: isMobile ? '24px' : '64px'
           }}>
-            {/* 私たちについて & サービス */}
-            <div>
-              <FooterTitle isMobile={isMobile}>私たちについて</FooterTitle>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '8px' : '10px' }}>
-                <FooterLink href="#" isMobile={isMobile}>ミッション・バリュー</FooterLink>
-                <FooterLink href="#" isMobile={isMobile}>事業から見るSmartHR</FooterLink>
-                <FooterLink href="#" isMobile={isMobile}>組織から見るSmartHR</FooterLink>
-                <FooterLink href="#" isMobile={isMobile}>- DEIBに関する取り組み</FooterLink>
-                <FooterLink href="#" isMobile={isMobile}>ブランドとしての取り組み</FooterLink>
-              </div>
-
-              <div style={{ marginTop: isMobile ? '32px' : '120px' }}>
-                <FooterTitle isMobile={isMobile}>サービス</FooterTitle>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '8px' : '10px' }}>
-                  <FooterLink href="#" external isMobile={isMobile}>サービスサイト</FooterLink>
-                </div>
-              </div>
-            </div>
-
-            {/* ニュース & 会社情報 */}
-            <div>
-              <FooterTitle isMobile={isMobile}>ニュース</FooterTitle>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '8px' : '10px' }}>
-                <FooterLink href="/news" isMobile={isMobile}>ニュース一覧</FooterLink>
-                <FooterLink href="#" isMobile={isMobile}>プレスキット</FooterLink>
-              </div>
-
-              <div style={{ marginTop: isMobile ? '32px' : '120px' }}>
-                <FooterTitle isMobile={isMobile}>会社情報</FooterTitle>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '8px' : '10px' }}>
-                  <FooterLink href="/company" isMobile={isMobile}>会社概要</FooterLink>
-                  <FooterLink href="/company/executives" isMobile={isMobile}>役員紹介</FooterLink>
-                  <FooterLink href="#" isMobile={isMobile}>沿革</FooterLink>
-                </div>
-              </div>
-            </div>
-
-            {/* サステナビリティ & お問い合わせ */}
-            <div style={{ gridColumn: isMobile ? 'span 2' : 'auto' }}>
-              <FooterTitle isMobile={isMobile}>サステナビリティ</FooterTitle>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '8px' : '10px' }}>
-                <FooterLink href="#" isMobile={isMobile}>マテリアリティ</FooterLink>
-                <FooterLink href="#" isMobile={isMobile}>人的資本に関する取り組み</FooterLink>
-                <FooterLink href="#" isMobile={isMobile}>環境</FooterLink>
-                <FooterLink href="#" isMobile={isMobile}>社会</FooterLink>
-                <FooterLink href="#" isMobile={isMobile}>ガバナンス</FooterLink>
-              </div>
-
-              <div style={{ marginTop: isMobile ? '32px' : '120px' }}>
-                <FooterLink href="/contact" isMobile={isMobile}>
-                  <span style={{ fontSize: isMobile ? '14px' : '16px', fontWeight: '600', letterSpacing: '0.05em' }}>お問い合わせ</span>
-                </FooterLink>
-              </div>
-            </div>
+            <FooterTitle isMobile={isMobile}>私たちについて</FooterTitle>
+            <FooterTitle isMobile={isMobile}>サービス</FooterTitle>
+            <FooterTitle isMobile={isMobile}>ニュース</FooterTitle>
+            <FooterTitle isMobile={isMobile}>会社情報</FooterTitle>
+            <FooterLink href="/contact" isMobile={isMobile}>
+              <span style={{ fontSize: isMobile ? '16px' : '22px', fontWeight: 'bold' }}>お問い合わせ</span>
+            </FooterLink>
           </div>
         </div>
       </div>
@@ -245,7 +198,7 @@ export default function Footer() {
           justifyContent: 'space-between',
           gap: isMobile ? '24px' : '0'
         }}>
-          <span className="text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>© SmartHR, Inc.</span>
+          <span className="text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>© 2025 bestiee Inc.</span>
           <div style={{
             marginRight: isMobile ? '0' : '15%',
             display: 'flex',

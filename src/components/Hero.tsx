@@ -44,7 +44,7 @@ export default function Hero() {
           >
             <h1
               className="text-[clamp(67px,17vw,168px)] font-bold leading-none text-black tracking-tight"
-              style={{ textShadow: '0 0 10px rgba(77, 217, 217, 0.3), 0 0 20px rgba(77, 217, 217, 0.2), 0 0 30px rgba(77, 217, 217, 0.1)' }}
+              style={{ textShadow: '0 0 10px rgba(77, 217, 217, 0.6), 0 0 20px rgba(77, 217, 217, 0.4), 0 0 30px rgba(77, 217, 217, 0.2)' }}
             >
               TURN FEAR
             </h1>
@@ -61,7 +61,7 @@ export default function Hero() {
           >
             <h1
               className="text-[clamp(67px,17vw,168px)] font-bold leading-none text-black tracking-tight"
-              style={{ textShadow: '0 0 10px rgba(77, 217, 217, 0.3), 0 0 20px rgba(77, 217, 217, 0.2), 0 0 30px rgba(77, 217, 217, 0.1)' }}
+              style={{ textShadow: '0 0 10px rgba(77, 217, 217, 0.6), 0 0 20px rgba(77, 217, 217, 0.4), 0 0 30px rgba(77, 217, 217, 0.2)' }}
             >
               INTO
             </h1>
@@ -102,7 +102,7 @@ export default function Hero() {
           >
             <h1
               className="text-[clamp(67px,17vw,168px)] font-bold leading-none text-black tracking-tight"
-              style={{ textShadow: '0 0 10px rgba(77, 217, 217, 0.3), 0 0 20px rgba(77, 217, 217, 0.2), 0 0 30px rgba(77, 217, 217, 0.1)' }}
+              style={{ textShadow: '0 0 10px rgba(77, 217, 217, 0.6), 0 0 20px rgba(77, 217, 217, 0.4), 0 0 30px rgba(77, 217, 217, 0.2)' }}
             >
               PASSION.
             </h1>

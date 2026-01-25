@@ -6,22 +6,33 @@ import Footer from "@/components/Footer";
 // Executive data
 const executives = [
   {
-    title: '代表取締役CEO',
-    name: '芹澤 雅人',
-    bio: '2016年、SmartHR入社。2017年にVPoEに就任、開発業務のほか、エンジニアチームのビルディングとマネジメントを担当する。2019年以降、CTOとしてプロダクト開発・運用に関わるチーム全体の最適化やビジネスサイドとの要望調整も担う。2020年取締役に就任。2022年1月より現職。',
+    title: '代表取締役 CEO',
+    name: '後藤 弘',
+    bio: '2024年、株式会社bestieeを創業し、代表取締役CEOに就任。AI面接練習サービス「FastPass」や採用イベント「AIチャレンジャーズフェス」を立ち上げ、AI×採用領域で事業を展開。開成高校、東京大学工学部を経て、現在は同大学院工学系研究科修士課程に在籍中。TBS『東大王』レギュラー出演（2021〜2024年）、「ミスター東大コンテスト2023」グランプリ受賞。Forbes JAPAN「2026年注目の100人」に選出。',
+    image: '/images/ceo.jpg',
   },
   {
-    title: '取締役COO',
-    name: '倉橋 隆文',
-    bio: '2008年、外資系コンサルティングファームであるマッキンゼー＆カンパニーに入社し、大手クライアントの経営課題解決に従事。その後、ハーバード・ビジネススクールにてMBAを取得。2012年より楽天株式会社（現楽天グループ株式会社）にて社長室や海外子会社社長を務め、事業成長を推進。2017年にSmartHR入社、2018年1月より現職。',
+    title: '取締役 COO',
+    name: '備海 佑樹',
+    bio: '2024年、後藤と共に株式会社bestieeを創業し、COOに就任。新規事業開発およびプロダクト開発を統括。AIを活用したサービス設計・PMを強みとし、FastPassの開発を推進。開成高校、慶應義塾大学経済学部卒業。在学中はTikTok Shopや東南アジア（インドネシア）における新規ビジネスの研究に従事。',
+    image: '/images/coo.png',
+  },
+];
+
+// Core members data
+const coreMembers = [
+  {
+    title: 'ベストティーチ運営',
+    name: '伊藤 七海',
+    bio: '2024年12月、株式会社bestieeに参画。家庭教師マッチングサービス「ベストティーチ」の運営を担当。福井県立武生高等学校から塾なしで東京大学に現役合格。同大学教育学部卒業。TBS『東大王』に2019年より出演し、「理数系の絶対王者」として活躍。『東大王』で共に活動した後藤と、教育を通じてより多くの人に影響を届けるべくbestieeに参画。',
+    image: '/images/core-member-ito.jpeg',
   },
 ];
 
 // Navigation sections
 const navSections = [
-  { label: '取締役・CxO', active: true },
-  { label: '社外取締役', active: false },
-  { label: '監査等委員', active: false },
+  { label: '取締役・CXO', id: 'executives', active: true },
+  { label: 'コアメンバー', id: 'core-members', active: false },
 ];
 
 export default function ExecutivesPage() {
@@ -107,7 +118,7 @@ export default function ExecutivesPage() {
               marginLeft: '24px',
               verticalAlign: 'middle',
             }}>
-              2025年4月1日現在
+              2026年1月25日現在
             </span>
           </div>
 
@@ -122,10 +133,10 @@ export default function ExecutivesPage() {
         </div>
 
         {/* Section header with full-width border */}
-        <div style={{ borderBottom: '1px solid #e5e7eb' }}>
+        <div id="executives" style={{ borderBottom: '1px solid #e5e7eb' }}>
           <div className="flex items-center gap-4" style={{ padding: '0 5%', paddingBottom: '20px' }}>
             <div style={{ width: '4px', height: '28px', backgroundColor: '#4dd9d9' }}></div>
-            <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.1em', fontWeight: '500' }}>取締役・CxO</span>
+            <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.1em', fontWeight: '500' }}>取締役・CXO</span>
           </div>
         </div>
       </section>
@@ -205,7 +216,7 @@ export default function ExecutivesPage() {
               }}>
                 {executives.map((exec, index) => (
                   <div key={index}>
-                    {/* Photo placeholder */}
+                    {/* Photo */}
                     <div style={{
                       width: '100%',
                       aspectRatio: '1',
@@ -214,11 +225,16 @@ export default function ExecutivesPage() {
                       borderRadius: '0',
                       marginBottom: '24px',
                       overflow: 'hidden',
-                      background: 'linear-gradient(135deg, #d1d5db 0%, #e5e7eb 50%, #f3f4f6 100%)',
                     }}>
-                      <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
-                        Photo
-                      </div>
+                      <img
+                        src={exec.image}
+                        alt={exec.name}
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          objectFit: 'cover',
+                        }}
+                      />
                     </div>
 
                     {/* Title */}
@@ -263,8 +279,9 @@ export default function ExecutivesPage() {
             zIndex: 100,
           }}>
             {navSections.map((section, index) => (
-              <div
+              <a
                 key={index}
+                href={`#${section.id}`}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -276,12 +293,86 @@ export default function ExecutivesPage() {
                   cursor: 'pointer',
                   fontSize: '14px',
                   fontWeight: '500',
+                  textDecoration: 'none',
                 }}
               >
                 <span>{section.label}</span>
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                   <path d="M6 2L6 10M6 10L10 6M6 10L2 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Core Members Section */}
+      <section style={{ backgroundColor: 'white', position: 'relative' }}>
+        {/* Section header with full-width border */}
+        <div id="core-members" style={{ borderBottom: '1px solid #e5e7eb' }}>
+          <div className="flex items-center gap-4" style={{ padding: '20px 5%' }}>
+            <div style={{ width: '4px', height: '28px', backgroundColor: '#4dd9d9' }}></div>
+            <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.1em', fontWeight: '500' }}>コアメンバー</span>
+          </div>
+        </div>
+
+        {/* Core Members Content */}
+        <div style={{ padding: '80px 5%', paddingRight: '300px' }}>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '60px',
+          }}>
+            {coreMembers.map((member, index) => (
+              <div key={index}>
+                {/* Photo */}
+                <div style={{
+                  width: '100%',
+                  aspectRatio: '1',
+                  maxWidth: '400px',
+                  backgroundColor: '#e5e7eb',
+                  borderRadius: '0',
+                  marginBottom: '24px',
+                  overflow: 'hidden',
+                }}>
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                    }}
+                  />
+                </div>
+
+                {/* Title */}
+                <div style={{
+                  fontSize: '14px',
+                  color: '#666',
+                  marginBottom: '8px',
+                }}>
+                  {member.title}
+                </div>
+
+                {/* Name */}
+                <h3 style={{
+                  fontSize: '28px',
+                  fontWeight: 'bold',
+                  color: 'black',
+                  marginBottom: '16px',
+                }}>
+                  {member.name}
+                </h3>
+
+                {/* Bio */}
+                <p style={{
+                  fontSize: '14px',
+                  lineHeight: '2',
+                  color: '#333',
+                }}>
+                  {member.bio}
+                </p>
               </div>
             ))}
           </div>

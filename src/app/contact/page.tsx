@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
@@ -25,6 +25,28 @@ export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
   const recaptchaRef = useRef<ReCAPTCHA>(null);
+
+  const STORAGE_KEY = 'bestiee_contact_form';
+
+  // Load saved form data on mount
+  useEffect(() => {
+    const saved = sessionStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setFormData(prev => ({ ...prev, ...parsed }));
+      } catch {
+        // Invalid data, ignore
+      }
+    }
+  }, []);
+
+  // Save form data on change
+  useEffect(() => {
+    if (!isSubmitted) {
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+    }
+  }, [formData, isSubmitted]);
 
   // Required fields in order
   const requiredFields = ['lastName', 'firstName', 'companyName', 'phone', 'email', 'recruitmentAreas', 'message', 'privacyAgreed'];
@@ -178,10 +200,12 @@ export default function ContactPage() {
         }),
       ]);
 
+      sessionStorage.removeItem(STORAGE_KEY);
       setIsSubmitted(true);
     } catch (error) {
       console.error('Submission failed:', error);
       // Still show success to user even if notification fails
+      sessionStorage.removeItem(STORAGE_KEY);
       setIsSubmitted(true);
     }
 

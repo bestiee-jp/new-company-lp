@@ -2,6 +2,7 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import Link from "next/link";
 
 export default function HistoryPage() {
@@ -9,38 +10,15 @@ export default function HistoryPage() {
     <main className="min-h-screen flex flex-col">
       <Header />
 
-      {/* Hero Section */}
-      <section style={{ backgroundColor: '#f8fafc', paddingTop: '80px', paddingBottom: '40px' }}>
-        <div style={{ padding: '0 5%' }}>
-          <h1 style={{
-            fontSize: 'clamp(32px, 5vw, 48px)',
-            fontWeight: 'bold',
-            color: 'black',
-          }}>
-            沿革
-          </h1>
-          <p style={{
-            fontSize: '16px',
-            color: '#666',
-            marginTop: '12px',
-          }}>
-            History
-          </p>
-
-          {/* Breadcrumb */}
-          <div style={{
-            fontSize: '14px',
-            color: '#666',
-            marginTop: '24px',
-          }}>
-            <Link href="/" style={{ color: '#666', textDecoration: 'none' }}>トップ</Link>
-            <span style={{ margin: '0 8px' }}>-</span>
-            <Link href="/company" style={{ color: '#666', textDecoration: 'none' }}>会社情報</Link>
-            <span style={{ margin: '0 8px' }}>-</span>
-            <span>沿革</span>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="沿革"
+        subtitle="History"
+        breadcrumb={[
+          { label: 'トップ', href: '/' },
+          { label: '会社情報', href: '/company' },
+          { label: '沿革' },
+        ]}
+      />
 
       {/* History Section */}
       <section style={{ backgroundColor: 'white' }}>

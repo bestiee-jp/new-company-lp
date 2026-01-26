@@ -3,6 +3,8 @@
 import { useState, useEffect, useRef } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import Link from "next/link";
+import { DecorativeBands } from "@/components/PageHero";
 
 // Executive data
 const executives = [
@@ -59,63 +61,7 @@ export default function ExecutivesPage() {
 
       {/* Hero Section */}
       <section style={{ backgroundColor: 'white', paddingTop: '80px', position: 'relative', overflow: 'hidden' }}>
-        {/* Decorative cyan geometric shapes */}
-        <div style={{
-          position: 'absolute',
-          top: '0',
-          right: '0',
-          width: '50%',
-          height: '100%',
-          overflow: 'hidden',
-          zIndex: 0,
-        }}>
-          {/* Main diagonal band */}
-          <div style={{
-            position: 'absolute',
-            top: '-50px',
-            right: '-100px',
-            width: '600px',
-            height: '120px',
-            background: 'linear-gradient(90deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 50%, var(--bestiee-cyan) 100%)',
-            transform: 'rotate(-25deg)',
-            transformOrigin: 'center',
-          }} />
-          {/* Second diagonal band */}
-          <div style={{
-            position: 'absolute',
-            top: '30px',
-            right: '-50px',
-            width: '500px',
-            height: '80px',
-            background: 'linear-gradient(90deg, var(--bestiee-blue-light) 0%, var(--bestiee-cyan) 100%)',
-            opacity: 0.7,
-            transform: 'rotate(-25deg)',
-            transformOrigin: 'center',
-          }} />
-          {/* Third diagonal band with stripes */}
-          <div style={{
-            position: 'absolute',
-            top: '100px',
-            right: '-80px',
-            width: '550px',
-            height: '60px',
-            background: 'repeating-linear-gradient(90deg, var(--bestiee-blue-light) 0px, var(--bestiee-blue-light) 4px, white 4px, white 8px)',
-            transform: 'rotate(-25deg)',
-            transformOrigin: 'center',
-          }} />
-          {/* Fourth striped band */}
-          <div style={{
-            position: 'absolute',
-            top: '140px',
-            right: '-60px',
-            width: '500px',
-            height: '40px',
-            background: 'repeating-linear-gradient(90deg, var(--bestiee-cyan) 0px, var(--bestiee-cyan) 2px, white 2px, white 6px)',
-            opacity: 0.8,
-            transform: 'rotate(-25deg)',
-            transformOrigin: 'center',
-          }} />
-        </div>
+        <DecorativeBands />
 
         {/* Content */}
         <div style={{ padding: '0 5%', position: 'relative', zIndex: 1 }}>
@@ -145,7 +91,11 @@ export default function ExecutivesPage() {
             color: '#666',
             marginBottom: '60px',
           }}>
-            トップ &nbsp;-&nbsp; 会社情報 &nbsp;-&nbsp; 役員紹介
+            <Link href="/" style={{ color: '#666', textDecoration: 'none' }}>トップ</Link>
+            <span style={{ margin: '0 8px' }}>-</span>
+            <Link href="/company" style={{ color: '#666', textDecoration: 'none' }}>会社情報</Link>
+            <span style={{ margin: '0 8px' }}>-</span>
+            <span>役員紹介</span>
           </div>
         </div>
 

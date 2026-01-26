@@ -1,44 +1,20 @@
-'use client';
-
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Link from "next/link";
+import PageHero from "@/components/PageHero";
 
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
 
-      {/* Hero Section */}
-      <section style={{ backgroundColor: '#f8fafc', paddingTop: '80px', paddingBottom: '40px' }}>
-        <div style={{ padding: '0 5%' }}>
-          <h1 style={{
-            fontSize: 'clamp(32px, 5vw, 48px)',
-            fontWeight: 'bold',
-            color: 'black',
-          }}>
-            プライバシーポリシー
-          </h1>
-          <p style={{
-            fontSize: '16px',
-            color: '#666',
-            marginTop: '12px',
-          }}>
-            Privacy Policy
-          </p>
-
-          {/* Breadcrumb */}
-          <div style={{
-            fontSize: '14px',
-            color: '#666',
-            marginTop: '24px',
-          }}>
-            <Link href="/" style={{ color: '#666', textDecoration: 'none' }}>トップ</Link>
-            <span style={{ margin: '0 8px' }}>-</span>
-            <span>プライバシーポリシー</span>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="プライバシーポリシー"
+        subtitle="Privacy Policy"
+        breadcrumb={[
+          { label: 'トップ', href: '/' },
+          { label: 'プライバシーポリシー' },
+        ]}
+      />
 
       {/* Content Section */}
       <section style={{ backgroundColor: 'white', padding: '60px 5%', flex: 1 }}>

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 // Add keyframe animation styles - 25 degrees from vertical
 const diagonalWipeKeyframes = `
@@ -31,29 +32,33 @@ const slides = [
     name: 'FastPass',
     category: 'Services',
     description: '「FastPass」は、AI面接練習データを活用した、ハイクラス学生特化の採用マッチングサービスです。AIが解析した面接データをもとに、エージェントが貴社に最適な学生を紹介します。',
-    bgColor: '#00A3E0',
+    bgColor: '#1E5AA8',
     image: '/images/service-fastpass.png',
+    scale: 1.3,
   },
   {
     name: 'AIチャレンジャーズフェス',
     category: 'Events',
     description: '「AIチャレンジャーズフェス」は、日本で最も「AIに熱中」しているハイクラス学生150名が集まる大規模採用イベントです。コードを書きながら事業も語れる、AI時代の企業競争力を担う人材と出会えます。',
-    bgColor: '#1a1a2e',
-    image: '/images/service-aicf.png',
+    bgColor: '#00A3E0',
+    image: '/images/service-aicf.jpg',
+    scale: 1,
   },
   {
     name: 'FastPass meetup',
     category: 'Events',
     description: '「FastPass meetup」は、AIが厳選した成長意欲の高いハイクラス学生と、少人数でじっくり向き合える採用イベントです。大規模イベントでは難しい、深い対話と相互理解を実現します。',
-    bgColor: '#e8eef4',
-    image: '/images/service-meetup.png',
+    bgColor: '#4DD9D9',
+    image: '/images/service-meetup.jpg',
+    scale: 1,
   },
   {
     name: 'ベストティーチ',
     category: 'Services',
     description: '「ベストティーチ」は、AIがお子さまにぴったりの先生を提案してくれる家庭教師サービスです。出身塾や出身高、趣味など350以上の項目から指導経験豊富な先生を選べて、単発1回からお試しできます。',
-    bgColor: '#fff5e6',
+    bgColor: '#EAEAEA',
     image: '/images/service-bestteach.png',
+    scale: 1.7,
   },
 ];
 
@@ -148,7 +153,7 @@ export default function ServicesMercari() {
       {/* Main content */}
       <section
         style={{
-          backgroundColor: slide.bgColor,
+          background: `linear-gradient(160deg, ${slide.bgColor}00 0%, ${slide.bgColor} 15%, ${slide.bgColor} 85%, ${slide.bgColor}dd 100%), linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.05) 100%), ${slide.bgColor}`,
           minHeight: '600px',
           position: 'relative',
           overflow: 'hidden',
@@ -158,6 +163,19 @@ export default function ServicesMercari() {
           padding: '80px 5%',
         }}
       >
+      {/* Glossy shine overlay */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '50%',
+          background: 'linear-gradient(180deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 50%, transparent 100%)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
       {/* Inject keyframe styles */}
       <style dangerouslySetInnerHTML={{ __html: diagonalWipeKeyframes }} />
 
@@ -170,7 +188,7 @@ export default function ServicesMercari() {
             left: 0,
             width: '100%',
             height: '100%',
-            backgroundColor: wipeBgColor,
+            background: `linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 30%), ${wipeBgColor}`,
             animation: 'diagonalWipe 0.4s linear forwards',
             zIndex: 10,
             pointerEvents: 'none',
@@ -365,6 +383,7 @@ export default function ServicesMercari() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
+            overflow: 'visible',
           }}
         >
           <div
@@ -377,18 +396,22 @@ export default function ServicesMercari() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              backgroundColor: 'rgba(255,255,255,0.3)',
               borderRadius: '16px',
             }}
           >
-            {/* Placeholder for image */}
-            <div style={{
-              color: '#999',
-              fontSize: '18px',
-              textAlign: 'center',
-            }}>
-              {slide.name}<br />画像
-            </div>
+            <Image
+              src={slide.image}
+              alt={slide.name}
+              width={550}
+              height={500}
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'contain',
+                borderRadius: '16px',
+                transform: `scale(${slide.scale})`,
+              }}
+            />
           </div>
         </div>
       </div>

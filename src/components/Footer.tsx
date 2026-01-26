@@ -149,11 +149,11 @@ export default function Footer() {
               <div style={{ marginBottom: isMobile ? '32px' : '48px' }}>
                 <Link href="/">
                   <Image
-                    src="/logo.png"
+                    src="/logo-footer.png"
                     alt="bestiee"
                     width={isMobile ? 140 : 180}
                     height={50}
-                    style={{ height: 'auto', filter: 'brightness(0) invert(1)' }}
+                    style={{ height: 'auto' }}
                   />
                 </Link>
               </div>

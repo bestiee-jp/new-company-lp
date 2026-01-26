@@ -209,9 +209,6 @@ export default function Footer() {
             alignItems: 'flex-start',
             gap: isMobile ? '12px' : '32px'
           }}>
-            <a href="#" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
-              <span className="relative inline-block">アクセシビリティ方針<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
-            </a>
             <a href="/security" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">情報セキュリティ基本方針<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
@@ -221,11 +218,6 @@ export default function Footer() {
             <a href="/ai-policy" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
               <span className="relative inline-block">AI活用ポリシー<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
             </a>
-            {!isMobile && (
-              <a href="#" className="group text-white" style={{ fontSize: '16px' }}>
-                <span className="relative inline-block">カスタマーハラスメントに対する行動指針<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
-              </a>
-            )}
           </div>
         </div>
       </div>

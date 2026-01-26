@@ -70,7 +70,7 @@ export default function Hero() {
                 className="text-[clamp(34px,7vw,67px)] italic"
                 style={{
                   fontFamily: 'var(--font-satisfy), cursive',
-                  backgroundImage: 'linear-gradient(90deg, #00A3E0 0%, #4DD9D9 50%, #6EE7E7 100%)',
+                  backgroundImage: 'linear-gradient(90deg, var(--bestiee-blue-light) 0%, var(--bestiee-cyan) 50%, #6EE7E7 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   backgroundClip: 'text',

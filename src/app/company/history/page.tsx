@@ -76,7 +76,7 @@ export default function HistoryPage() {
                 right: '0',
                 width: '400px',
                 height: '200px',
-                background: 'repeating-linear-gradient(-65deg, #00A3E0 0px, #00A3E0 3px, transparent 3px, transparent 10px)',
+                background: 'repeating-linear-gradient(-65deg, var(--bestiee-blue-light) 0px, var(--bestiee-blue-light) 3px, transparent 3px, transparent 10px)',
                 opacity: 0.4,
                 zIndex: 0,
               }} />
@@ -86,7 +86,7 @@ export default function HistoryPage() {
                 right: '50px',
                 width: '300px',
                 height: '150px',
-                background: 'repeating-linear-gradient(-65deg, #4DD9D9 0px, #4DD9D9 2px, transparent 2px, transparent 8px)',
+                background: 'repeating-linear-gradient(-65deg, var(--bestiee-cyan) 0px, var(--bestiee-cyan) 2px, transparent 2px, transparent 8px)',
                 opacity: 0.3,
                 zIndex: 0,
               }} />
@@ -168,7 +168,7 @@ export default function HistoryPage() {
                     left: '-66px',
                     width: '12px',
                     height: '12px',
-                    background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 100%)',
+                    background: 'linear-gradient(135deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 100%)',
                     borderRadius: '50%',
                   }} />
                   {/* Horizontal line */}
@@ -201,7 +201,7 @@ export default function HistoryPage() {
                 left: '0',
                 width: '60%',
                 height: '300px',
-                background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 50%, #4DD9D9 100%)',
+                background: 'var(--bestiee-gradient)',
                 opacity: 0.15,
                 transform: 'skewY(-5deg)',
                 zIndex: 0,
@@ -286,7 +286,7 @@ export default function HistoryPage() {
                     left: '-66px',
                     width: '12px',
                     height: '12px',
-                    background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 100%)',
+                    background: 'linear-gradient(135deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 100%)',
                     borderRadius: '50%',
                   }} />
                   {/* Horizontal line */}
@@ -306,7 +306,7 @@ export default function HistoryPage() {
                     left: '-66px',
                     width: '12px',
                     height: '12px',
-                    background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 100%)',
+                    background: 'linear-gradient(135deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 100%)',
                     borderRadius: '50%',
                   }} />
                   {/* Horizontal line */}
@@ -339,7 +339,7 @@ export default function HistoryPage() {
                 right: '0',
                 width: '350px',
                 height: '180px',
-                background: 'repeating-linear-gradient(-65deg, #00A3E0 0px, #00A3E0 3px, transparent 3px, transparent 10px)',
+                background: 'repeating-linear-gradient(-65deg, var(--bestiee-blue-light) 0px, var(--bestiee-blue-light) 3px, transparent 3px, transparent 10px)',
                 opacity: 0.3,
                 zIndex: 0,
               }} />
@@ -389,7 +389,7 @@ export default function HistoryPage() {
                     left: '-66px',
                     width: '12px',
                     height: '12px',
-                    background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 100%)',
+                    background: 'linear-gradient(135deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 100%)',
                     borderRadius: '50%',
                   }} />
                   {/* Horizontal line */}

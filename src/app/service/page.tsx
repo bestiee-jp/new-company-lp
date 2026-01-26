@@ -47,7 +47,7 @@ export default function ServicePage() {
             right: '-5%',
             width: '400px',
             height: '400px',
-            border: '3px solid #1E5AA8',
+            border: '3px solid var(--bestiee-blue)',
             transform: 'rotate(15deg)',
             opacity: 0.6
           }} />
@@ -57,7 +57,7 @@ export default function ServicePage() {
             left: '-10%',
             width: '300px',
             height: '300px',
-            border: '3px solid #1E5AA8',
+            border: '3px solid var(--bestiee-blue)',
             transform: 'rotate(-10deg)',
             opacity: 0.4
           }} />
@@ -228,7 +228,7 @@ export default function ServicePage() {
             <div style={{ flex: '0 0 50%' }}>
               {/* SmartHR Logo */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '24px' }}>
-                <div style={{ width: '32px', height: '32px', background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 100%)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div style={{ width: '32px', height: '32px', background: 'linear-gradient(135deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 100%)', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <span style={{ color: 'white', fontWeight: 'bold', fontSize: '14px' }}>S</span>
                 </div>
                 <span style={{ fontSize: '28px', fontWeight: 'bold', color: 'black' }}>SmartHR</span>
@@ -249,7 +249,7 @@ export default function ServicePage() {
                 {/* 労務管理 Card */}
                 <div style={{ flex: 1, border: '1px solid #e5e7eb', borderRadius: '8px', padding: '24px' }}>
                   <h3 style={{ fontSize: '16px', fontWeight: 'bold', color: 'black', marginBottom: '16px' }}>
-                    <span style={{ color: '#1E5AA8' }}>SmartHR</span> 労務管理
+                    <span style={{ color: 'var(--bestiee-blue)' }}>SmartHR</span> 労務管理
                   </h3>
                   <p style={{ fontSize: '13px', color: '#666', marginBottom: '12px' }}>該当する機能の一例：</p>
                   <ul style={{ fontSize: '13px', color: '#333', lineHeight: '1.8', listStyle: 'none', padding: 0 }}>
@@ -265,7 +265,7 @@ export default function ServicePage() {
                 {/* タレントマネジメント Card */}
                 <div style={{ flex: 1, border: '1px solid #e5e7eb', borderRadius: '8px', padding: '24px' }}>
                   <h3 style={{ fontSize: '16px', fontWeight: 'bold', color: 'black', marginBottom: '16px' }}>
-                    <span style={{ color: '#1E5AA8' }}>SmartHR</span> タレントマネジメント
+                    <span style={{ color: 'var(--bestiee-blue)' }}>SmartHR</span> タレントマネジメント
                   </h3>
                   <p style={{ fontSize: '13px', color: '#666', marginBottom: '12px' }}>該当する機能の一例：</p>
                   <ul style={{ fontSize: '13px', color: '#333', lineHeight: '1.8', listStyle: 'none', padding: 0 }}>
@@ -438,12 +438,12 @@ export default function ServicePage() {
                           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '4px' }}>
                             <div style={{ fontSize: '7px', width: '20px' }}>Q{i+1}</div>
                             <div style={{ flex: 1, height: '8px', backgroundColor: '#e5e7eb', borderRadius: '4px' }}>
-                              <div style={{ width: `${h}%`, height: '100%', background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 100%)', borderRadius: '4px' }} />
+                              <div style={{ width: `${h}%`, height: '100%', background: 'linear-gradient(135deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 100%)', borderRadius: '4px' }} />
                             </div>
                           </div>
                         ))}
                       </div>
-                      <div style={{ width: '80px', height: '80px', borderRadius: '50%', border: '8px solid #00A3E0', borderRightColor: '#e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <div style={{ width: '80px', height: '80px', borderRadius: '50%', border: '8px solid var(--bestiee-blue-light)', borderRightColor: '#e5e7eb', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                         <span style={{ fontSize: '14px', fontWeight: 'bold' }}>78%</span>
                       </div>
                     </div>
@@ -458,7 +458,7 @@ export default function ServicePage() {
             {/* 労務管理 Section */}
             <div style={{ flex: 1 }}>
               <h3 style={{ fontSize: '24px', fontWeight: 'bold', color: 'black', marginBottom: '16px' }}>
-                <span style={{ color: '#1E5AA8' }}>SmartHR</span> 労務管理
+                <span style={{ color: 'var(--bestiee-blue)' }}>SmartHR</span> 労務管理
               </h3>
               <p style={{ fontSize: '18px', fontWeight: '500', color: 'black', marginBottom: '16px' }}>
                 確かな効率化で、働きやすい環境をつくる
@@ -487,7 +487,7 @@ export default function ServicePage() {
             {/* タレントマネジメント Section */}
             <div style={{ flex: 1 }}>
               <h3 style={{ fontSize: '24px', fontWeight: 'bold', color: 'black', marginBottom: '16px' }}>
-                <span style={{ color: '#1E5AA8' }}>SmartHR</span> タレントマネジメント
+                <span style={{ color: 'var(--bestiee-blue)' }}>SmartHR</span> タレントマネジメント
               </h3>
               <p style={{ fontSize: '18px', fontWeight: '500', color: 'black', marginBottom: '16px' }}>
                 確かなデータで、組織はもっと強くなる

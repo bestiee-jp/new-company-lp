@@ -22,7 +22,7 @@ const slides = [
     name: 'FastPass',
     category: 'Services',
     description: '「FastPass」は、AI面接練習データを活用した、ハイクラス学生特化の採用マッチングサービスです。AIが解析した面接データをもとに、エージェントが貴社に最適な学生を紹介します。',
-    bgColor: '#1E5AA8',
+    bgColor: 'var(--bestiee-blue)',
     image: '/images/service-fastpass.png',
     scale: 1.3,
   },
@@ -30,7 +30,7 @@ const slides = [
     name: 'AIチャレンジャーズフェス',
     category: 'Events',
     description: '「AIチャレンジャーズフェス」は、日本で最も「AIに熱中」しているハイクラス学生150名が集まる大規模採用イベントです。コードを書きながら事業も語れる、AI時代の企業競争力を担う人材と出会えます。',
-    bgColor: '#00A3E0',
+    bgColor: 'var(--bestiee-blue-light)',
     image: '/images/service-aicf.jpg',
     scale: 1,
   },
@@ -38,7 +38,7 @@ const slides = [
     name: 'FastPass meetup',
     category: 'Events',
     description: '「FastPass meetup」は、AIが厳選した成長意欲の高いハイクラス学生と、少人数でじっくり向き合える採用イベントです。大規模イベントでは難しい、深い対話と相互理解を実現します。',
-    bgColor: '#4DD9D9',
+    bgColor: 'var(--bestiee-cyan)',
     image: '/images/service-meetup.jpg',
     scale: 1,
   },
@@ -206,7 +206,7 @@ export default function ServicesMercari() {
           {/* Category label */}
           <div
             style={{
-              color: '#1E5AA8',
+              color: 'var(--bestiee-blue)',
               fontSize: '14px',
               fontWeight: '600',
               letterSpacing: '0.1em',
@@ -318,7 +318,7 @@ export default function ServicesMercari() {
                           cy={size / 2}
                           r={radius}
                           fill="none"
-                          stroke="#00A3E0"
+                          stroke="var(--bestiee-blue-light)"
                           strokeWidth={strokeWidth}
                           strokeLinecap="round"
                           strokeDasharray={circumference}
@@ -330,7 +330,7 @@ export default function ServicesMercari() {
                           cx={size / 2}
                           cy={size / 2}
                           r={3}
-                          fill="#00A3E0"
+                          fill="var(--bestiee-blue-light)"
                           style={{ transform: 'rotate(90deg)', transformOrigin: 'center' }}
                         />
                       </svg>

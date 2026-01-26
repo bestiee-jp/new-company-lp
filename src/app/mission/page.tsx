@@ -221,7 +221,7 @@ export default function MissionPage() {
             <div style={{ flex: 1 }}>
               <p style={{
                 fontSize: '14px',
-                color: '#1E5AA8',
+                color: 'var(--bestiee-blue)',
                 fontWeight: '600',
                 letterSpacing: '0.05em',
                 marginBottom: '8px',
@@ -273,7 +273,7 @@ export default function MissionPage() {
             <div style={{ flex: 1 }}>
               <p style={{
                 fontSize: '14px',
-                color: '#1E5AA8',
+                color: 'var(--bestiee-blue)',
                 fontWeight: '600',
                 letterSpacing: '0.05em',
                 marginBottom: '8px',
@@ -323,7 +323,7 @@ export default function MissionPage() {
             <div style={{ flex: 1 }}>
               <p style={{
                 fontSize: '14px',
-                color: '#1E5AA8',
+                color: 'var(--bestiee-blue)',
                 fontWeight: '600',
                 letterSpacing: '0.05em',
                 marginBottom: '8px',

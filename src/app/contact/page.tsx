@@ -448,14 +448,48 @@ export default function ContactPage() {
 
               {/* Right Column - Form */}
               <div style={{ flex: '0 0 auto', width: '480px', minWidth: '380px', maxWidth: '480px', backgroundColor: '#f7fefe', padding: '28px', borderRadius: '8px', alignSelf: 'flex-start', position: 'sticky', top: '100px' }}>
-                <h2 style={{
-                  fontSize: '18px',
-                  fontWeight: 'bold',
-                  color: '#333',
-                  marginBottom: '24px',
-                }}>
-                  下記フォームにご記入ください。(1分)
-                </h2>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+                  <h2 style={{
+                    fontSize: '18px',
+                    fontWeight: 'bold',
+                    color: '#333',
+                  }}>
+                    下記フォームにご記入ください。(1分)
+                  </h2>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData({
+                        lastName: '',
+                        firstName: '',
+                        companyName: '',
+                        department: '',
+                        position: '',
+                        phone: '',
+                        email: '',
+                        recruitmentAreas: [],
+                        message: '',
+                        privacyAgreed: false,
+                      });
+                      setTouched({});
+                      setErrors({});
+                      sessionStorage.removeItem(STORAGE_KEY);
+                      recaptchaRef.current?.reset();
+                      setRecaptchaToken(null);
+                    }}
+                    style={{
+                      padding: '6px 12px',
+                      fontSize: '12px',
+                      color: '#666',
+                      backgroundColor: '#e5e7eb',
+                      border: 'none',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    クリア
+                  </button>
+                </div>
 
                 {/* Error Message */}
                 {Object.keys(errors).length > 0 && (
@@ -1011,42 +1045,6 @@ export default function ContactPage() {
                     }}
                   >
                     {isSubmitting ? '送信中...' : '送信する'}
-                  </button>
-
-                  {/* Clear button */}
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setFormData({
-                        lastName: '',
-                        firstName: '',
-                        companyName: '',
-                        department: '',
-                        position: '',
-                        phone: '',
-                        email: '',
-                        recruitmentAreas: [],
-                        message: '',
-                        privacyAgreed: false,
-                      });
-                      setTouched({});
-                      setErrors({});
-                      sessionStorage.removeItem(STORAGE_KEY);
-                      recaptchaRef.current?.reset();
-                      setRecaptchaToken(null);
-                    }}
-                    style={{
-                      marginTop: '12px',
-                      padding: '8px 16px',
-                      fontSize: '13px',
-                      color: '#666',
-                      backgroundColor: '#e5e7eb',
-                      border: 'none',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                    }}
-                  >
-                    入力内容をクリア
                   </button>
                 </form>
               </div>

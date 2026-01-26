@@ -259,12 +259,12 @@ export default function ContactPage() {
               padding: '60px 40px',
               backgroundColor: '#f0fdfa',
               borderRadius: '16px',
-              border: '1px solid #1E5AA8',
+              border: '1px solid var(--bestiee-blue)',
             }}>
               <div style={{
                 width: '80px',
                 height: '80px',
-                background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 100%)',
+                background: 'linear-gradient(135deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 100%)',
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',
@@ -367,7 +367,7 @@ export default function ContactPage() {
                             color: '#333',
                             marginBottom: '12px',
                           }}>
-                            <span style={{ color: '#1E5AA8', fontSize: '16px' }}>▶</span>
+                            <span style={{ color: 'var(--bestiee-blue)', fontSize: '16px' }}>▶</span>
                             {company}
                           </li>
                         ))}
@@ -396,7 +396,7 @@ export default function ContactPage() {
                             color: '#333',
                             marginBottom: '12px',
                           }}>
-                            <span style={{ color: '#1E5AA8', fontSize: '16px' }}>▶</span>
+                            <span style={{ color: 'var(--bestiee-blue)', fontSize: '16px' }}>▶</span>
                             {company}
                           </li>
                         ))}
@@ -414,7 +414,7 @@ export default function ContactPage() {
                 {/* Media Section */}
                 <div style={{ marginTop: '40px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-                    <div style={{ width: '4px', height: '24px', background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 100%)' }}></div>
+                    <div style={{ width: '4px', height: '24px', background: 'linear-gradient(135deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 100%)' }}></div>
                     <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>メディア掲載実績</h3>
                   </div>
 
@@ -1031,17 +1031,17 @@ export default function ContactPage() {
                       fontSize: '16px',
                       fontWeight: '600',
                       color: 'white',
-                      backgroundColor: isSubmitting ? '#9ca3af' : (isFormComplete() ? '#00A3E0' : '#9ca3af'),
+                      backgroundColor: isSubmitting ? '#9ca3af' : (isFormComplete() ? 'var(--bestiee-blue-light)' : '#9ca3af'),
                       border: 'none',
                       borderRadius: '4px',
                       cursor: (isSubmitting || !isFormComplete()) ? 'not-allowed' : 'pointer',
                       transition: 'background-color 0.3s ease',
                     }}
                     onMouseEnter={(e) => {
-                      if (!isSubmitting && isFormComplete()) e.currentTarget.style.backgroundColor = '#1E5AA8';
+                      if (!isSubmitting && isFormComplete()) e.currentTarget.style.backgroundColor = 'var(--bestiee-blue)';
                     }}
                     onMouseLeave={(e) => {
-                      if (!isSubmitting && isFormComplete()) e.currentTarget.style.backgroundColor = '#00A3E0';
+                      if (!isSubmitting && isFormComplete()) e.currentTarget.style.backgroundColor = 'var(--bestiee-blue-light)';
                     }}
                   >
                     {isSubmitting ? '送信中...' : '送信する'}

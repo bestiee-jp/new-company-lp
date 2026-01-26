@@ -44,7 +44,7 @@ export default function Hero() {
           >
             <h1
               className="text-[clamp(67px,17vw,168px)] font-bold leading-none text-black tracking-tight"
-              style={{ textShadow: '0 0 10px rgba(77, 217, 217, 0.6), 0 0 20px rgba(77, 217, 217, 0.4), 0 0 30px rgba(77, 217, 217, 0.2)' }}
+              style={{ textShadow: '0 0 5px rgba(30, 90, 168, 0.8), 0 0 10px rgba(0, 163, 224, 0.7), 0 0 15px rgba(0, 163, 224, 0.5), 0 0 25px rgba(77, 217, 217, 0.4)' }}
             >
               TURN FEAR
             </h1>
@@ -61,7 +61,7 @@ export default function Hero() {
           >
             <h1
               className="text-[clamp(67px,17vw,168px)] font-bold leading-none text-black tracking-tight"
-              style={{ textShadow: '0 0 10px rgba(77, 217, 217, 0.6), 0 0 20px rgba(77, 217, 217, 0.4), 0 0 30px rgba(77, 217, 217, 0.2)' }}
+              style={{ textShadow: '0 0 5px rgba(30, 90, 168, 0.8), 0 0 10px rgba(0, 163, 224, 0.7), 0 0 15px rgba(0, 163, 224, 0.5), 0 0 25px rgba(77, 217, 217, 0.4)' }}
             >
               INTO
             </h1>
@@ -70,7 +70,10 @@ export default function Hero() {
                 className="text-[clamp(34px,7vw,67px)] italic"
                 style={{
                   fontFamily: 'var(--font-satisfy), cursive',
-                  color: '#4DD9D9',
+                  backgroundImage: 'linear-gradient(90deg, #00A3E0 0%, #4DD9D9 50%, #6EE7E7 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
                   opacity: isVideoReady ? 1 : 0,
                   transform: isVideoReady ? 'translateY(0)' : 'translateY(50px)',
                   transition: 'opacity 1.5s ease-out 2s, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 2s',
@@ -102,7 +105,7 @@ export default function Hero() {
           >
             <h1
               className="text-[clamp(67px,17vw,168px)] font-bold leading-none text-black tracking-tight"
-              style={{ textShadow: '0 0 10px rgba(77, 217, 217, 0.6), 0 0 20px rgba(77, 217, 217, 0.4), 0 0 30px rgba(77, 217, 217, 0.2)' }}
+              style={{ textShadow: '0 0 5px rgba(30, 90, 168, 0.8), 0 0 10px rgba(0, 163, 224, 0.7), 0 0 15px rgba(0, 163, 224, 0.5), 0 0 25px rgba(77, 217, 217, 0.4)' }}
             >
               PASSION.
             </h1>

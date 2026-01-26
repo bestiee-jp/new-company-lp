@@ -32,7 +32,7 @@ export default function ContactSection() {
       {/* お問い合わせ label with full-width border */}
       <div style={{ borderBottom: '1px solid #e5e7eb', marginBottom: isMobile ? '30px' : '60px' }}>
         <div className="flex items-center gap-4" style={{ padding: '0 5%', paddingBottom: isMobile ? '16px' : '20px' }}>
-          <div style={{ width: '4px', height: isMobile ? '24px' : '28px', background: 'linear-gradient(180deg, #1E5AA8 0%, #00A3E0 50%, #4DD9D9 100%)' }}></div>
+          <div style={{ width: '4px', height: isMobile ? '24px' : '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
           <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>お問い合わせ</span>
         </div>
       </div>

@@ -152,7 +152,7 @@ export default function ExecutivesPage() {
         {/* Section header with full-width border */}
         <div id="executives" style={{ borderBottom: '1px solid #e5e7eb' }}>
           <div className="flex items-center gap-4" style={{ padding: '0 5%', paddingBottom: '20px' }}>
-            <div style={{ width: '4px', height: '28px', background: 'linear-gradient(180deg, #1E5AA8 0%, #00A3E0 50%, #4DD9D9 100%)' }}></div>
+            <div style={{ width: '4px', height: '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
             <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.1em', fontWeight: '500' }}>取締役・CXO</span>
           </div>
         </div>
@@ -331,7 +331,7 @@ export default function ExecutivesPage() {
         {/* Section header with full-width border */}
         <div id="core-members" style={{ borderBottom: '1px solid #e5e7eb' }}>
           <div className="flex items-center gap-4" style={{ padding: '20px 5%' }}>
-            <div style={{ width: '4px', height: '28px', background: 'linear-gradient(180deg, #1E5AA8 0%, #00A3E0 50%, #4DD9D9 100%)' }}></div>
+            <div style={{ width: '4px', height: '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
             <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.1em', fontWeight: '500' }}>コアメンバー</span>
           </div>
         </div>
@@ -403,7 +403,7 @@ export default function ExecutivesPage() {
       <section ref={relatedSectionRef} style={{ backgroundColor: '#f8fafc', padding: '80px 5%' }}>
         {/* Section header */}
         <div className="flex items-center gap-4" style={{ marginBottom: '40px' }}>
-          <div style={{ width: '4px', height: '28px', background: 'linear-gradient(180deg, #1E5AA8 0%, #00A3E0 50%, #4DD9D9 100%)' }}></div>
+          <div style={{ width: '4px', height: '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
           <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.1em', fontWeight: '500' }}>関連ページ</span>
         </div>
 

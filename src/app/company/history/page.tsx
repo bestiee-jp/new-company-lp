@@ -53,7 +53,7 @@ export default function HistoryPage() {
               gap: '16px'
             }}
           >
-            <div style={{ width: '4px', height: '28px', background: 'linear-gradient(180deg, #1E5AA8 0%, #00A3E0 50%, #4DD9D9 100%)' }}></div>
+            <div style={{ width: '4px', height: '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
             <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.2em', fontWeight: '500' }}>bestieeの歴史</span>
           </div>
         </div>
@@ -412,7 +412,7 @@ export default function HistoryPage() {
       <section style={{ backgroundColor: '#f8fafc', padding: '80px 5%' }}>
         {/* Section header */}
         <div className="flex items-center gap-4" style={{ marginBottom: '40px' }}>
-          <div style={{ width: '4px', height: '28px', background: 'linear-gradient(180deg, #1E5AA8 0%, #00A3E0 50%, #4DD9D9 100%)' }}></div>
+          <div style={{ width: '4px', height: '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
           <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.1em', fontWeight: '500' }}>関連ページ</span>
         </div>
 

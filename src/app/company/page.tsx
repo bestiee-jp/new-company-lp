@@ -132,7 +132,7 @@ export default function CompanyPage() {
           {/* Section header */}
           <div style={{ marginBottom: '40px' }}>
             <div className="flex items-center gap-4">
-              <div style={{ width: '4px', height: '28px', background: 'linear-gradient(180deg, #1E5AA8 0%, #00A3E0 50%, #4DD9D9 100%)' }}></div>
+              <div style={{ width: '4px', height: '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
               <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.1em', fontWeight: '500' }}>会社概要</span>
             </div>
           </div>
@@ -177,7 +177,7 @@ export default function CompanyPage() {
           {/* Section header */}
           <div style={{ marginBottom: '40px' }}>
             <div className="flex items-center gap-4">
-              <div style={{ width: '4px', height: '28px', background: 'linear-gradient(180deg, #1E5AA8 0%, #00A3E0 50%, #4DD9D9 100%)' }}></div>
+              <div style={{ width: '4px', height: '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
               <span style={{ color: 'black', fontSize: '22px', letterSpacing: '0.1em', fontWeight: '500' }}>関連ページ</span>
             </div>
           </div>

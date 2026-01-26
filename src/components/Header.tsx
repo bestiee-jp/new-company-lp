@@ -48,7 +48,16 @@ const menuItems = [
   { label: '私たちについて', sublabel: 'About Us', href: '/mission' },
   { label: 'サービス', sublabel: 'Service', href: '/service' },
   { label: 'ニュース', sublabel: 'News', href: '/news' },
-  { label: '会社情報', sublabel: 'Company', href: '/company' },
+  {
+    label: '会社情報',
+    sublabel: 'Company',
+    hasSubmenu: true,
+    subItems: [
+      { label: '会社情報', href: '/company' },
+      { label: '役員紹介', href: '/company/executives' },
+      { label: '沿革', href: '/company/history' },
+    ]
+  },
 ];
 
 // Dropdown menu data
@@ -121,6 +130,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [lang, setLang] = useState<'ja' | 'en'>('ja');
   const [isMobile, setIsMobile] = useState(false);
+  const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -407,24 +417,101 @@ export default function Header() {
         {/* Menu Items */}
         <div style={{ padding: isMobile ? '20px' : '40px' }}>
           {menuItems.map((item, index) => {
+            const isExpanded = expandedSubmenu === item.label;
+
             const content = (
               <>
                 <div style={{
-                  fontSize: isMobile ? '18px' : '20px',
-                  fontWeight: '500',
-                  color: 'black',
-                  marginBottom: '4px'
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
                 }}>
-                  <span className="relative inline-block">
-                    {item.label}
-                    <span className="absolute left-0 bottom-[-2px] h-[1px] bg-black transition-all duration-[400ms] w-0 group-hover:w-full"></span>
-                  </span>
-                </div>
-                <div style={{ fontSize: isMobile ? '12px' : '14px', color: '#888' }}>
-                  {item.sublabel}
+                  <div>
+                    <div style={{
+                      fontSize: isMobile ? '18px' : '20px',
+                      fontWeight: '500',
+                      color: 'black',
+                      marginBottom: '4px'
+                    }}>
+                      <span className="relative inline-block">
+                        {item.label}
+                        <span className="absolute left-0 bottom-[-2px] h-[1px] bg-black transition-all duration-[400ms] w-0 group-hover:w-full"></span>
+                      </span>
+                    </div>
+                    <div style={{ fontSize: isMobile ? '12px' : '14px', color: '#888' }}>
+                      {item.sublabel}
+                    </div>
+                  </div>
+                  {item.hasSubmenu && (
+                    <span style={{
+                      transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                      transition: 'transform 0.5s ease',
+                    }}>
+                      <ChevronDown />
+                    </span>
+                  )}
                 </div>
               </>
             );
+
+            if (item.hasSubmenu) {
+              return (
+                <div
+                  key={index}
+                  onMouseEnter={() => !isMobile && setExpandedSubmenu(item.label)}
+                  onMouseLeave={() => !isMobile && setExpandedSubmenu(null)}
+                >
+                  <button
+                    className="group block w-full text-left"
+                    style={{
+                      padding: isMobile ? '16px 0' : '24px 0',
+                      borderBottom: isExpanded ? 'none' : '1px solid #e5e7eb',
+                    }}
+                    onClick={() => isMobile && setExpandedSubmenu(isExpanded ? null : item.label)}
+                  >
+                    {content}
+                  </button>
+                  {/* Submenu items */}
+                  <div style={{
+                    maxHeight: isExpanded ? '300px' : '0',
+                    overflow: 'hidden',
+                    transition: 'max-height 0.5s ease',
+                    borderBottom: isExpanded ? '1px solid #e5e7eb' : 'none',
+                  }}>
+                    {item.subItems?.map((subItem, subIndex) => (
+                      <Link
+                        key={subIndex}
+                        href={subItem.href}
+                        className="group flex items-center gap-3"
+                        style={{
+                          padding: isMobile ? '12px 0 12px 20px' : '16px 0 16px 24px',
+                          fontSize: isMobile ? '14px' : '16px',
+                          color: '#333',
+                        }}
+                        onClick={() => {
+                          setIsMenuOpen(false);
+                          setExpandedSubmenu(null);
+                        }}
+                      >
+                        <svg
+                          width="16"
+                          height="16"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          className="text-[#00A3E0] flex-shrink-0"
+                        >
+                          <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        <span className="relative inline-block">
+                          {subItem.label}
+                          <span className="absolute left-0 bottom-[-2px] h-[1px] bg-black transition-all duration-[400ms] w-0 group-hover:w-full"></span>
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              );
+            }
 
             return item.href ? (
               <Link
@@ -454,6 +541,31 @@ export default function Header() {
               </a>
             );
           })}
+
+        </div>
+
+        {/* お問い合わせ link - bottom center */}
+        <div style={{
+          position: 'absolute',
+          bottom: isMobile ? '20px' : '30px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+        }}>
+          <Link
+            href="/contact"
+            className="group"
+            style={{
+              fontSize: isMobile ? '14px' : '16px',
+              fontWeight: '500',
+              color: 'black',
+            }}
+            onClick={() => setIsMenuOpen(false)}
+          >
+            <span className="relative inline-block">
+              お問い合わせ
+              <span className="absolute left-0 bottom-[-2px] h-[1px] bg-black transition-all duration-[400ms] w-0 group-hover:w-full"></span>
+            </span>
+          </Link>
         </div>
       </div>
     </header>

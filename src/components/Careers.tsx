@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-
 // Arrow Icon
 function ArrowIcon() {
   return (
@@ -14,51 +12,6 @@ function ArrowIcon() {
 export default function Careers() {
   return (
     <section className="bg-white" style={{ paddingTop: '80px', paddingBottom: '80px', position: 'relative', overflow: 'hidden' }}>
-      {/* Top links section */}
-      <div className="flex gap-8" style={{ marginBottom: '80px', padding: '0 5%' }}>
-        {/* 会社情報 */}
-        <Link href="/company" className="flex-1 group">
-          <div
-            style={{
-              height: '200px',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              marginBottom: '16px',
-              background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 100%)',
-            }}
-          >
-            <div className="w-full h-full flex items-center justify-center text-white/50 text-sm">
-              Office Image
-            </div>
-          </div>
-          <div className="flex items-center gap-2 group-hover:text-[#00A3E0] transition-colors">
-            <span style={{ fontSize: '16px' }}>会社情報</span>
-            <ArrowIcon />
-          </div>
-        </Link>
-
-        {/* サステナビリティ */}
-        <a href="#" className="flex-1 group">
-          <div
-            style={{
-              height: '200px',
-              borderRadius: '8px',
-              overflow: 'hidden',
-              marginBottom: '16px',
-              background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)',
-            }}
-          >
-            <div className="w-full h-full flex items-center justify-center text-gray-400 text-sm">
-              Sustainability Image
-            </div>
-          </div>
-          <div className="flex items-center gap-2 group-hover:text-[#00A3E0] transition-colors">
-            <span style={{ fontSize: '16px' }}>サステナビリティ</span>
-            <ArrowIcon />
-          </div>
-        </a>
-      </div>
-
       {/* 採用情報 label with full-width border */}
       <div style={{ borderBottom: '1px solid #e5e7eb', marginBottom: '40px' }}>
         <div className="flex items-center gap-4" style={{ padding: '0 5%', paddingBottom: '20px' }}>

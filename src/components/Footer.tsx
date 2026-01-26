@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 // X (Twitter) Icon
@@ -145,15 +146,16 @@ export default function Footer() {
           <div style={{ width: isMobile ? '100%' : '50%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
             <div>
               {/* Logo at top */}
-              <div className="flex items-center gap-3" style={{ marginBottom: isMobile ? '32px' : '48px' }}>
-                <svg width={isMobile ? 32 : 40} height={isMobile ? 32 : 40} viewBox="0 0 40 40" fill="none">
-                  <circle cx="20" cy="20" r="19" stroke="white" strokeWidth="2"/>
-                  <path
-                    d="M20.5 10C16.5 10 14 12 14 14.8C14 17.8 16.5 19 20 19.8C23 20.5 24 21.2 24 22.5C24 24 22.5 25 20 25C17 25 15.5 23.5 15.2 21.5H11.5C11.8 25.5 15 28.5 20 28.5C24.5 28.5 27.5 26 27.5 22.3C27.5 19 25 17.5 21 16.7C18.2 16.1 17 15.5 17 14.3C17 13 18.3 12 20.3 12C22.5 12 24 13.2 24.3 15H28C27.5 11.5 24.5 10 20.5 10Z"
-                    fill="white"
+              <div style={{ marginBottom: isMobile ? '32px' : '48px' }}>
+                <Link href="/">
+                  <Image
+                    src="/logo.png"
+                    alt="bestiee"
+                    width={isMobile ? 140 : 180}
+                    height={50}
+                    style={{ height: 'auto', filter: 'brightness(0) invert(1)' }}
                   />
-                </svg>
-                <span className="text-white font-bold" style={{ fontSize: isMobile ? '22px' : '28px' }}>SmartHR</span>
+                </Link>
               </div>
 
               {/* SNS Links */}

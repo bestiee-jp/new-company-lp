@@ -16,7 +16,7 @@ const executives = [
     title: '取締役 COO',
     name: '備海 佑樹',
     bio: '2024年、後藤と共に株式会社bestieeを創業し、COOに就任。新規事業開発およびプロダクト開発を統括。AIを活用したサービス設計・PMを強みとし、FastPassの開発を推進。開成高校、慶應義塾大学経済学部卒業。在学中はTikTok Shopや東南アジア（インドネシア）における新規ビジネスの研究に従事。',
-    image: '/images/coo.png',
+    image: '/images/coo.jpg',
   },
 ];
 

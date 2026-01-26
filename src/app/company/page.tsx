@@ -150,7 +150,7 @@ export default function CompanyPage() {
               >
                 <div style={{
                   flex: '0 0 200px',
-                  fontSize: '16px',
+                  fontSize: '20px',
                   fontWeight: '500',
                   color: '#333',
                 }}>
@@ -158,7 +158,7 @@ export default function CompanyPage() {
                 </div>
                 <div style={{
                   flex: '1',
-                  fontSize: '16px',
+                  fontSize: '20px',
                   color: '#333',
                   lineHeight: '1.8',
                   whiteSpace: 'pre-line',

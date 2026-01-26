@@ -39,8 +39,28 @@ const satisfy = Satisfy({
 });
 
 export const metadata: Metadata = {
-  title: "SmartHR",
-  description: "SmartHR - クラウド人事労務ソフト",
+  title: "bestiee | 学びと出会いに、ワクワクを。",
+  description: "株式会社bestiee - 学びと出会いに、ワクワクを。AI面接練習サービス「FastPass」や家庭教師マッチングサービス「ベストティーチ」を運営。",
+  openGraph: {
+    title: "bestiee | 学びと出会いに、ワクワクを。",
+    description: "株式会社bestiee - 学びと出会いに、ワクワクを。",
+    images: [
+      {
+        url: "/ogp.jpg",
+        width: 1200,
+        height: 630,
+        alt: "bestiee - 学びと出会いに、ワクワクを。",
+      },
+    ],
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "bestiee | 学びと出会いに、ワクワクを。",
+    description: "株式会社bestiee - 学びと出会いに、ワクワクを。",
+    images: ["/ogp.jpg"],
+  },
 };
 
 export default function RootLayout({

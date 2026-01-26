@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { ArrowIcon } from '@/components/icons';
 
@@ -15,9 +16,18 @@ const scrollImages = [
 
 export default function ContactSection() {
   const isMobile = useIsMobile();
+  const pathname = usePathname();
 
   // スクロール用に画像を複製
   const duplicatedImages = [...scrollImages, ...scrollImages, ...scrollImages, ...scrollImages];
+
+  // Handle click - scroll to top if same page (preserve form data)
+  const handleContactClick = (e: React.MouseEvent) => {
+    if (pathname === '/contact') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  };
 
   return (
     <section className="bg-white" style={{ paddingTop: isMobile ? '40px' : '80px', paddingBottom: isMobile ? '40px' : '80px', position: 'relative', overflow: 'hidden' }}>
@@ -123,6 +133,7 @@ export default function ContactSection() {
         >
           <Link
             href="/contact"
+            onClick={handleContactClick}
             className="inline-flex items-center justify-between bg-black text-white"
             style={{
               padding: isMobile ? '16px 24px' : '24px 32px',

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { ExternalLinkIcon } from '@/components/icons';
 
@@ -62,6 +63,8 @@ function FacebookIcon() {
 
 // Footer Link Component
 function FooterLink({ href, children, external = false, isMobile = false }: { href: string; children: React.ReactNode; external?: boolean; isMobile?: boolean }) {
+  const pathname = usePathname();
+
   const content = (
     <>
       <span className="relative inline-block">
@@ -74,10 +77,18 @@ function FooterLink({ href, children, external = false, isMobile = false }: { hr
 
   const fontSize = isMobile ? '14px' : '18px';
 
+  // Handle click - scroll to top if same page (preserve form data)
+  const handleClick = (e: React.MouseEvent) => {
+    if (pathname === href) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  };
+
   // Use Link for internal links (starting with /)
   if (href.startsWith('/') && !external) {
     return (
-      <Link href={href} className="group text-white flex items-center gap-2 w-fit" style={{ fontSize }}>
+      <Link href={href} onClick={handleClick} className="group text-white flex items-center gap-2 w-fit" style={{ fontSize }}>
         {content}
       </Link>
     );

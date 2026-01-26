@@ -1012,6 +1012,42 @@ export default function ContactPage() {
                   >
                     {isSubmitting ? '送信中...' : '送信する'}
                   </button>
+
+                  {/* Clear button */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setFormData({
+                        lastName: '',
+                        firstName: '',
+                        companyName: '',
+                        department: '',
+                        position: '',
+                        phone: '',
+                        email: '',
+                        recruitmentAreas: [],
+                        message: '',
+                        privacyAgreed: false,
+                      });
+                      setTouched({});
+                      setErrors({});
+                      sessionStorage.removeItem(STORAGE_KEY);
+                      recaptchaRef.current?.reset();
+                      setRecaptchaToken(null);
+                    }}
+                    style={{
+                      marginTop: '12px',
+                      padding: '8px 16px',
+                      fontSize: '13px',
+                      color: '#666',
+                      backgroundColor: '#e5e7eb',
+                      border: 'none',
+                      borderRadius: '4px',
+                      cursor: 'pointer',
+                    }}
+                  >
+                    入力内容をクリア
+                  </button>
                 </form>
               </div>
             </div>

@@ -1,37 +1,7 @@
 'use client';
 
 import { useIsMobile } from '@/hooks/useIsMobile';
-
-// Arrow Icon in circle
-function ArrowCircleIcon({ hover = false, size = 40 }: { hover?: boolean; size?: number }) {
-  return (
-    <div
-      style={{
-        width: `${size}px`,
-        height: `${size}px`,
-        borderRadius: '50%',
-        backgroundColor: hover ? '#00c8c8' : 'black',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        transition: 'background-color 0.3s',
-      }}
-    >
-      <svg width={size * 0.4} height={size * 0.4} viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
-        <path d="M5 12h14M12 5l7 7-7 7" />
-      </svg>
-    </div>
-  );
-}
-
-// Arrow Icon
-function ArrowIcon({ size = 20 }: { size?: number }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-  );
-}
+import { ArrowIcon, ArrowCircleIcon } from '@/components/icons';
 
 // News item data
 const newsItems = [

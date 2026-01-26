@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 // X (Twitter) Icon
 function XIcon() {
@@ -123,16 +123,7 @@ function SocialLink({ icon, label, href, isMobile = false }: { icon: React.React
 }
 
 export default function Footer() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const isMobile = useIsMobile();
 
   return (
     <footer className="bg-[#1a1a1a] text-white flex flex-col" style={{ minHeight: isMobile ? 'auto' : '100vh' }}>

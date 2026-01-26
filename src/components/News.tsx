@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 // Arrow Icon in circle
 function ArrowCircleIcon({ hover = false, size = 40 }: { hover?: boolean; size?: number }) {
@@ -63,16 +63,7 @@ const newsItems = [
 ];
 
 export default function News() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const isMobile = useIsMobile();
 
   return (
     <section className="bg-white" style={{ paddingTop: isMobile ? '40px' : '80px', paddingBottom: isMobile ? '40px' : '80px', position: 'relative' }}>

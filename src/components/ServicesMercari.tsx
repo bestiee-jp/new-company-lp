@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 // Add keyframe animation styles - 25 degrees from vertical
 const diagonalWipeKeyframes = `
@@ -68,16 +69,7 @@ export default function ServicesMercari() {
   const [progress, setProgress] = useState(0);
   const [resetTrigger, setResetTrigger] = useState(0);
   const [targetSlide, setTargetSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     if (isAnimating) return; // Stop timer during animation

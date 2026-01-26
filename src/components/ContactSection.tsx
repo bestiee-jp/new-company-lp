@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 // Arrow Icon
 function ArrowIcon() {
@@ -22,16 +22,7 @@ const scrollImages = [
 ];
 
 export default function ContactSection() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  const isMobile = useIsMobile();
 
   // スクロール用に画像を複製
   const duplicatedImages = [...scrollImages, ...scrollImages, ...scrollImages, ...scrollImages];

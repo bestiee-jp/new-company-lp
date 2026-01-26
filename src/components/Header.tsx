@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import SmartHRLogo from './SmartHRLogo';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 // Chevron Down Icon
 function ChevronDown() {
@@ -129,17 +130,8 @@ export default function Header() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [lang, setLang] = useState<'ja' | 'en'>('ja');
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
   const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {

@@ -77,6 +77,19 @@ export default function ContactPage() {
            recaptchaToken !== null;
   };
 
+  // Check if any field has input
+  const hasAnyInput = () => {
+    return formData.lastName !== '' ||
+           formData.firstName !== '' ||
+           formData.companyName !== '' ||
+           formData.department !== '' ||
+           formData.position !== '' ||
+           formData.phone !== '' ||
+           formData.email !== '' ||
+           formData.recruitmentAreas.length > 0 ||
+           formData.message !== '';
+  };
+
   // reCAPTCHA handlers
   const handleRecaptchaChange = (token: string | null) => {
     setRecaptchaToken(token);
@@ -458,6 +471,7 @@ export default function ContactPage() {
                   </h2>
                   <button
                     type="button"
+                    disabled={!hasAnyInput()}
                     onClick={() => {
                       setFormData({
                         lastName: '',
@@ -480,11 +494,12 @@ export default function ContactPage() {
                     style={{
                       padding: '6px 12px',
                       fontSize: '12px',
-                      color: '#666',
-                      backgroundColor: '#e5e7eb',
+                      color: hasAnyInput() ? '#666' : '#aaa',
+                      backgroundColor: hasAnyInput() ? '#e5e7eb' : '#f5f5f5',
                       border: 'none',
                       borderRadius: '4px',
-                      cursor: 'pointer',
+                      cursor: hasAnyInput() ? 'pointer' : 'default',
+                      opacity: hasAnyInput() ? 1 : 0.6,
                     }}
                   >
                     クリア

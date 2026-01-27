@@ -4,98 +4,7 @@ import { useState } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
-
-// Sample news data
-const featuredNews = {
-  date: '2025.06.23',
-  categories: ['プレスリリース', 'コーポレート'],
-  title: '「SmartHR」が10周年を記念し特設サイトを公開。あわせてサービスビジョンを刷新',
-  image: '/news/featured.png',
-  href: '#',
-};
-
-// News list data
-const newsItems = [
-  {
-    id: 1,
-    date: '2026.01.13',
-    categories: ['お知らせ', 'コーポレート'],
-    title: 'SmartHR、ITコンサルティング事業を展開するKICK ZA ISSUE株式会社をグループ会社化',
-    imageType: 'kickza',
-    href: '#',
-  },
-  {
-    id: 2,
-    date: '2025.12.26',
-    categories: ['お知らせ', 'コーポレート'],
-    title: 'VR体験に関するお知らせ',
-    imageType: 'logo',
-    href: '#',
-  },
-  {
-    id: 3,
-    date: '2025.12.08',
-    categories: ['お知らせ', 'コーポレート'],
-    title: '不適切なブログ記載内容についてのお詫びとご報告',
-    imageType: 'logo',
-    href: '#',
-  },
-  {
-    id: 4,
-    date: '2025.07.10',
-    categories: ['お知らせ', 'サービス'],
-    title: 'AI類似従業員検索機能をリリース',
-    imageType: 'ai-search',
-    href: '#',
-  },
-  {
-    id: 5,
-    date: '2025.06.28',
-    categories: ['お知らせ', 'サービス'],
-    title: '給与シミュレーション機能',
-    imageType: 'salary',
-    href: '#',
-  },
-  {
-    id: 6,
-    date: '2025.06.15',
-    categories: ['プレスリリース', 'コーポレート'],
-    title: 'SmartHRが注目サービスに選出されました',
-    imageType: 'logo',
-    href: '#',
-  },
-  {
-    id: 7,
-    date: '2025.07.10',
-    categories: ['お知らせ', 'コーポレート'],
-    title: 'SmartHR、直上企業サービスの共用を目指す「年末志事業アジャスト」へ新たに参画',
-    imageType: 'photo1',
-    href: '#',
-  },
-  {
-    id: 8,
-    date: '2025.06.30',
-    categories: ['プレスリリース', 'サービス'],
-    title: '人・知識の使える、AIアシスタント機能をリリース',
-    imageType: 'ai-assistant',
-    href: '#',
-  },
-  {
-    id: 9,
-    date: '2025.06.23',
-    categories: ['プレスリリース', 'コーポレート'],
-    title: '「SmartHR」が10周年を記念し特設サイトを公開。あわせてサービスビジョンを刷新',
-    imageType: 'anniversary',
-    href: '#',
-  },
-];
-
-// Filter options
-const filterOptions = {
-  categories: ['プレスリリース', 'お知らせ'],
-  themes: ['コーポレート', 'サービス'],
-  years: ['2026年', '2025年', '2024年', '2023年', '2022年', '2021年'],
-};
+import { featuredNews, newsListItems, newsFilterOptions, type NewsListItem } from "@/data/news";
 
 // Filter Pill Component
 function FilterPill({
@@ -388,7 +297,7 @@ function NewsCardImage({ type }: { type: string }) {
 }
 
 // News Card Component
-function NewsCard({ item }: { item: typeof newsItems[0] }) {
+function NewsCard({ item }: { item: NewsListItem }) {
   return (
     <Link href={item.href} className="group block">
       {/* Image */}
@@ -781,7 +690,7 @@ export default function NewsPage() {
               カテゴリー
             </span>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              {filterOptions.categories.map(cat => (
+              {newsFilterOptions.categories.map(cat => (
                 <FilterPill
                   key={cat}
                   label={cat}
@@ -809,7 +718,7 @@ export default function NewsPage() {
               テーマ
             </span>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-              {filterOptions.themes.map(theme => (
+              {newsFilterOptions.themes.map(theme => (
                 <FilterPill
                   key={theme}
                   label={theme}
@@ -836,7 +745,7 @@ export default function NewsPage() {
               年別
             </span>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
-              {filterOptions.years.map(year => (
+              {newsFilterOptions.years.map(year => (
                 <FilterPill
                   key={year}
                   label={year}
@@ -949,7 +858,7 @@ export default function NewsPage() {
           gridTemplateColumns: 'repeat(3, 1fr)',
           gap: '40px 32px',
         }}>
-          {newsItems.map(item => (
+          {newsListItems.map(item => (
             <NewsCard key={item.id} item={item} />
           ))}
         </div>

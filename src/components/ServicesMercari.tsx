@@ -260,34 +260,12 @@ export default function ServicesMercari() {
             </p>
           </div>
 
-          {/* Service Details Button */}
-          <Link
-            href="/service"
-            className="inline-flex items-center justify-between bg-black text-white"
-            style={{
-              padding: '16px 28px',
-              fontSize: '16px',
-              borderRadius: '50px',
-              textDecoration: 'none',
-              marginBottom: '24px',
-              width: 'fit-content',
-              gap: '12px',
-              opacity: isAnimating ? 0 : 1,
-              transition: 'opacity 0.3s ease, border-radius 0.5s ease',
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.borderRadius = '8px')}
-            onMouseLeave={(e) => (e.currentTarget.style.borderRadius = '50px')}
-          >
-            <span>サービス詳細</span>
-            <ArrowIcon />
-          </Link>
-
-          {/* Dot indicators */}
+          {/* Bottom row: Dot indicators (left) + Service Details Button (right) */}
           <div
             style={{
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'flex-start',
+              justifyContent: 'space-between',
             }}
           >
             {/* Dot indicators with progress */}
@@ -296,6 +274,7 @@ export default function ServicesMercari() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
+                marginTop: '20px',
               }}
             >
               {slides.map((_, index) => {
@@ -372,6 +351,30 @@ export default function ServicesMercari() {
                 );
               })}
             </div>
+
+            {/* Service Details Button */}
+            <Link
+              href="/service"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '12px 28px',
+                backgroundColor: '#333',
+                color: 'white',
+                borderRadius: '50px',
+                fontSize: '14px',
+                fontWeight: '500',
+                textDecoration: 'none',
+                marginTop: '20px',
+                transition: 'border-radius 0.3s ease',
+              }}
+              onMouseEnter={(e) => e.currentTarget.style.borderRadius = '8px'}
+              onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
+            >
+              サービス詳細
+              <ArrowIcon direction="right" size={14} color="white" />
+            </Link>
           </div>
         </div>
 

@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import SmartHRLogo from './SmartHRLogo';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { slideMenuItems, dropdownMenus } from '@/data/navigation';
 
 // Chevron Down Icon
 function ChevronDown() {
@@ -43,35 +44,6 @@ function CloseIcon() {
     </svg>
   );
 }
-
-// Slide menu items data
-const menuItems = [
-  { label: '私たちについて', sublabel: 'About Us', href: '/mission' },
-  { label: 'サービス', sublabel: 'Service', href: '/service' },
-  { label: 'ニュース', sublabel: 'News', href: '/news' },
-  {
-    label: '会社情報',
-    sublabel: 'Company',
-    hasSubmenu: true,
-    subItems: [
-      { label: '会社情報', href: '/company' },
-      { label: '役員紹介', href: '/company/executives' },
-      { label: '沿革', href: '/company/history' },
-    ]
-  },
-];
-
-// Dropdown menu data
-const dropdownMenus: Record<string, { title: string; items: { label: string; isSubItem?: boolean; href?: string }[] }> = {
-  '会社情報': {
-    title: '会社情報',
-    items: [
-      { label: '会社情報', href: '/company' },
-      { label: '役員紹介', href: '/company/executives' },
-      { label: '沿革', href: '/company/history' },
-    ],
-  },
-};
 
 // Navigation Item Component
 function NavItem({ label, hasDropdown = false, isExternal = false, isOpen = false, onMouseEnter, onMouseLeave, href }: {
@@ -408,7 +380,7 @@ export default function Header() {
 
         {/* Menu Items */}
         <div style={{ padding: isMobile ? '20px' : '40px' }}>
-          {menuItems.map((item, index) => {
+          {slideMenuItems.map((item, index) => {
             const isExpanded = expandedSubmenu === item.label;
 
             const content = (

@@ -5,6 +5,15 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { ExternalLinkIcon } from '@/components/icons';
+import {
+  socialLinksColumn1,
+  socialLinksColumn2,
+  footerNavSections,
+  policyLinks,
+  copyrightText,
+  footerLogoPath,
+  type SocialLink,
+} from '@/data/footer';
 
 // X (Twitter) Icon
 function XIcon() {
@@ -61,6 +70,26 @@ function FacebookIcon() {
   );
 }
 
+// Get icon component by platform
+function getSocialIcon(platform: string) {
+  switch (platform) {
+    case 'x':
+      return <XIcon />;
+    case 'note':
+      return <NoteIcon />;
+    case 'linkedin':
+      return <LinkedInIcon />;
+    case 'youtube':
+      return <YouTubeIcon />;
+    case 'tiktok':
+      return <TikTokIcon />;
+    case 'facebook':
+      return <FacebookIcon />;
+    default:
+      return null;
+  }
+}
+
 // Footer Link Component
 function FooterLink({ href, children, external = false, isMobile = false }: { href: string; children: React.ReactNode; external?: boolean; isMobile?: boolean }) {
   const pathname = usePathname();
@@ -113,12 +142,12 @@ function FooterTitle({ children, isMobile = false }: { children: React.ReactNode
 }
 
 // Social Link Component
-function SocialLink({ icon, label, href, isMobile = false }: { icon: React.ReactNode; label: string; href: string; isMobile?: boolean }) {
+function SocialLinkComponent({ link, isMobile = false }: { link: SocialLink; isMobile?: boolean }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 text-white w-fit" style={{ fontSize: isMobile ? '14px' : '18px' }}>
-      {icon}
+    <a href={link.href} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 text-white w-fit" style={{ fontSize: isMobile ? '14px' : '18px' }}>
+      {getSocialIcon(link.platform)}
       <span className="relative inline-block">
-        {label}
+        {link.label}
         <span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span>
       </span>
     </a>
@@ -143,7 +172,7 @@ export default function Footer() {
               <div style={{ marginBottom: isMobile ? '32px' : '48px' }}>
                 <Link href="/">
                   <Image
-                    src="/logo-footer.png"
+                    src={footerLogoPath}
                     alt="bestiee"
                     width={isMobile ? 140 : 180}
                     height={50}
@@ -156,19 +185,16 @@ export default function Footer() {
               <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: isMobile ? '24px' : '64px' }}>
                 {/* Column 1 - X, note, LinkedIn */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '12px' : '20px' }}>
-                  <SocialLink icon={<XIcon />} label="X (代表:後藤 弘)" href="https://x.com/kou_goto_" isMobile={isMobile} />
-                  <SocialLink icon={<XIcon />} label="X (FastPass公式)" href="https://x.com/fastpass_ai" isMobile={isMobile} />
-                  <SocialLink icon={<NoteIcon />} label="note (代表:後藤 弘)" href="https://note.com/kou_goto_" isMobile={isMobile} />
-                  <SocialLink icon={<NoteIcon />} label="note (FastPass公式)" href="https://note.com/fastpass_ai" isMobile={isMobile} />
-                  <SocialLink icon={<LinkedInIcon />} label="LinkedIn" href="https://www.linkedin.com/in/%E5%BC%98-%E5%BE%8C%E8%97%A4-ab61a3379/" isMobile={isMobile} />
+                  {socialLinksColumn1.map((link, index) => (
+                    <SocialLinkComponent key={index} link={link} isMobile={isMobile} />
+                  ))}
                 </div>
 
                 {/* Column 2 - YouTube, TikTok, Facebook */}
                 <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '12px' : '20px' }}>
-                  <SocialLink icon={<YouTubeIcon />} label="YouTube (代表:後藤 弘)" href="https://www.youtube.com/@toudaiou_room" isMobile={isMobile} />
-                  <SocialLink icon={<YouTubeIcon />} label="YouTube (AIチャレンジャーズフェス)" href="https://youtu.be/O4GQPqapLI4?si=S5GMDRgfnClG8EvC" isMobile={isMobile} />
-                  <SocialLink icon={<TikTokIcon />} label="TikTok" href="https://www.tiktok.com/@toudaiou_room" isMobile={isMobile} />
-                  <SocialLink icon={<FacebookIcon />} label="Facebook" href="https://www.facebook.com/people/%E5%BE%8C%E8%97%A4%E5%BC%98/100014465291670/" isMobile={isMobile} />
+                  {socialLinksColumn2.map((link, index) => (
+                    <SocialLinkComponent key={index} link={link} isMobile={isMobile} />
+                  ))}
                 </div>
               </div>
             </div>
@@ -181,43 +207,19 @@ export default function Footer() {
             flexDirection: isMobile ? 'column' : 'row',
             gap: isMobile ? '32px' : '64px'
           }}>
-            {/* 私たちについて */}
-            <div>
-              <FooterLink href="/mission" isMobile={isMobile}>
-                <span style={{ fontSize: isMobile ? '16px' : '22px', fontWeight: 'bold' }}>私たちについて</span>
-              </FooterLink>
-            </div>
-
-            {/* サービス */}
-            <div>
-              <FooterLink href="/service" isMobile={isMobile}>
-                <span style={{ fontSize: isMobile ? '16px' : '22px', fontWeight: 'bold' }}>サービス</span>
-              </FooterLink>
-            </div>
-
-            {/* ニュース */}
-            <div>
-              <FooterLink href="/news" isMobile={isMobile}>
-                <span style={{ fontSize: isMobile ? '16px' : '22px', fontWeight: 'bold' }}>ニュース</span>
-              </FooterLink>
-            </div>
-
-            {/* 会社情報 */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: isMobile ? '12px' : '16px' }}>
-              <FooterLink href="/company" isMobile={isMobile}>
-                <span style={{ fontSize: isMobile ? '16px' : '22px', fontWeight: 'bold' }}>会社情報</span>
-              </FooterLink>
-              <FooterLink href="/company" isMobile={isMobile}>会社情報</FooterLink>
-              <FooterLink href="/company/executives" isMobile={isMobile}>役員紹介</FooterLink>
-              <FooterLink href="/company/history" isMobile={isMobile}>沿革</FooterLink>
-            </div>
-
-            {/* お問い合わせ */}
-            <div>
-              <FooterLink href="/contact" isMobile={isMobile}>
-                <span style={{ fontSize: isMobile ? '16px' : '22px', fontWeight: 'bold' }}>お問い合わせ</span>
-              </FooterLink>
-            </div>
+            {footerNavSections.map((section, sectionIndex) => (
+              <div key={sectionIndex} style={{ display: 'flex', flexDirection: 'column', gap: section.links.length > 1 ? (isMobile ? '12px' : '16px') : '0' }}>
+                {section.links.map((link, linkIndex) => (
+                  <FooterLink key={linkIndex} href={link.href} isMobile={isMobile}>
+                    {link.isBold ? (
+                      <span style={{ fontSize: isMobile ? '16px' : '22px', fontWeight: 'bold' }}>{link.label}</span>
+                    ) : (
+                      link.label
+                    )}
+                  </FooterLink>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -231,7 +233,7 @@ export default function Footer() {
           justifyContent: 'space-between',
           gap: isMobile ? '24px' : '0'
         }}>
-          <span className="text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>© 2025 bestiee Inc.</span>
+          <span className="text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>{copyrightText}</span>
           <div style={{
             marginRight: isMobile ? '0' : '15%',
             display: 'flex',
@@ -239,15 +241,11 @@ export default function Footer() {
             alignItems: 'flex-start',
             gap: isMobile ? '12px' : '32px'
           }}>
-            <a href="/security" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
-              <span className="relative inline-block">情報セキュリティ基本方針<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
-            </a>
-            <a href="/privacy" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
-              <span className="relative inline-block">プライバシーポリシー<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
-            </a>
-            <a href="/ai-policy" className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
-              <span className="relative inline-block">AI活用ポリシー<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
-            </a>
+            {policyLinks.map((link, index) => (
+              <a key={index} href={link.href} className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
+                <span className="relative inline-block">{link.label}<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
+              </a>
+            ))}
           </div>
         </div>
       </div>

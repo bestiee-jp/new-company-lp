@@ -153,6 +153,7 @@ export default function ContactPage() {
     if (formData.recruitmentAreas.length === 0) newErrors.recruitmentAreas = '採用に関わられている領域は必須です。';
     if (!formData.message) newErrors.message = 'お問い合わせ内容は必須です。';
     if (!formData.privacyAgreed) newErrors.privacyAgreed = 'プライバシーポリシーへの同意は必須です。';
+    if (!recaptchaToken) newErrors.recaptcha = 'reCAPTCHA認証を完了してください。';
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -162,66 +163,40 @@ export default function ContactPage() {
     setIsSubmitting(true);
 
     try {
-      // Send to Discord webhook
-      const discordWebhookUrl = 'https://discord.com/api/webhooks/1464471802486194438/Sv21dT-OaenKaYCt_mEp6uO7PGLJLj3Pun1Ce4qb55JsCvLtGZSk43DzaqPj1_aicLyo';
-
-      const embedMessage = {
-        embeds: [{
-          title: '新しいお問い合わせ',
-          color: 0x4dd9d9,
-          fields: [
-            { name: '氏名', value: `${formData.lastName} ${formData.firstName}`, inline: true },
-            { name: '会社名', value: formData.companyName, inline: true },
-            { name: '部署', value: formData.department || '未入力', inline: true },
-            { name: '役職', value: formData.position || '未入力', inline: true },
-            { name: '電話番号', value: formData.phone, inline: true },
-            { name: 'メールアドレス', value: formData.email, inline: true },
-            { name: '採用領域', value: formData.recruitmentAreas.join(', '), inline: false },
-            { name: 'お問い合わせ内容', value: formData.message, inline: false },
-          ],
-          timestamp: new Date().toISOString(),
-        }],
-      };
-
-      // Send to Google Sheets
-      const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbzdBouyTrx8Tjl_53ATyS4izjP4muCjGoGlMkgsxpTWEIl_IiJJugD44o8guuYCFDbD/exec';
-
-      // Send both requests in parallel
-      await Promise.all([
-        fetch(discordWebhookUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(embedMessage),
+      // Submit form data to server-side API route
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          lastName: formData.lastName,
+          firstName: formData.firstName,
+          companyName: formData.companyName,
+          department: formData.department,
+          position: formData.position,
+          phone: formData.phone,
+          email: formData.email,
+          recruitmentAreas: formData.recruitmentAreas,
+          message: formData.message,
+          recaptchaToken: recaptchaToken,
         }),
-        fetch(googleScriptUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: {
-            'Content-Type': 'text/plain',
-          },
-          body: JSON.stringify({
-            lastName: formData.lastName,
-            firstName: formData.firstName,
-            companyName: formData.companyName,
-            department: formData.department,
-            position: formData.position,
-            phone: formData.phone,
-            email: formData.email,
-            recruitmentAreas: formData.recruitmentAreas,
-            message: formData.message,
-          }),
-        }),
-      ]);
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Submission failed');
+      }
 
       sessionStorage.removeItem(STORAGE_KEY);
       setIsSubmitted(true);
     } catch (error) {
       console.error('Submission failed:', error);
-      // Still show success to user even if notification fails
-      sessionStorage.removeItem(STORAGE_KEY);
-      setIsSubmitted(true);
+      setErrors({ submit: '送信に失敗しました。もう一度お試しください。' });
+      // Reset reCAPTCHA on error
+      recaptchaRef.current?.reset();
+      setRecaptchaToken(null);
     }
 
     setIsSubmitting(false);

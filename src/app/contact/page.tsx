@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -206,36 +207,14 @@ export default function ContactPage() {
     <main className="min-h-screen flex flex-col">
       <Header />
 
-      {/* Hero Section */}
-      <section style={{ backgroundColor: '#f8fafc', paddingTop: '80px', paddingBottom: '40px' }}>
-        <div style={{ padding: '0 5%' }}>
-          <h1 style={{
-            fontSize: 'clamp(32px, 5vw, 48px)',
-            fontWeight: 'bold',
-            color: 'black',
-          }}>
-            お問い合わせ
-          </h1>
-          <p style={{
-            fontSize: '16px',
-            color: '#666',
-            marginTop: '12px',
-          }}>
-            Contact
-          </p>
-
-          {/* Breadcrumb */}
-          <div style={{
-            fontSize: '14px',
-            color: '#666',
-            marginTop: '24px',
-          }}>
-            <Link href="/" style={{ color: '#666', textDecoration: 'none' }}>トップ</Link>
-            <span style={{ margin: '0 8px' }}>-</span>
-            <span>お問い合わせ</span>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        title="お問い合わせ"
+        subtitle="Contact"
+        breadcrumb={[
+          { label: 'トップ', href: '/' },
+          { label: 'お問い合わせ' },
+        ]}
+      />
 
       {/* Form Section - Two Column Layout */}
       <section style={{ backgroundColor: 'white', padding: '60px 5%', flex: 1 }}>
@@ -430,6 +409,35 @@ export default function ContactPage() {
                         objectFit: 'cover',
                       }}
                     />
+                    <img
+                      src="/media/Forbes.png"
+                      alt="Forbes JAPAN 2026年総予測"
+                      style={{
+                        width: '100%',
+                        borderRadius: '8px',
+                        objectFit: 'cover',
+                      }}
+                    />
+                  </div>
+
+                  {/* Media List */}
+                  <div style={{
+                    marginTop: '20px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '12px',
+                  }}>
+                    {[
+                      'Forbes JAPAN「2026年注目の100人」選出',
+                      'TBS『東大王』レギュラー出演（2021-2024）',
+                      'DMM亀山氏と対談（M&A CAMP）',
+                      'エンジニアtype / プレジデントオンライン 掲載',
+                    ].map((item, index) => (
+                      <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                        <span style={{ color: 'var(--bestiee-cyan)', fontSize: '20px', lineHeight: 1 }}>•</span>
+                        <span style={{ fontSize: '16px', color: '#333', lineHeight: '1.6' }}>{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

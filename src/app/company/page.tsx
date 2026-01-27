@@ -42,10 +42,10 @@ export default function CompanyPage() {
 
       {/* Hero Image */}
       <section style={{ backgroundColor: 'white' }}>
-        <div style={{ padding: '0 5%', paddingBottom: '60px' }}>
+        <div style={{ padding: '0 5%', paddingBottom: '60px', display: 'flex', justifyContent: 'flex-end' }}>
           <div style={{
-            width: '100%',
-            maxWidth: '1200px',
+            width: '40%',
+            maxWidth: '480px',
             aspectRatio: '16/9',
             overflow: 'hidden',
             borderRadius: '12px',
@@ -53,8 +53,8 @@ export default function CompanyPage() {
             <Image
               src="/images/related-company.jpg"
               alt="オフィス"
-              width={1200}
-              height={675}
+              width={480}
+              height={270}
               style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             />
           </div>

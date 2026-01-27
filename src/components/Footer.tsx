@@ -204,49 +204,76 @@ export default function Footer() {
           <div style={{
             width: isMobile ? '100%' : '50%',
             display: 'flex',
-            flexDirection: isMobile ? 'column' : 'row',
-            gap: isMobile ? '32px' : '64px'
+            flexDirection: 'column',
+            gap: isMobile ? '32px' : '40px'
           }}>
-            {footerNavSections.map((section, sectionIndex) => (
-              <div key={sectionIndex} style={{ display: 'flex', flexDirection: 'column', gap: section.links.length > 1 ? (isMobile ? '12px' : '16px') : '0' }}>
-                {section.links.map((link, linkIndex) => (
-                  <FooterLink key={linkIndex} href={link.href} isMobile={isMobile}>
-                    {link.isBold ? (
-                      <span style={{ fontSize: isMobile ? '16px' : '22px', fontWeight: 'bold' }}>{link.label}</span>
-                    ) : (
-                      link.label
-                    )}
-                  </FooterLink>
-                ))}
-              </div>
-            ))}
+            {/* Row 1: 私たちについて, サービス, ニュース */}
+            <div style={{
+              display: 'flex',
+              flexDirection: isMobile ? 'column' : 'row',
+              gap: isMobile ? '24px' : '48px'
+            }}>
+              {footerNavSections.slice(0, 3).map((section, sectionIndex) => (
+                <div key={sectionIndex} style={{ display: 'flex', flexDirection: 'column', gap: section.links.length > 1 ? (isMobile ? '12px' : '16px') : '0' }}>
+                  {section.links.map((link, linkIndex) => (
+                    <FooterLink key={linkIndex} href={link.href} isMobile={isMobile}>
+                      {link.isBold ? (
+                        <span style={{ fontSize: isMobile ? '16px' : '18px', fontWeight: 'bold' }}>{link.label}</span>
+                      ) : (
+                        link.label
+                      )}
+                    </FooterLink>
+                  ))}
+                </div>
+              ))}
+            </div>
+            {/* Row 2: 会社情報, お問い合わせ */}
+            <div style={{
+              display: 'flex',
+              flexDirection: isMobile ? 'column' : 'row',
+              gap: isMobile ? '24px' : '48px'
+            }}>
+              {footerNavSections.slice(3).map((section, sectionIndex) => (
+                <div key={sectionIndex} style={{ display: 'flex', flexDirection: 'column', gap: section.links.length > 1 ? (isMobile ? '12px' : '16px') : '0' }}>
+                  {section.links.map((link, linkIndex) => (
+                    <FooterLink key={linkIndex} href={link.href} isMobile={isMobile}>
+                      {link.isBold ? (
+                        <span style={{ fontSize: isMobile ? '16px' : '18px', fontWeight: 'bold' }}>{link.label}</span>
+                      ) : (
+                        link.label
+                      )}
+                    </FooterLink>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Bottom Bar */}
-      <div style={{ padding: isMobile ? '32px 5%' : '0 5% 100px 5%' }}>
+      <div style={{ padding: isMobile ? '32px 5%' : '0 5% 80px 5%' }}>
         <div style={{
           display: 'flex',
-          flexDirection: isMobile ? 'column' : 'row',
-          alignItems: isMobile ? 'flex-start' : 'center',
-          justifyContent: 'space-between',
-          gap: isMobile ? '24px' : '0'
+          flexDirection: 'column',
+          alignItems: isMobile ? 'flex-start' : 'flex-end',
+          gap: isMobile ? '16px' : '16px'
         }}>
-          <span className="text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>{copyrightText}</span>
+          {/* Policy Links */}
           <div style={{
-            marginRight: isMobile ? '0' : '15%',
             display: 'flex',
             flexDirection: isMobile ? 'column' : 'row',
-            alignItems: 'flex-start',
-            gap: isMobile ? '12px' : '32px'
+            alignItems: isMobile ? 'flex-start' : 'flex-end',
+            gap: isMobile ? '8px' : '24px'
           }}>
             {policyLinks.map((link, index) => (
-              <a key={index} href={link.href} className="group text-white" style={{ fontSize: isMobile ? '12px' : '16px' }}>
+              <a key={index} href={link.href} className="group text-white" style={{ fontSize: isMobile ? '12px' : '14px' }}>
                 <span className="relative inline-block">{link.label}<span className="absolute left-0 bottom-[-2px] h-[1px] bg-white transition-all duration-100 w-0 group-hover:w-full"></span></span>
               </a>
             ))}
           </div>
+          {/* Copyright */}
+          <span className="text-white" style={{ fontSize: isMobile ? '12px' : '14px', opacity: 0.8 }}>{copyrightText}</span>
         </div>
       </div>
     </footer>

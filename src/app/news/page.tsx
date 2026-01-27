@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import Link from "next/link";
 import { featuredNews, newsListItems, newsFilterOptions, type NewsListItem } from "@/data/news";
 
@@ -462,31 +463,14 @@ export default function NewsPage() {
     <main className="min-h-screen flex flex-col">
       <Header />
 
-      {/* Hero Section */}
-      <section style={{ backgroundColor: 'white', padding: '80px 5% 40px' }}>
-        {/* Title */}
-        <h1 style={{
-          fontSize: 'clamp(40px, 6vw, 64px)',
-          fontWeight: 'bold',
-          color: 'black',
-          letterSpacing: '0.1em',
-        }}>
-          ニュース
-        </h1>
-
-        {/* Breadcrumb */}
-        <div style={{
-          fontSize: '14px',
-          color: '#666',
-          marginTop: '40px',
-          paddingBottom: '40px',
-          borderBottom: '1px solid #333',
-        }}>
-          <Link href="/" style={{ color: '#666', textDecoration: 'none' }}>トップ</Link>
-          <span style={{ margin: '0 8px' }}>-</span>
-          <span>ニュース</span>
-        </div>
-      </section>
+      <PageHero
+        title="ニュース"
+        subtitle="News"
+        breadcrumb={[
+          { label: 'トップ', href: '/' },
+          { label: 'ニュース' },
+        ]}
+      />
 
       {/* Topics Section */}
       <section style={{ backgroundColor: 'white', padding: '60px 5%' }}>

@@ -35,20 +35,35 @@ const coreMembers = [
 
 // Navigation sections
 const navSections = [
-  { label: '取締役・CXO', id: 'executives', active: true },
-  { label: 'コアメンバー', id: 'core-members', active: false },
+  { label: '取締役・CXO', id: 'executives' },
+  { label: 'コアメンバー', id: 'core-members' },
 ];
 
 export default function ExecutivesPage() {
   const [showNav, setShowNav] = useState(true);
+  const [activeSection, setActiveSection] = useState('executives');
   const relatedSectionRef = useRef<HTMLElement>(null);
+  const executivesSectionRef = useRef<HTMLElement>(null);
+  const coreMembersSectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
+      // Hide nav when related section is in view
       if (relatedSectionRef.current) {
         const rect = relatedSectionRef.current.getBoundingClientRect();
-        // Hide nav when related section is in view (top of section reaches 300px from top)
         setShowNav(rect.top > 300);
+      }
+
+      // Determine active section based on scroll position
+      const coreMembersEl = coreMembersSectionRef.current;
+      if (coreMembersEl) {
+        const rect = coreMembersEl.getBoundingClientRect();
+        // If core-members section top is above the middle of the viewport, it's active
+        if (rect.top < window.innerHeight / 2) {
+          setActiveSection('core-members');
+        } else {
+          setActiveSection('executives');
+        }
       }
     };
 
@@ -244,36 +259,40 @@ export default function ExecutivesPage() {
             visibility: showNav ? 'visible' : 'hidden',
             transition: 'opacity 0.3s ease, visibility 0.3s ease',
           }}>
-            {navSections.map((section, index) => (
-              <a
-                key={index}
-                href={`#${section.id}`}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  padding: '16px 20px',
-                  background: section.active ? 'linear-gradient(90deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 100%)' : 'white',
-                  color: section.active ? 'white' : 'black',
-                  borderBottom: '1px solid #e5e7eb',
-                  cursor: 'pointer',
-                  fontSize: '14px',
-                  fontWeight: '500',
-                  textDecoration: 'none',
-                }}
-              >
-                <span>{section.label}</span>
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M6 2L6 10M6 10L10 6M6 10L2 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-              </a>
-            ))}
+            {navSections.map((section, index) => {
+              const isActive = activeSection === section.id;
+              return (
+                <a
+                  key={index}
+                  href={`#${section.id}`}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '16px 20px',
+                    background: isActive ? 'linear-gradient(90deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 100%)' : 'white',
+                    color: isActive ? 'white' : 'black',
+                    borderBottom: '1px solid #e5e7eb',
+                    cursor: 'pointer',
+                    fontSize: '14px',
+                    fontWeight: '500',
+                    textDecoration: 'none',
+                    transition: 'background 0.3s ease, color 0.3s ease',
+                  }}
+                >
+                  <span>{section.label}</span>
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <path d="M6 2L6 10M6 10L10 6M6 10L2 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* Core Members Section */}
-      <section style={{ backgroundColor: 'white', position: 'relative' }}>
+      <section ref={coreMembersSectionRef} style={{ backgroundColor: 'white', position: 'relative' }}>
         {/* Section header with full-width border */}
         <SectionHeader title="コアメンバー" withBorder id="core-members" />
 

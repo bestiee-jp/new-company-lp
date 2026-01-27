@@ -2,6 +2,7 @@
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import PageHero from "@/components/PageHero";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { recruitmentServices, educationServices, serviceIntroduction } from "@/data/services";
 
@@ -85,47 +86,28 @@ export default function ServicePage() {
     <main className="min-h-screen flex flex-col">
       <Header />
 
-      {/* Hero Section */}
-      <section style={{ backgroundColor: 'white', paddingTop: isMobile ? '40px' : '60px' }}>
-        {/* Title */}
-        <h1 style={{
-          textAlign: 'center',
-          fontSize: isMobile ? '32px' : 'clamp(32px, 5vw, 56px)',
-          fontWeight: 'bold',
-          marginBottom: '16px',
-          color: 'black'
-        }}>
-          サービス
-        </h1>
+      <PageHero
+        title="サービス"
+        subtitle="Service"
+        breadcrumb={[
+          { label: 'トップ', href: '/' },
+          { label: 'サービス' },
+        ]}
+      />
 
-        {/* Breadcrumb */}
-        <div style={{
-          textAlign: 'center',
-          fontSize: '14px',
-          color: '#888',
-          marginBottom: isMobile ? '40px' : '60px'
+      {/* Introduction */}
+      <section style={{ backgroundColor: 'white', padding: isMobile ? '40px 5%' : '60px 5%', textAlign: 'center' }}>
+        <p style={{
+          fontSize: isMobile ? '20px' : 'clamp(24px, 3vw, 36px)',
+          fontWeight: '600',
+          lineHeight: '1.8',
+          background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 50%, #4DD9D9 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
         }}>
-          トップ &gt; サービス
-        </div>
-
-        {/* Introduction */}
-        <div style={{
-          textAlign: 'center',
-          padding: '0 5%',
-          marginBottom: isMobile ? '60px' : '100px',
-        }}>
-          <p style={{
-            fontSize: isMobile ? '20px' : 'clamp(24px, 3vw, 36px)',
-            fontWeight: '600',
-            lineHeight: '1.8',
-            background: 'linear-gradient(135deg, #1E5AA8 0%, #00A3E0 50%, #4DD9D9 100%)',
-            WebkitBackgroundClip: 'text',
-            WebkitTextFillColor: 'transparent',
-            backgroundClip: 'text',
-          }}>
-            {serviceIntroduction.tagline}
-          </p>
-        </div>
+          {serviceIntroduction.tagline}
+        </p>
       </section>
 
       {/* 採用支援 Section */}

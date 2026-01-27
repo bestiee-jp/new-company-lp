@@ -3,6 +3,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function MissionPage() {
   return (
@@ -251,14 +252,17 @@ export default function MissionPage() {
             <div style={{
               width: '400px',
               height: '280px',
-              backgroundColor: '#f8fafc',
               borderRadius: '16px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              overflow: 'hidden',
               flexShrink: 0,
             }}>
-              <span style={{ color: '#999', fontSize: '14px' }}>画像</span>
+              <Image
+                src="/images/value-bestiee.jpg"
+                alt="Be a Bestiee"
+                width={400}
+                height={280}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
           </div>
 
@@ -303,14 +307,17 @@ export default function MissionPage() {
             <div style={{
               width: '400px',
               height: '280px',
-              backgroundColor: '#f8fafc',
               borderRadius: '16px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              overflow: 'hidden',
               flexShrink: 0,
             }}>
-              <span style={{ color: '#999', fontSize: '14px' }}>画像</span>
+              <Image
+                src="/images/value-wow.jpg"
+                alt="Design the Wow"
+                width={400}
+                height={280}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
           </div>
 
@@ -352,14 +359,17 @@ export default function MissionPage() {
             <div style={{
               width: '400px',
               height: '280px',
-              backgroundColor: '#f8fafc',
               borderRadius: '16px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
+              overflow: 'hidden',
               flexShrink: 0,
             }}>
-              <span style={{ color: '#999', fontSize: '14px' }}>画像</span>
+              <Image
+                src="/images/value-grind.jpg"
+                alt="Trust the Grind"
+                width={400}
+                height={280}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              />
             </div>
           </div>
         </div>

@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { ArrowIcon } from '@/components/icons';
 
 // Add keyframe animation styles - 25 degrees from vertical
 const diagonalWipeKeyframes = `
@@ -257,6 +259,28 @@ export default function ServicesMercari() {
               {slide.description}
             </p>
           </div>
+
+          {/* Service Details Button */}
+          <Link
+            href="/service"
+            className="inline-flex items-center justify-between bg-black text-white"
+            style={{
+              padding: '16px 28px',
+              fontSize: '16px',
+              borderRadius: '50px',
+              textDecoration: 'none',
+              marginBottom: '24px',
+              width: 'fit-content',
+              gap: '12px',
+              opacity: isAnimating ? 0 : 1,
+              transition: 'opacity 0.3s ease, border-radius 0.5s ease',
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.borderRadius = '8px')}
+            onMouseLeave={(e) => (e.currentTarget.style.borderRadius = '50px')}
+          >
+            <span>サービス詳細</span>
+            <ArrowIcon />
+          </Link>
 
           {/* Dot indicators */}
           <div

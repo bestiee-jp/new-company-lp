@@ -57,86 +57,15 @@ export default function MissionPage() {
           </div>
         </div>
 
-        {/* Content with ellipse background */}
-        <div style={{ position: 'relative', padding: '80px 5% 100px' }}>
-          {/* Cyan ellipse decorations */}
-          <div style={{
-            position: 'absolute',
-            top: '0',
-            right: '0',
-            width: '100%',
-            height: '100%',
-            overflow: 'hidden',
-            pointerEvents: 'none',
-          }}>
-            {/* Main ellipse - top right */}
-            <svg
-              style={{
-                position: 'absolute',
-                top: '-50px',
-                right: '-15%',
-                width: '70%',
-                height: '500px',
-              }}
-              viewBox="0 0 700 400"
-              preserveAspectRatio="none"
-            >
-              <defs>
-                <linearGradient id="missionWave1" x1="100%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#1E5AA8" />
-                  <stop offset="50%" stopColor="#00A3E0" />
-                  <stop offset="100%" stopColor="#4DD9D9" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M700,100 Q650,30 500,60 C350,100 200,180 100,280 Q50,340 120,380 C250,420 450,400 600,350 C700,310 720,200 700,100 Z"
-                fill="url(#missionWave1)"
-                opacity="0.85"
-              />
-            </svg>
-
-            {/* Secondary ellipse */}
-            <svg
-              style={{
-                position: 'absolute',
-                top: '150px',
-                right: '-5%',
-                width: '50%',
-                height: '350px',
-              }}
-              viewBox="0 0 500 300"
-              preserveAspectRatio="none"
-            >
-              <defs>
-                <linearGradient id="missionWave2" x1="100%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#00A3E0" />
-                  <stop offset="100%" stopColor="#4DD9D9" />
-                </linearGradient>
-              </defs>
-              <path
-                d="M500,80 Q450,20 350,50 C200,100 100,180 50,250 Q20,300 100,300 C250,300 400,260 480,180 Q520,120 500,80 Z"
-                fill="url(#missionWave2)"
-                opacity="0.6"
-              />
-            </svg>
-
-            {/* Soft glow */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '100px',
-                right: '15%',
-                width: '250px',
-                height: '250px',
-                background: 'radial-gradient(circle, rgba(77, 217, 217, 0.3) 0%, transparent 70%)',
-                borderRadius: '50%',
-                filter: 'blur(40px)',
-              }}
-            />
-          </div>
-
+        {/* Content */}
+        <div style={{
+          display: 'flex',
+          gap: '60px',
+          padding: '80px 5% 100px',
+          alignItems: 'center',
+        }}>
           {/* Text content */}
-          <div style={{ position: 'relative', zIndex: 1, maxWidth: '700px' }}>
+          <div style={{ flex: 1, maxWidth: '700px' }}>
             <p style={{
               fontSize: '14px',
               color: '#666',
@@ -177,6 +106,23 @@ export default function MissionPage() {
                 繰り返される「退屈」を、明日への「期待」へと変えていきます。
               </p>
             </div>
+          </div>
+
+          {/* Image */}
+          <div style={{
+            width: '450px',
+            height: '320px',
+            borderRadius: '16px',
+            overflow: 'hidden',
+            flexShrink: 0,
+          }}>
+            <Image
+              src="/images/mission.jpg"
+              alt="ミッション"
+              width={450}
+              height={320}
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
           </div>
         </div>
       </section>

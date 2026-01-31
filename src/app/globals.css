@@ -3,7 +3,6 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --smarthr-cyan: #00C4CC;
   --bestiee-blue: #1E5AA8;
   --bestiee-blue-light: #00A3E0;
   --bestiee-cyan: #4DD9D9;
@@ -14,7 +13,6 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-smarthr-cyan: var(--smarthr-cyan);
   --color-bestiee-blue: var(--bestiee-blue);
   --color-bestiee-blue-light: var(--bestiee-blue-light);
   --color-bestiee-cyan: var(--bestiee-cyan);

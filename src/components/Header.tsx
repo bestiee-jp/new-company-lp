@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import SmartHRLogo from './SmartHRLogo';
+import BestieeLogo from './BestieeLogo';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { slideMenuItems, dropdownMenus } from '@/data/navigation';
 
@@ -140,7 +140,7 @@ export default function Header() {
             style={{ padding: isMobile ? '16px 5%' : '24px 5%' }}
           >
             {/* Logo */}
-            <SmartHRLogo />
+            <BestieeLogo />
 
             {/* Main Navigation - hidden on mobile */}
             {!isMobile && (
@@ -346,7 +346,7 @@ export default function Header() {
           justifyContent: 'space-between',
           alignItems: 'center'
         }}>
-          <SmartHRLogo />
+          <BestieeLogo />
           <div style={{ display: 'flex', alignItems: 'center', gap: isMobile ? '12px' : '20px' }}>
             {/* Language Switcher */}
             <div className="flex items-center gap-2" style={{ fontSize: isMobile ? '14px' : '16px' }}>

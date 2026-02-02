@@ -2,25 +2,32 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslation } from '@/hooks/useTranslation';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function Hero() {
   const [isMounted, setIsMounted] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const { t } = useTranslation();
+  const isMobile = useIsMobile();
 
   // Wait for mount before showing anything (prevents SSR flash)
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
-  // Trigger animation after video is ready or fallback after 500ms
+  // Trigger animation after video is ready or fallback (longer delay on mobile)
   useEffect(() => {
     if (!isMounted) return;
+    const delay = isMobile ? 1000 : 500;
     const timer = setTimeout(() => {
       setIsVideoReady(true);
-    }, 500);
+    }, delay);
     return () => clearTimeout(timer);
-  }, [isMounted]);
+  }, [isMounted, isMobile]);
+
+  // Animation durations (slower on mobile)
+  const duration = isMobile ? '2s' : '1.5s';
+  const longDuration = isMobile ? '5s' : '4s';
 
   return (
     <section className="relative overflow-hidden min-h-[60vh] md:min-h-[80vh] lg:min-h-[90vh]">
@@ -50,7 +57,7 @@ export default function Hero() {
             style={{
               opacity: isVideoReady ? 1 : 0,
               transform: isVideoReady ? 'translateY(0)' : 'translateY(150px)',
-              transition: 'opacity 1.5s ease-out 0s, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0s',
+              transition: `opacity ${duration} ease-out 0s, transform ${duration} cubic-bezier(0.16, 1, 0.3, 1) 0s`,
             }}
           >
             <h1
@@ -67,7 +74,7 @@ export default function Hero() {
             style={{
               opacity: isVideoReady ? 1 : 0,
               transform: isVideoReady ? 'translateY(0)' : 'translateY(150px)',
-              transition: 'opacity 1.5s ease-out 0.5s, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s',
+              transition: `opacity ${duration} ease-out 0.5s, transform ${duration} cubic-bezier(0.16, 1, 0.3, 1) 0.5s`,
             }}
           >
             <h1
@@ -87,7 +94,7 @@ export default function Hero() {
                   backgroundClip: 'text',
                   opacity: isVideoReady ? 1 : 0,
                   transform: isVideoReady ? 'translateY(0)' : 'translateY(50px)',
-                  transition: 'opacity 1.5s ease-out 2s, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 2s',
+                  transition: `opacity ${duration} ease-out 2s, transform ${duration} cubic-bezier(0.16, 1, 0.3, 1) 2s`,
                 }}
               >
                 turn fear into passion
@@ -97,7 +104,7 @@ export default function Hero() {
                 style={{
                   opacity: isVideoReady ? 1 : 0,
                   transform: isVideoReady ? 'translateX(0)' : 'translateX(-150px)',
-                  transition: 'opacity 4s ease-out 3s, transform 4s cubic-bezier(0.16, 1, 0.3, 1) 3s',
+                  transition: `opacity ${longDuration} ease-out 3s, transform ${longDuration} cubic-bezier(0.16, 1, 0.3, 1) 3s`,
                 }}
               >
                 {t('hero.tagline')}
@@ -111,7 +118,7 @@ export default function Hero() {
             style={{
               opacity: isVideoReady ? 1 : 0,
               transform: isVideoReady ? 'translateY(0)' : 'translateY(150px)',
-              transition: 'opacity 1.5s ease-out 1s, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1s',
+              transition: `opacity ${duration} ease-out 1s, transform ${duration} cubic-bezier(0.16, 1, 0.3, 1) 1s`,
             }}
           >
             <h1

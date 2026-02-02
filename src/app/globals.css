@@ -28,6 +28,13 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-noto-sans-jp), "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  /* FOUC対策: ハイドレーション前は非表示 */
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+body.hydrated {
+  opacity: 1;
 }
 
 /* Chinese font when language is set to Chinese */

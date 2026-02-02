@@ -77,6 +77,25 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
+      <head>
+        {/* FOUC対策: ハイドレーション後にbodyを表示 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                // DOMContentLoaded後にhydratedクラスを追加
+                if (document.readyState === 'loading') {
+                  document.addEventListener('DOMContentLoaded', function() {
+                    document.body.classList.add('hydrated');
+                  });
+                } else {
+                  document.body.classList.add('hydrated');
+                }
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={`${notoSansJP.variable} ${notoSansSC.variable} ${sacramento.variable} ${pacifico.variable} ${dancingScript.variable} ${greatVibes.variable} ${satisfy.variable} antialiased`}>
         <LanguageProvider>
           {children}

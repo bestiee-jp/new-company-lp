@@ -142,13 +142,13 @@ export default function ServicesMercari() {
       <section
         style={{
           background: `linear-gradient(160deg, ${slide.bgColor}00 0%, ${slide.bgColor} 15%, ${slide.bgColor} 85%, ${slide.bgColor}dd 100%), linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 30%, rgba(255,255,255,0) 50%, rgba(0,0,0,0.05) 100%), ${slide.bgColor}`,
-          minHeight: '600px',
+          minHeight: isMobile ? 'auto' : '600px',
           position: 'relative',
           overflow: 'hidden',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '80px 5%',
+          padding: isMobile ? '40px 5%' : '80px 5%',
         }}
       >
       {/* Glossy shine overlay */}
@@ -189,7 +189,11 @@ export default function ServicesMercari() {
           maxWidth: '1200px',
           width: '100%',
           position: 'relative',
-          height: '500px',
+          height: isMobile ? 'auto' : '500px',
+          display: isMobile ? 'flex' : 'block',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: isMobile ? '24px' : '0',
         }}
       >
         {/* Left - White Card */}
@@ -197,14 +201,16 @@ export default function ServicesMercari() {
           style={{
             backgroundColor: 'white',
             borderRadius: '16px',
-            padding: '48px',
-            width: '500px',
-            height: '380px',
+            padding: isMobile ? '24px' : '48px',
+            width: isMobile ? '100%' : '500px',
+            maxWidth: isMobile ? '400px' : 'none',
+            height: isMobile ? 'auto' : '380px',
+            minHeight: isMobile ? '300px' : 'auto',
             boxShadow: '0 20px 60px rgba(0, 0, 0, 0.15)',
-            position: 'absolute',
-            left: '0',
-            top: '50%',
-            transform: 'translateY(-50%)',
+            position: isMobile ? 'relative' : 'absolute',
+            left: isMobile ? 'auto' : '0',
+            top: isMobile ? 'auto' : '50%',
+            transform: isMobile ? 'none' : 'translateY(-50%)',
             zIndex: 2,
             display: 'flex',
             flexDirection: 'column',
@@ -228,12 +234,12 @@ export default function ServicesMercari() {
           {/* Service Name */}
           <div
             style={{
-              marginBottom: '16px',
+              marginBottom: isMobile ? '12px' : '16px',
             }}
           >
             <span
               style={{
-                fontSize: '32px',
+                fontSize: isMobile ? '22px' : '32px',
                 fontWeight: '700',
                 color: '#333',
                 letterSpacing: '-0.02em',
@@ -249,20 +255,20 @@ export default function ServicesMercari() {
           <div
             style={{
               flex: 1,
-              minHeight: '100px',
-              maxHeight: '140px',
+              minHeight: isMobile ? '80px' : '100px',
+              maxHeight: isMobile ? '120px' : '140px',
               overflow: 'hidden',
             }}
           >
             <p
               style={{
-                fontSize: '15px',
+                fontSize: isMobile ? '13px' : '15px',
                 lineHeight: '1.9',
                 color: '#555',
                 opacity: isAnimating ? 0 : 1,
                 transition: 'opacity 0.3s ease',
                 display: '-webkit-box',
-                WebkitLineClamp: 5,
+                WebkitLineClamp: isMobile ? 4 : 5,
                 WebkitBoxOrient: 'vertical',
                 overflow: 'hidden',
               }}
@@ -277,6 +283,8 @@ export default function ServicesMercari() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
+              flexDirection: isMobile ? 'column' : 'row',
+              gap: isMobile ? '16px' : '0',
               marginTop: 'auto',
               paddingTop: '16px',
             }}
@@ -393,17 +401,19 @@ export default function ServicesMercari() {
         {/* Right - Service Image */}
         <div
           style={{
-            position: 'absolute',
-            right: '0',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            width: '550px',
-            height: '500px',
+            position: isMobile ? 'relative' : 'absolute',
+            right: isMobile ? 'auto' : '0',
+            top: isMobile ? 'auto' : '50%',
+            transform: isMobile ? 'none' : 'translateY(-50%)',
+            width: isMobile ? '100%' : '550px',
+            maxWidth: isMobile ? '350px' : 'none',
+            height: isMobile ? '300px' : '500px',
             zIndex: 1,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             overflow: 'visible',
+            order: isMobile ? -1 : 0,
           }}
         >
           <div

@@ -8,10 +8,12 @@ import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useTranslation } from '@/hooks/useTranslation';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function ContactPage() {
   const { t } = useTranslation();
   const { lang } = useLanguage();
+  const isMobile = useIsMobile();
   const [formData, setFormData] = useState({
     lastName: '',
     firstName: '',
@@ -275,13 +277,13 @@ export default function ContactPage() {
           ) : (
             <div style={{
               display: 'flex',
-              gap: '80px',
-              flexDirection: 'row',
+              gap: isMobile ? '40px' : '80px',
+              flexDirection: isMobile ? 'column' : 'row',
               flexWrap: 'wrap',
               justifyContent: 'space-between',
             }}>
               {/* Left Column - Info & Awards */}
-              <div style={{ flex: '1', minWidth: '360px', maxWidth: '700px' }}>
+              <div style={{ flex: '1', minWidth: isMobile ? '100%' : '360px', maxWidth: isMobile ? '100%' : '700px' }}>
                 {/* Intro Text */}
                 <div style={{
                   fontSize: '15px',
@@ -313,8 +315,8 @@ export default function ContactPage() {
                   {/* Two Column Layout */}
                   <div style={{
                     display: 'grid',
-                    gridTemplateColumns: 'repeat(2, 1fr)',
-                    gap: '32px',
+                    gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+                    gap: isMobile ? '24px' : '32px',
                   }}>
                     {/* Left Column - Enterprise */}
                     <div>
@@ -447,7 +449,7 @@ export default function ContactPage() {
               </div>
 
               {/* Right Column - Form */}
-              <div style={{ flex: '0 0 auto', width: '480px', minWidth: '380px', maxWidth: '480px', backgroundColor: '#f7fefe', padding: '28px', borderRadius: '8px', alignSelf: 'flex-start', position: 'sticky', top: '100px' }}>
+              <div style={{ flex: '0 0 auto', width: isMobile ? '100%' : '480px', minWidth: isMobile ? 'auto' : '380px', maxWidth: isMobile ? '100%' : '480px', backgroundColor: '#f7fefe', padding: isMobile ? '20px' : '28px', borderRadius: '8px', alignSelf: 'flex-start', position: isMobile ? 'relative' : 'sticky', top: isMobile ? 'auto' : '100px' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
                   <h2 style={{
                     fontSize: '18px',

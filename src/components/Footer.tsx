@@ -6,14 +6,11 @@ import { usePathname } from 'next/navigation';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { ExternalLinkIcon } from '@/components/icons';
 import {
-  socialLinksColumn1,
-  socialLinksColumn2,
-  footerNavSections,
-  policyLinks,
   copyrightText,
   footerLogoPath,
   type SocialLink,
 } from '@/data/footer';
+import { useTranslation } from '@/hooks/useTranslation';
 
 // X (Twitter) Icon
 function XIcon() {
@@ -156,6 +153,60 @@ function SocialLinkComponent({ link, isMobile = false }: { link: SocialLink; isM
 
 export default function Footer() {
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
+
+  // Social media links with translations - Column 1
+  const socialLinksColumn1: SocialLink[] = [
+    { platform: 'x', label: t('footer.social.xCeo'), href: 'https://x.com/kou_goto_' },
+    { platform: 'x', label: t('footer.social.xFastpass'), href: 'https://x.com/fastpass_ai' },
+    { platform: 'note', label: t('footer.social.noteCeo'), href: 'https://note.com/kou_goto_' },
+    { platform: 'note', label: t('footer.social.noteFastpass'), href: 'https://note.com/fastpass_ai' },
+    { platform: 'linkedin', label: t('footer.social.linkedin'), href: 'https://www.linkedin.com/in/%E5%BC%98-%E5%BE%8C%E8%97%A4-ab61a3379/' },
+  ];
+
+  // Social media links with translations - Column 2
+  const socialLinksColumn2: SocialLink[] = [
+    { platform: 'youtube', label: t('footer.social.youtubeCeo'), href: 'https://www.youtube.com/@toudaiou_room' },
+    { platform: 'youtube', label: t('footer.social.youtubeAiFest'), href: 'https://youtu.be/O4GQPqapLI4?si=S5GMDRgfnClG8EvC' },
+    { platform: 'tiktok', label: t('footer.social.tiktok'), href: 'https://www.tiktok.com/@toudaiou_room' },
+    { platform: 'facebook', label: t('footer.social.facebook'), href: 'https://www.facebook.com/people/%E5%BE%8C%E8%97%A4%E5%BC%98/100014465291670/' },
+  ];
+
+  // Dynamic footer nav sections with translations
+  const footerNavSections = [
+    {
+      titleHref: '/mission',
+      links: [{ label: t('footer.aboutUs'), href: '/mission', isBold: true }],
+    },
+    {
+      titleHref: '/service',
+      links: [{ label: t('footer.service'), href: '/service', isBold: true }],
+    },
+    {
+      titleHref: '/news',
+      links: [{ label: t('footer.news'), href: '/news', isBold: true }],
+    },
+    {
+      titleHref: '/company',
+      links: [
+        { label: t('footer.company'), href: '/company', isBold: true },
+        { label: t('footer.company'), href: '/company' },
+        { label: t('footer.executives'), href: '/company/executives' },
+        { label: t('footer.history'), href: '/company/history' },
+      ],
+    },
+    {
+      titleHref: '/contact',
+      links: [{ label: t('footer.contact'), href: '/contact', isBold: true }],
+    },
+  ];
+
+  // Dynamic policy links with translations
+  const policyLinks = [
+    { label: t('footer.securityPolicy'), href: '/security' },
+    { label: t('footer.privacyPolicy'), href: '/privacy' },
+    { label: t('footer.aiPolicy'), href: '/ai-policy' },
+  ];
 
   return (
     <footer className="bg-[#1a1a1a] text-white flex flex-col" style={{ minHeight: isMobile ? 'auto' : '100vh' }}>

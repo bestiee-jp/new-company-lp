@@ -4,7 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import { useIsMobile } from "@/hooks/useIsMobile";
-import { recruitmentServices, educationServices, serviceIntroduction } from "@/data/services";
+import { useTranslation } from '@/hooks/useTranslation';
 
 // サービスカードコンポーネント
 function ServiceCard({ name, description, image, isReversed, isMobile }: {
@@ -81,17 +81,45 @@ function ServiceCard({ name, description, image, isReversed, isMobile }: {
 
 export default function ServicePage() {
   const isMobile = useIsMobile();
+  const { t, lang } = useTranslation();
+
+  // Build service data from translations
+  const recruitmentServices = [
+    {
+      name: t('service.fastpass.name'),
+      description: t('service.fastpass.description'),
+      image: '/images/fastpass.png',
+    },
+    {
+      name: t('service.aiFest.name'),
+      description: t('service.aiFest.description'),
+      image: '/images/service-aicf.jpg',
+    },
+    {
+      name: t('service.meetup.name'),
+      description: t('service.meetup.description'),
+      image: '/images/service-meetup.jpg',
+    },
+  ];
+
+  const educationServices = [
+    {
+      name: t('service.bestTeach.name'),
+      description: t('service.bestTeach.description'),
+      image: '/images/service-bestteach.png',
+    },
+  ];
 
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
 
       <PageHero
-        title="サービス"
-        subtitle="Service"
+        title={t('pages.service.title')}
+        subtitle={t('pages.service.subtitle')}
         breadcrumb={[
-          { label: 'トップ', href: '/' },
-          { label: 'サービス' },
+          { label: t('breadcrumb.top'), href: '/' },
+          { label: t('pages.service.title') },
         ]}
       />
 
@@ -106,7 +134,7 @@ export default function ServicePage() {
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
         }}>
-          {serviceIntroduction.tagline}
+          {t('service.tagline')}
         </p>
       </section>
 
@@ -126,7 +154,7 @@ export default function ServicePage() {
             }}
           >
             <div style={{ width: '4px', height: isMobile ? '24px' : '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
-            <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>採用支援</span>
+            <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>{t('service.recruitment')}</span>
           </div>
         </div>
 
@@ -161,7 +189,7 @@ export default function ServicePage() {
             }}
           >
             <div style={{ width: '4px', height: isMobile ? '24px' : '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
-            <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>教育</span>
+            <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>{t('service.education')}</span>
           </div>
         </div>
 

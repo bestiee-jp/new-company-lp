@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { ArrowIcon } from '@/components/icons';
+import { useTranslation } from '@/hooks/useTranslation';
 
 // Add keyframe animation styles - 25 degrees from vertical
 const diagonalWipeKeyframes = `
@@ -18,36 +19,32 @@ const diagonalWipeKeyframes = `
 }
 `;
 
-// Slide data (hex colors required for gradient transparency)
-const slides = [
+// Slide configuration (without text - those come from translations)
+const slideConfigs = [
   {
-    name: 'FastPass',
+    key: 'fastpass',
     category: 'Services',
-    description: '「FastPass」は、AI面接練習データを活用した、ハイクラス学生特化の採用マッチングサービスです。AIが解析した面接データをもとに、エージェントが貴社に最適な学生を紹介します。',
     bgColor: '#1E5AA8', // bestiee-blue
     image: '/images/fastpass.png',
     scale: 1.3,
   },
   {
-    name: 'AIチャレンジャーズフェス',
+    key: 'aiFest',
     category: 'Events',
-    description: '「AIチャレンジャーズフェス」は、日本で最も「AIに熱中」しているハイクラス学生150名が集まる大規模採用イベントです。コードを書きながら事業も語れる、AI時代の企業競争力を担う人材と出会えます。',
     bgColor: '#00A3E0', // bestiee-blue-light
     image: '/images/service-aicf.jpg',
     scale: 1,
   },
   {
-    name: 'FastPass meetup',
+    key: 'meetup',
     category: 'Events',
-    description: '「FastPass meetup」は、AIが厳選した成長意欲の高いハイクラス学生と、少人数でじっくり向き合える採用イベントです。大規模イベントでは難しい、深い対話と相互理解を実現します。',
     bgColor: '#4DD9D9', // bestiee-cyan
     image: '/images/service-meetup.jpg',
     scale: 1,
   },
   {
-    name: 'ベストティーチ',
+    key: 'bestTeach',
     category: 'Services',
-    description: '「ベストティーチ」は、AIがお子さまにぴったりの先生を提案してくれる家庭教師サービスです。出身塾や出身高、趣味など350以上の項目から指導経験豊富な先生を選べて、単発1回からお試しできます。',
     bgColor: '#EAEAEA',
     image: '/images/service-bestteach.png',
     scale: 1.7,
@@ -61,6 +58,14 @@ export default function ServicesMercari() {
   const [resetTrigger, setResetTrigger] = useState(0);
   const [targetSlide, setTargetSlide] = useState(0);
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
+
+  // Create slides with translated content
+  const slides = slideConfigs.map(config => ({
+    ...config,
+    name: t(`service.${config.key}.name`),
+    description: t(`service.${config.key}.description`),
+  }));
 
   useEffect(() => {
     if (isAnimating) return; // Stop timer during animation
@@ -128,7 +133,7 @@ export default function ServicesMercari() {
             }}
           >
             <div style={{ width: '4px', height: isMobile ? '24px' : '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
-            <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>サービス</span>
+            <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>{t('service.sectionTitle')}</span>
           </div>
         </div>
       </section>
@@ -212,7 +217,7 @@ export default function ServicesMercari() {
               fontSize: '14px',
               fontWeight: '600',
               letterSpacing: '0.1em',
-              marginBottom: '24px',
+              marginBottom: '16px',
               opacity: isAnimating ? 0 : 1,
               transition: 'opacity 0.3s ease',
             }}
@@ -223,7 +228,7 @@ export default function ServicesMercari() {
           {/* Service Name */}
           <div
             style={{
-              marginBottom: '24px',
+              marginBottom: '16px',
             }}
           >
             <span
@@ -244,16 +249,22 @@ export default function ServicesMercari() {
           <div
             style={{
               flex: 1,
-              minHeight: '120px',
+              minHeight: '100px',
+              maxHeight: '140px',
+              overflow: 'hidden',
             }}
           >
             <p
               style={{
-                fontSize: '16px',
-                lineHeight: '2',
+                fontSize: '15px',
+                lineHeight: '1.9',
                 color: '#555',
                 opacity: isAnimating ? 0 : 1,
                 transition: 'opacity 0.3s ease',
+                display: '-webkit-box',
+                WebkitLineClamp: 5,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
               }}
             >
               {slide.description}
@@ -266,6 +277,8 @@ export default function ServicesMercari() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
+              marginTop: 'auto',
+              paddingTop: '16px',
             }}
           >
             {/* Dot indicators with progress */}
@@ -274,7 +287,6 @@ export default function ServicesMercari() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
-                marginTop: '20px',
               }}
             >
               {slides.map((_, index) => {
@@ -366,13 +378,13 @@ export default function ServicesMercari() {
                 fontSize: '14px',
                 fontWeight: '500',
                 textDecoration: 'none',
-                marginTop: '20px',
                 transition: 'border-radius 0.3s ease',
+                flexShrink: 0,
               }}
               onMouseEnter={(e) => e.currentTarget.style.borderRadius = '8px'}
               onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
             >
-              サービス詳細
+              {t('service.viewDetails')}
               <ArrowIcon direction="right" size={14} color="white" />
             </Link>
           </div>

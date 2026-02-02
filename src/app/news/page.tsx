@@ -20,10 +20,14 @@ export default function NewsPage() {
 
       <PageHero
         title="ニュース"
+        title_en="News"
+        title_zh="新闻"
         subtitle="News"
+        subtitle_en="Latest Updates"
+        subtitle_zh="最新动态"
         breadcrumb={[
-          { label: 'トップ', href: '/' },
-          { label: 'ニュース' },
+          { label: 'トップ', label_en: 'Home', label_zh: '首页', href: '/' },
+          { label: 'ニュース', label_en: 'News', label_zh: '新闻' },
         ]}
       />
 

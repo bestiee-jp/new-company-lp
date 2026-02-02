@@ -1,18 +1,22 @@
+'use client';
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function PrivacyPage() {
+  const { t } = useTranslation();
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
 
       <PageHero
-        title="プライバシーポリシー"
-        subtitle="Privacy Policy"
+        title={t('pages.privacy.title')}
+        subtitle={t('pages.privacy.subtitle')}
         breadcrumb={[
-          { label: 'トップ', href: '/' },
-          { label: 'プライバシーポリシー' },
+          { label: t('breadcrumb.top'), href: '/' },
+          { label: t('pages.privacy.title') },
         ]}
       />
 

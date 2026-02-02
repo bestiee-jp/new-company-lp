@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import type { NewsMetadata } from '@/lib/news';
+import { useTranslation } from '@/hooks/useTranslation';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 // News Card Image Component
 function NewsCardImage({ image }: { image: string }) {
@@ -25,6 +27,8 @@ interface NewsProps {
 
 export default function News({ newsItems }: NewsProps) {
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
+  const { lang } = useLanguage();
 
   return (
     <section className="bg-white" style={{ paddingTop: isMobile ? '40px' : '80px', paddingBottom: isMobile ? '40px' : '80px', position: 'relative' }}>
@@ -38,7 +42,7 @@ export default function News({ newsItems }: NewsProps) {
           }}
         >
           <div style={{ width: '4px', height: isMobile ? '24px' : '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
-          <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>ニュース</span>
+          <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>{t('nav.news')}</span>
         </div>
       </div>
 
@@ -113,7 +117,7 @@ export default function News({ newsItems }: NewsProps) {
                   fontWeight: '500',
                 }}
               >
-                {item.category}
+                {lang === 'zh' ? item.category_zh : lang === 'en' ? item.category_en : item.category}
               </span>
               <span
                 style={{
@@ -125,7 +129,7 @@ export default function News({ newsItems }: NewsProps) {
                   fontWeight: '500',
                 }}
               >
-                {item.theme}
+                {lang === 'zh' ? item.theme_zh : lang === 'en' ? item.theme_en : item.theme}
               </span>
             </div>
 
@@ -143,7 +147,7 @@ export default function News({ newsItems }: NewsProps) {
                 overflow: 'hidden',
               }}
             >
-              {item.title}
+              {lang === 'zh' ? item.title_zh : lang === 'en' ? item.title_en : item.title}
             </p>
           </Link>
         ))}
@@ -164,7 +168,7 @@ export default function News({ newsItems }: NewsProps) {
           onMouseEnter={(e) => (e.currentTarget.style.borderRadius = '8px')}
           onMouseLeave={(e) => (e.currentTarget.style.borderRadius = '50px')}
         >
-          <span>ニュース一覧</span>
+          <span>{t('nav.newsList')}</span>
           <svg
             width={isMobile ? "20" : "28"}
             height={isMobile ? "20" : "28"}

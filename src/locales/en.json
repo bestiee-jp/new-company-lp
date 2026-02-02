@@ -1,0 +1,259 @@
+{
+  "nav": {
+    "aboutUs": "About Us",
+    "service": "Service",
+    "news": "News",
+    "newsList": "All News",
+    "company": "Company",
+    "contact": "Contact",
+    "executives": "Executives",
+    "history": "History"
+  },
+  "hero": {
+    "tagline": "Bringing excitement to learning and connections"
+  },
+  "mission": {
+    "sectionTitle": "Mission",
+    "tagline": "Bringing excitement to learning and connections",
+    "paragraph1": "Life's turning points.",
+    "paragraph2": "They are always accompanied by invisible 'anxiety' and restless 'boredom'.",
+    "paragraph2_sub": "Fear of studying, dread of job hunting, uncertainty about career.",
+    "paragraph2_sub2": "Many people find themselves paralyzed by this pressure.",
+    "paragraph3": "That's why we want to transform these processes into heart-stirring experiences.",
+    "paragraph4": "Using the power of AI and technology,",
+    "paragraph4_sub": "we transform the 'anxiety' that stands before people into 'passion',",
+    "paragraph4_sub2": "and turn recurring 'boredom' into 'anticipation' for tomorrow.",
+    "aboutUsButton": "About Us",
+    "ceoTitle": "Kou Goto, CEO of bestiee Inc.",
+    "ceoDescription1": "Master's student at the University of Tokyo, Graduate School of Engineering",
+    "ceoDescription2": "Regular cast on TBS 'Toudaiou' (2021-2024)"
+  },
+  "contact": {
+    "sectionTitle": "Contact",
+    "heading": "Feel free to contact us.",
+    "description": "We offer a wide range of proposals for recruiting outstanding students through AI recruitment matching, recruitment events, and more. Please feel free to contact us for questions about our services, quotes, or media inquiries.",
+    "button": "Contact Us"
+  },
+  "footer": {
+    "aboutUs": "About Us",
+    "service": "Service",
+    "news": "News",
+    "company": "Company",
+    "contact": "Contact",
+    "executives": "Executives",
+    "history": "History",
+    "securityPolicy": "Information Security Policy",
+    "privacyPolicy": "Privacy Policy",
+    "aiPolicy": "AI Policy",
+    "relatedPages": "Related Pages",
+    "social": {
+      "xCeo": "X (CEO: Kou Goto)",
+      "xFastpass": "X (FastPass Official)",
+      "noteCeo": "note (CEO: Kou Goto)",
+      "noteFastpass": "note (FastPass Official)",
+      "youtubeCeo": "YouTube (CEO: Kou Goto)",
+      "youtubeAiFest": "YouTube (AI Challengers Fest)",
+      "linkedin": "LinkedIn",
+      "tiktok": "TikTok",
+      "facebook": "Facebook"
+    }
+  },
+  "breadcrumb": {
+    "top": "Home"
+  },
+  "pages": {
+    "mission": {
+      "title": "About Us",
+      "subtitle": "About Us"
+    },
+    "service": {
+      "title": "Service",
+      "subtitle": "Service"
+    },
+    "company": {
+      "title": "Company",
+      "subtitle": "Company"
+    },
+    "contact": {
+      "title": "Contact",
+      "subtitle": "Contact"
+    },
+    "executives": {
+      "title": "Executives",
+      "asOf": "As of January 25, 2026"
+    },
+    "history": {
+      "title": "History",
+      "subtitle": "History"
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "subtitle": "Privacy Policy"
+    },
+    "security": {
+      "title": "Information Security Policy",
+      "subtitle": "Information Security Policy"
+    },
+    "aiPolicy": {
+      "title": "AI Policy",
+      "subtitle": "AI Policy"
+    }
+  },
+  "values": {
+    "sectionTitle": "Values",
+    "intro": "What we need as a startup to tackle major social challenges.",
+    "intro2": "It means deeply engaging with each customer, designing experiences that exceed expectations, and persevering to the end.",
+    "intro3": "These three values are our promise to realize our mission.",
+    "value1": {
+      "tagline": "Be a Bestiee",
+      "title": "Be the Best Partner",
+      "description": "We aim to be the first choice when our customers need help. Rather than providing superficial services, we build relationships where we can speak openly, address each person's challenges, and solve them together. Like the 'bestie' (best friend) that inspired our company name, we remain an irreplaceable partner."
+    },
+    "value2": {
+      "tagline": "Design the 'Wow'",
+      "title": "Create Experiences That Move Hearts!",
+      "description": "The magic is in the details. We constantly ask ourselves 'how can we move people's hearts' in every button, every word, and every experience. To deliver surprises and joy that exceed expectations, we design 'Wow' moments without compromise."
+    },
+    "value3": {
+      "tagline": "Trust the Grind",
+      "title": "Embrace the Hustle",
+      "description": "No matter how brilliant an idea is, it has no value without execution. We take pride in not shying away from hard work and seeing things through to the end. Behind every brilliant achievement is a gritty accumulation of effort. Our strength lies in loving and believing in this process."
+    }
+  },
+  "service": {
+    "tagline": "From 'anxiety' to 'passion'. From 'boredom' to 'anticipation'.",
+    "recruitment": "Recruitment Support",
+    "education": "Education",
+    "sectionTitle": "Service",
+    "viewDetails": "Service Details",
+    "fastpass": {
+      "name": "FastPass",
+      "description": "FastPass is a recruitment matching service specialized for high-caliber students, utilizing AI interview practice data. Based on interview data analyzed by AI, our agents introduce the most suitable students for your company."
+    },
+    "aiFest": {
+      "name": "AI Challengers Fest",
+      "description": "AI Challengers Fest is a large-scale recruitment event gathering 150 high-caliber students who are the most 'passionate about AI' in Japan. Meet talents who can drive your company's competitiveness in the AI era—people who can write code while discussing business."
+    },
+    "meetup": {
+      "name": "FastPass meetup",
+      "description": "FastPass meetup is a recruitment event where you can engage deeply with a small group of high-caliber students carefully selected by AI. Experience meaningful dialogue and mutual understanding that's difficult to achieve at large-scale events."
+    },
+    "bestTeach": {
+      "name": "Best Teach",
+      "description": "Best Teach is a tutoring service where AI suggests the perfect teacher for your child. Choose from experienced teachers based on 350+ criteria including their alma mater, high school, and hobbies. Try it out with just a single session."
+    }
+  },
+  "companyInfo": {
+    "overview": "Company Overview",
+    "access": "Access",
+    "companyName": "Company Name",
+    "companyNameValue": "bestiee Inc.",
+    "ceo": "CEO",
+    "ceoValue": "Kou Goto, CEO",
+    "business": "Business",
+    "businessValue": "Planning, development, and operation of AI recruitment matching services, recruitment events, and tutoring matching services",
+    "established": "Established",
+    "establishedValue": "March 6, 2024",
+    "capital": "Capital",
+    "capitalValue": "1,000,000 JPY",
+    "registeredAddress": "Registered Address",
+    "registeredAddressValue": "2F-C Shibuya Dogenzaka Tokyu Building, 1-10-8 Dogenzaka, Shibuya-ku, Tokyo 150-0043, Japan",
+    "office": "Office",
+    "officeValue": "5F Aoba Daiichi Building, 2-3-1 Kudanminami, Chiyoda-ku, Tokyo 102-0074, Japan",
+    "accessInfo": "5F Aoba Daiichi Building, 2-3-1 Kudanminami, Chiyoda-ku, Tokyo 102-0074, Japan",
+    "accessStation1": "6-minute walk from Kudanshita Station (Tokyo Metro Tozai/Hanzomon Lines, Toei Shinjuku Line)",
+    "accessStation2": "10-minute walk from Ichigaya Station (JR Chuo/Sobu Lines, Tokyo Metro Yurakucho/Namboku Lines, Toei Shinjuku Line)"
+  },
+  "executives": {
+    "sectionTitle": "Directors & CXO",
+    "coreMembers": "Core Members",
+    "ceo": {
+      "title": "CEO & Founder",
+      "name": "Kou Goto",
+      "bio": "Founded bestiee Inc. in 2024 and became CEO. Launched the AI interview practice service 'FastPass' and the recruitment event 'AI Challengers Fest', developing businesses in the AI × recruitment space. Graduated from Kaisei High School and the University of Tokyo Faculty of Engineering, currently pursuing a Master's degree at the Graduate School of Engineering. Regular cast member on TBS 'Toudaiou' (2021-2024), Grand Prix winner of 'Mr. University of Tokyo Contest 2023'. Selected for Forbes JAPAN '100 People to Watch in 2026'."
+    },
+    "coo": {
+      "title": "COO & Co-Founder",
+      "name": "Yuki Bikai",
+      "bio": "Co-founded bestiee Inc. with Goto in 2024 and became COO. Oversees new business development and product development. Specializes in AI-powered service design and product management, driving the development of FastPass. Graduated from Kaisei High School and Keio University Faculty of Economics. During university, conducted research on TikTok Shop and new business ventures in Southeast Asia (Indonesia)."
+    },
+    "coreMember1": {
+      "title": "Best Teach Operations",
+      "name": "Nanami Ito",
+      "bio": "Joined bestiee Inc. in December 2024. Manages the tutoring matching service 'Best Teach'. Gained admission to the University of Tokyo directly from Fukui Prefectural Takefu High School without attending cram school. Graduated from the Faculty of Education at the University of Tokyo. Appeared on TBS 'Toudaiou' since 2019 as the 'Absolute Champion of Science and Mathematics'. Joined bestiee to impact more people through education, reuniting with Goto from their 'Toudaiou' days."
+    }
+  },
+  "history": {
+    "sectionTitle": "History of bestiee",
+    "event2024": "bestiee Inc. established",
+    "event2025_1": "Official launch of tutoring service 'Best Teach'",
+    "event2025_2": "First AI Challengers Fest held",
+    "event2026": "Launch of 'FastPass', an AI interview practice data-driven recruitment matching service"
+  },
+  "contactForm": {
+    "intro1": "Thank you for your interest in our company.",
+    "intro2": "We offer a wide range of proposals for recruiting outstanding students through AI recruitment matching, recruitment events, and more.",
+    "pastSupport": {
+      "title1": "From enterprise to startups",
+      "title2": "30+",
+      "title3": "companies supported",
+      "enterprise": "Enterprise & Mega-ventures",
+      "startup": "Startups"
+    },
+    "media": {
+      "title": "Media Coverage"
+    },
+    "form": {
+      "title": "Please fill in the form below.",
+      "clear": "Clear",
+      "lastName": "Last Name",
+      "firstName": "First Name",
+      "companyName": "Company Name",
+      "companyNamePlaceholder": "e.g., ABC Corporation",
+      "department": "Department",
+      "position": "Position",
+      "phone": "Phone Number",
+      "phonePlaceholder": "Enter using half-width numbers and hyphens",
+      "email": "Work Email",
+      "emailPlaceholder": "e.g., example@example.com",
+      "interestAreas": "What are you interested in? (Multiple selections allowed)",
+      "message": "Message",
+      "privacyPolicy": "Privacy Policy",
+      "viewPrivacyPolicy": "(View Privacy Policy)",
+      "agreeToPolicy": "I agree to the above",
+      "required": "Required",
+      "submit": "Submit",
+      "submitting": "Submitting...",
+      "successTitle": "Submission Complete",
+      "successMessage1": "Thank you for your inquiry.",
+      "successMessage2": "Our team will review your message and contact you shortly.",
+      "backToTop": "Back to Home"
+    },
+    "validation": {
+      "lastNameRequired": "Last name is required.",
+      "firstNameRequired": "First name is required.",
+      "companyNameRequired": "Company name is required.",
+      "phoneRequired": "Phone number is required.",
+      "emailRequired": "Work email is required.",
+      "areasRequired": "Please select at least one area of interest.",
+      "messageRequired": "Message is required.",
+      "privacyRequired": "You must agree to the privacy policy.",
+      "recaptchaRequired": "Please complete the reCAPTCHA verification.",
+      "submitFailed": "Submission failed. Please try again."
+    },
+    "interestOptions": {
+      "fastpass": "AI Interview Practice & Recruitment Matching 'FastPass'",
+      "aiFest": "Large-scale Recruitment Event 'AI Challengers Fest'",
+      "meetup": "Small-group Recruitment Event 'FastPass meetup'",
+      "bestTeach": "Tutoring Service 'Best Teach'",
+      "media": "Media Coverage & Press",
+      "other": "Other"
+    },
+    "mediaItems": {
+      "forbes": "Selected for Forbes JAPAN '100 People to Watch in 2026'",
+      "toudaiou": "Regular cast on TBS 'Toudaiou' (2021-2024)",
+      "dmm": "Interview with DMM's Kameyama (M&A CAMP)",
+      "press": "Featured in Engineer Type / President Online"
+    }
+  }
+}

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { useLanguage } from '@/contexts/LanguageContext';
 import type { NewsArticle } from "@/lib/news";
 
 // News Card Image Component
@@ -20,7 +21,11 @@ function NewsCardImage({ image }: { image: string }) {
 }
 
 // Related Article Card Component
-function RelatedArticleCard({ article }: { article: NewsArticle }) {
+function RelatedArticleCard({ article, lang }: { article: NewsArticle; lang: 'ja' | 'en' | 'zh' }) {
+  const displayTitle = lang === 'zh' ? article.title_zh : lang === 'en' ? article.title_en : article.title;
+  const displayCategory = lang === 'zh' ? article.category_zh : lang === 'en' ? article.category_en : article.category;
+  const displayTheme = lang === 'zh' ? article.theme_zh : lang === 'en' ? article.theme_en : article.theme;
+
   return (
     <Link href={`/news/${article.slug}`} className="group block">
       {/* Image */}
@@ -55,7 +60,7 @@ function RelatedArticleCard({ article }: { article: NewsArticle }) {
             fontSize: '11px',
             fontWeight: '500',
           }}>
-            {article.category}
+            {displayCategory}
           </span>
           <span
             style={{
@@ -67,7 +72,7 @@ function RelatedArticleCard({ article }: { article: NewsArticle }) {
               fontWeight: '500',
             }}
           >
-            {article.theme}
+            {displayTheme}
           </span>
         </div>
 
@@ -99,7 +104,7 @@ function RelatedArticleCard({ article }: { article: NewsArticle }) {
         color: '#333',
         lineHeight: 1.7,
       }}>
-        {article.title}
+        {displayTitle}
       </h3>
     </Link>
   );
@@ -112,6 +117,11 @@ interface NewsArticleClientProps {
 
 export default function NewsArticleClient({ article, relatedArticles }: NewsArticleClientProps) {
   const isMobile = useIsMobile();
+  const { lang } = useLanguage();
+
+  const displayTitle = lang === 'zh' ? article.title_zh : lang === 'en' ? article.title_en : article.title;
+  const displayCategory = lang === 'zh' ? article.category_zh : lang === 'en' ? article.category_en : article.category;
+  const displayTheme = lang === 'zh' ? article.theme_zh : lang === 'en' ? article.theme_en : article.theme;
 
   return (
     <>
@@ -142,7 +152,7 @@ export default function NewsArticleClient({ article, relatedArticles }: NewsArti
                 fontSize: isMobile ? '12px' : '14px',
                 fontWeight: '500',
               }}>
-                {article.category}
+                {displayCategory}
               </span>
               <span
                 style={{
@@ -154,7 +164,7 @@ export default function NewsArticleClient({ article, relatedArticles }: NewsArti
                   fontWeight: '500',
                 }}
               >
-                {article.theme}
+                {displayTheme}
               </span>
             </div>
 
@@ -165,7 +175,7 @@ export default function NewsArticleClient({ article, relatedArticles }: NewsArti
               color: '#333',
               lineHeight: 1.5,
             }}>
-              {article.title}
+              {displayTitle}
             </h1>
           </div>
 
@@ -186,35 +196,38 @@ export default function NewsArticleClient({ article, relatedArticles }: NewsArti
             lineHeight: 2,
             color: '#333',
           }}>
-            {article.content.split('\n').map((line, index) => {
-              // Check if line is a heading (wrapped in ＜＞)
-              if (line.startsWith('＜') && line.endsWith('＞')) {
+            {(() => {
+              const displayContent = lang === 'zh' && article.content_zh ? article.content_zh : lang === 'en' && article.content_en ? article.content_en : article.content;
+              return displayContent.split('\n').map((line, index) => {
+                // Check if line is a heading (wrapped in ＜＞ or <> for English)
+                if ((line.startsWith('＜') && line.endsWith('＞')) || (line.startsWith('<') && line.endsWith('>'))) {
+                  return (
+                    <h5
+                      key={index}
+                      style={{
+                        fontSize: isMobile ? '18px' : '20px',
+                        fontWeight: 'bold',
+                        color: '#333',
+                        marginTop: '32px',
+                        marginBottom: '16px',
+                      }}
+                    >
+                      {line}
+                    </h5>
+                  );
+                }
+                // Empty line
+                if (line.trim() === '') {
+                  return <br key={index} />;
+                }
+                // Regular paragraph
                 return (
-                  <h5
-                    key={index}
-                    style={{
-                      fontSize: isMobile ? '18px' : '20px',
-                      fontWeight: 'bold',
-                      color: '#333',
-                      marginTop: '32px',
-                      marginBottom: '16px',
-                    }}
-                  >
+                  <p key={index} style={{ marginBottom: '0.5em' }}>
                     {line}
-                  </h5>
+                  </p>
                 );
-              }
-              // Empty line
-              if (line.trim() === '') {
-                return <br key={index} />;
-              }
-              // Regular paragraph
-              return (
-                <p key={index} style={{ marginBottom: '0.5em' }}>
-                  {line}
-                </p>
-              );
-            })}
+              });
+            })()}
           </div>
 
           {/* Back to News List Button */}
@@ -244,7 +257,7 @@ export default function NewsArticleClient({ article, relatedArticles }: NewsArti
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
               </svg>
-              ニュース一覧へ戻る
+              {lang === 'zh' ? '返回新闻列表' : lang === 'en' ? 'Back to News List' : 'ニュース一覧へ戻る'}
             </Link>
           </div>
         </div>
@@ -260,7 +273,7 @@ export default function NewsArticleClient({ article, relatedArticles }: NewsArti
               color: '#333',
               marginBottom: isMobile ? '32px' : '48px',
             }}>
-              関連記事
+              {lang === 'zh' ? '相关文章' : lang === 'en' ? 'Related Articles' : '関連記事'}
             </h2>
 
             <div style={{
@@ -269,7 +282,7 @@ export default function NewsArticleClient({ article, relatedArticles }: NewsArti
               gap: isMobile ? '32px' : '40px',
             }}>
               {relatedArticles.map((relatedArticle) => (
-                <RelatedArticleCard key={relatedArticle.slug} article={relatedArticle} />
+                <RelatedArticleCard key={relatedArticle.slug} article={relatedArticle} lang={lang} />
               ))}
             </div>
           </div>

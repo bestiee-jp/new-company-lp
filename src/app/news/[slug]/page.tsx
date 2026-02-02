@@ -68,11 +68,19 @@ export default async function NewsArticlePage({ params }: { params: Promise<{ sl
 
       <PageHero
         title="ニュース"
+        title_en="News"
+        title_zh="新闻"
         subtitle="News"
+        subtitle_en="Latest Updates"
+        subtitle_zh="最新动态"
         breadcrumb={[
-          { label: 'トップ', href: '/' },
-          { label: 'ニュース', href: '/news' },
-          { label: article.title.length > 30 ? article.title.substring(0, 30) + '...' : article.title },
+          { label: 'トップ', label_en: 'Home', label_zh: '首页', href: '/' },
+          { label: 'ニュース', label_en: 'News', label_zh: '新闻', href: '/news' },
+          {
+            label: article.title.length > 30 ? article.title.substring(0, 30) + '...' : article.title,
+            label_en: article.title_en.length > 30 ? article.title_en.substring(0, 30) + '...' : article.title_en,
+            label_zh: article.title_zh.length > 30 ? article.title_zh.substring(0, 30) + '...' : article.title_zh,
+          },
         ]}
       />
 

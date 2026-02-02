@@ -22,10 +22,18 @@ function getAllNewsData() {
       return {
         slug,
         title: data.title || '',
+        title_en: data.title_en || '',
+        title_zh: data.title_zh || '',
         date: data.date || '',
         category: data.category || '',
+        category_en: data.category_en || '',
+        category_zh: data.category_zh || '',
         theme: data.theme || 'その他',
+        theme_en: data.theme_en || 'Others',
+        theme_zh: data.theme_zh || '其他',
         content: content,
+        content_en: data.content_en || '',
+        content_zh: data.content_zh || '',
         image: data.image || '/news/default.png',
         imageType: data.imageType || 'notice',
       };

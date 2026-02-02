@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { ArrowIcon } from '@/components/icons';
+import { useTranslation } from '@/hooks/useTranslation';
 
 // 画像データ - 円形と四角形を混ぜる
 const scrollImages = [
@@ -17,6 +18,7 @@ const scrollImages = [
 export default function ContactSection() {
   const isMobile = useIsMobile();
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   // スクロール用に画像を複製
   const duplicatedImages = [...scrollImages, ...scrollImages, ...scrollImages, ...scrollImages];
@@ -35,7 +37,7 @@ export default function ContactSection() {
       <div style={{ borderBottom: '1px solid #e5e7eb', marginBottom: isMobile ? '30px' : '60px' }}>
         <div className="flex items-center gap-4" style={{ padding: '0 5%', paddingBottom: isMobile ? '16px' : '20px' }}>
           <div style={{ width: '4px', height: isMobile ? '24px' : '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
-          <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>お問い合わせ</span>
+          <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>{t('contact.sectionTitle')}</span>
         </div>
       </div>
 
@@ -102,20 +104,19 @@ export default function ContactSection() {
               fontSize: isMobile ? '24px' : 'clamp(28px, 3.5vw, 42px)',
               lineHeight: '1.5',
               marginBottom: isMobile ? '20px' : '30px',
-              fontWeight: '300',
+              fontWeight: '500',
             }}
           >
-            お気軽にご相談ください。
+            {t('contact.heading')}
           </h2>
           <p
             className="text-black"
             style={{
-              fontSize: isMobile ? '14px' : 'clamp(14px, 1.5vw, 16px)',
+              fontSize: isMobile ? '15px' : 'clamp(15px, 1.6vw, 18px)',
               lineHeight: '2',
             }}
           >
-            AI採用マッチング・採用イベントなど、優秀学生の新卒採用に関して幅広くご提案いたします。
-            サービスに関するご質問やお見積りから、取材・メディア掲載のお問い合わせまで、お気軽にご連絡ください。
+            {t('contact.description')}
           </p>
         </div>
 
@@ -145,7 +146,7 @@ export default function ContactSection() {
             onMouseEnter={(e) => e.currentTarget.style.borderRadius = '8px'}
             onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
           >
-            <span>お問い合わせ</span>
+            <span>{t('contact.button')}</span>
             <ArrowIcon />
           </Link>
         </div>

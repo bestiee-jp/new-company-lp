@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Sacramento, Pacifico, Dancing_Script, Great_Vibes, Satisfy } from "next/font/google";
+import { Noto_Sans_JP, Noto_Sans_SC, Sacramento, Pacifico, Dancing_Script, Great_Vibes, Satisfy } from "next/font/google";
 import "./globals.css";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-noto-sans-jp",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  weight: ["300", "400", "500", "700"],
+});
+
+const notoSansSC = Noto_Sans_SC({
+  variable: "--font-noto-sans-sc",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
 });
 
 const sacramento = Sacramento({
@@ -70,8 +77,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={`${notoSansJP.variable} ${sacramento.variable} ${pacifico.variable} ${dancingScript.variable} ${greatVibes.variable} ${satisfy.variable} antialiased`}>
-        {children}
+      <body className={`${notoSansJP.variable} ${notoSansSC.variable} ${sacramento.variable} ${pacifico.variable} ${dancingScript.variable} ${greatVibes.variable} ${satisfy.variable} antialiased`}>
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

@@ -4,12 +4,52 @@ import { useState } from 'react';
 import Link from "next/link";
 import { useIsMobile } from '@/hooks/useIsMobile';
 import type { NewsMetadata } from "@/lib/news";
+import { useTranslation } from '@/hooks/useTranslation';
+import { useLanguage } from '@/contexts/LanguageContext';
 
-// Filter options
+// Filter options (Japanese values for data matching)
 const filterOptions = {
   categories: ['プレスリリース', 'お知らせ', 'イベント'],
   themes: ['寿司就活', 'AIチャレンジャーズフェス', 'FastPass', 'FastPass meetup', 'ベストティーチ', 'その他'],
   years: ['2026年', '2025年', '2024年'],
+};
+
+// English labels for display
+const filterLabelsEn: Record<string, string> = {
+  // Categories
+  'プレスリリース': 'Press Release',
+  'お知らせ': 'News',
+  'イベント': 'Event',
+  // Themes
+  '寿司就活': 'Sushi Shukatsu',
+  'AIチャレンジャーズフェス': 'AI Challengers Fes',
+  'FastPass': 'FastPass',
+  'FastPass meetup': 'FastPass meetup',
+  'ベストティーチ': 'Best Teach',
+  'その他': 'Others',
+  // Years
+  '2026年': '2026',
+  '2025年': '2025',
+  '2024年': '2024',
+};
+
+// Chinese labels for display
+const filterLabelsZh: Record<string, string> = {
+  // Categories
+  'プレスリリース': '新闻发布',
+  'お知らせ': '公告',
+  'イベント': '活动',
+  // Themes
+  '寿司就活': '寿司求职',
+  'AIチャレンジャーズフェス': 'AI挑战者节',
+  'FastPass': 'FastPass',
+  'FastPass meetup': 'FastPass meetup',
+  'ベストティーチ': 'Best Teach',
+  'その他': '其他',
+  // Years
+  '2026年': '2026年',
+  '2025年': '2025年',
+  '2024年': '2024年',
 };
 
 // Filter Pill Component
@@ -46,11 +86,15 @@ function SelectAllButton({
   isAllSelected,
   onSelectAll,
   onDeselectAll,
+  lang,
 }: {
   isAllSelected: boolean;
   onSelectAll: () => void;
   onDeselectAll: () => void;
+  lang: 'ja' | 'en' | 'zh';
 }) {
+  const selectAllText = lang === 'zh' ? '全选' : lang === 'en' ? 'Select All' : '全選択';
+  const deselectAllText = lang === 'zh' ? '取消全选' : lang === 'en' ? 'Deselect All' : '全解除';
   return (
     <button
       onClick={isAllSelected ? onDeselectAll : onSelectAll}
@@ -66,7 +110,7 @@ function SelectAllButton({
         marginLeft: '8px',
       }}
     >
-      {isAllSelected ? '全解除' : '全選択'}
+      {isAllSelected ? deselectAllText : selectAllText}
     </button>
   );
 }
@@ -89,12 +133,20 @@ function NewsCardImage({ image, contain = false }: { image: string; contain?: bo
 interface NewsListItem extends NewsMetadata {
   id: number;
   categories: string[];
+  categories_en: string[];
+  categories_zh: string[];
   themes: string[];
+  themes_en: string[];
+  themes_zh: string[];
   href: string;
 }
 
 // News Card Component
-function NewsCard({ item, isMobile }: { item: NewsListItem; isMobile: boolean }) {
+function NewsCard({ item, isMobile, lang }: { item: NewsListItem; isMobile: boolean; lang: 'ja' | 'en' | 'zh' }) {
+  const displayCategories = lang === 'zh' ? item.categories_zh : lang === 'en' ? item.categories_en : item.categories;
+  const displayThemes = lang === 'zh' ? item.themes_zh : lang === 'en' ? item.themes_en : item.themes;
+  const displayTitle = lang === 'zh' ? item.title_zh : lang === 'en' ? item.title_en : item.title;
+
   return (
     <Link href={item.href} className="group block">
       {/* Image */}
@@ -121,7 +173,7 @@ function NewsCard({ item, isMobile }: { item: NewsListItem; isMobile: boolean })
           flexWrap: 'wrap',
         }}>
           <span style={{ color: '#666', fontSize: isMobile ? '11px' : '12px' }}>{item.date}</span>
-          {item.categories.slice(0, 1).map((cat, index) => (
+          {displayCategories.slice(0, 1).map((cat, index) => (
             <span
               key={`cat-${index}`}
               style={{
@@ -136,7 +188,7 @@ function NewsCard({ item, isMobile }: { item: NewsListItem; isMobile: boolean })
               {cat}
             </span>
           ))}
-          {item.themes.slice(0, 1).map((theme, index) => (
+          {displayThemes.slice(0, 1).map((theme, index) => (
             <span
               key={`theme-${index}`}
               style={{
@@ -181,7 +233,7 @@ function NewsCard({ item, isMobile }: { item: NewsListItem; isMobile: boolean })
         color: '#333',
         lineHeight: 1.7,
       }}>
-        {item.title}
+        {displayTitle}
       </h3>
     </Link>
   );
@@ -305,13 +357,26 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
   const [selectedYears, setSelectedYears] = useState<string[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
+  const { lang } = useLanguage();
+
+  // Helper to get display label
+  const getLabel = (value: string) => {
+    if (lang === 'zh') return filterLabelsZh[value] || value;
+    if (lang === 'en') return filterLabelsEn[value] || value;
+    return value;
+  };
 
   // Convert NewsMetadata to NewsListItem format
   const newsListItems: NewsListItem[] = newsItems.map((item, index) => ({
     ...item,
     id: index + 1,
     categories: [item.category],
+    categories_en: [item.category_en],
+    categories_zh: [item.category_zh],
     themes: [item.theme],
+    themes_en: [item.theme_en],
+    themes_zh: [item.theme_zh],
     href: `/news/${item.slug}`,
   }));
 
@@ -407,7 +472,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
           color: 'black',
           marginBottom: isMobile ? '24px' : '40px',
         }}>
-          トピックス
+          {lang === 'zh' ? '热点' : lang === 'en' ? 'Topics' : 'トピックス'}
         </h2>
 
         {/* Featured News Item */}
@@ -445,7 +510,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
                 flexWrap: 'wrap',
               }}>
                 <span style={{ color: '#666', fontSize: isMobile ? '13px' : '14px' }}>{featuredNews.date}</span>
-                {featuredNews.categories.slice(0, 1).map((cat, index) => (
+                {(lang === 'zh' ? featuredNews.categories_zh : lang === 'en' ? featuredNews.categories_en : featuredNews.categories).slice(0, 1).map((cat, index) => (
                   <span
                     key={`cat-${index}`}
                     style={{
@@ -460,7 +525,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
                     {cat}
                   </span>
                 ))}
-                {featuredNews.themes.slice(0, 1).map((theme, index) => (
+                {(lang === 'zh' ? featuredNews.themes_zh : lang === 'en' ? featuredNews.themes_en : featuredNews.themes).slice(0, 1).map((theme, index) => (
                   <span
                     key={`theme-${index}`}
                     style={{
@@ -491,7 +556,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
                   flex: 1,
                 }}>
                   <span className="relative inline">
-                    {featuredNews.title}
+                    {lang === 'zh' ? featuredNews.title_zh : lang === 'en' ? featuredNews.title_en : featuredNews.title}
                   </span>
                 </h3>
 
@@ -528,7 +593,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
           color: 'black',
           marginBottom: isMobile ? '24px' : '40px',
         }}>
-          ニュースを絞り込む
+          {lang === 'zh' ? '筛选新闻' : lang === 'en' ? 'Filter News' : 'ニュースを絞り込む'}
         </h2>
 
         {/* Filter Options */}
@@ -552,13 +617,13 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
               color: '#333',
               flexShrink: 0,
             }}>
-              カテゴリー
+              {lang === 'zh' ? '类别' : lang === 'en' ? 'Category' : 'カテゴリー'}
             </span>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
               {filterOptions.categories.map(cat => (
                 <FilterPill
                   key={cat}
-                  label={cat}
+                  label={getLabel(cat)}
                   isSelected={selectedCategories.includes(cat)}
                   onClick={() => toggleFilter(cat, selectedCategories, setSelectedCategories)}
                 />
@@ -567,6 +632,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
                 isAllSelected={selectedCategories.length === filterOptions.categories.length}
                 onSelectAll={selectAllCategories}
                 onDeselectAll={deselectAllCategories}
+                lang={lang}
               />
             </div>
           </div>
@@ -587,13 +653,13 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
               color: '#333',
               flexShrink: 0,
             }}>
-              テーマ
+              {lang === 'zh' ? '主题' : lang === 'en' ? 'Theme' : 'テーマ'}
             </span>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
               {filterOptions.themes.map(theme => (
                 <FilterPill
                   key={theme}
-                  label={theme}
+                  label={getLabel(theme)}
                   isSelected={selectedThemes.includes(theme)}
                   onClick={() => toggleFilter(theme, selectedThemes, setSelectedThemes)}
                 />
@@ -602,6 +668,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
                 isAllSelected={selectedThemes.length === filterOptions.themes.length}
                 onSelectAll={selectAllThemes}
                 onDeselectAll={deselectAllThemes}
+                lang={lang}
               />
             </div>
           </div>
@@ -621,13 +688,13 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
               color: '#333',
               flexShrink: 0,
             }}>
-              年別
+              {lang === 'zh' ? '年份' : lang === 'en' ? 'Year' : '年別'}
             </span>
             <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', alignItems: 'center' }}>
               {filterOptions.years.map(year => (
                 <FilterPill
                   key={year}
-                  label={year}
+                  label={getLabel(year)}
                   isSelected={selectedYears.includes(year)}
                   onClick={() => toggleFilter(year, selectedYears, setSelectedYears)}
                 />
@@ -636,6 +703,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
                 isAllSelected={selectedYears.length === filterOptions.years.length}
                 onSelectAll={selectAllYears}
                 onDeselectAll={deselectAllYears}
+                lang={lang}
               />
             </div>
           </div>
@@ -670,7 +738,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
             onMouseEnter={(e) => e.currentTarget.style.borderRadius = '8px'}
             onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
           >
-            {filteredNewsItems.length}件を表示する
+            {lang === 'zh' ? `显示${filteredNewsItems.length}条` : lang === 'en' ? `Show ${filteredNewsItems.length} results` : `${filteredNewsItems.length}件を表示する`}
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="11" cy="11" r="8" />
               <path d="M21 21l-4.35-4.35" />
@@ -699,7 +767,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
             onMouseEnter={(e) => e.currentTarget.style.borderRadius = '8px'}
             onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
           >
-            条件をクリア
+            {lang === 'zh' ? '清除条件' : lang === 'en' ? 'Clear Filters' : '条件をクリア'}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M18 6L6 18M6 6l12 12" />
             </svg>
@@ -716,7 +784,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
           color: 'black',
           marginBottom: isMobile ? '24px' : '40px',
         }}>
-          {filteredNewsItems.length}件
+          {lang === 'zh' ? `${filteredNewsItems.length}条` : lang === 'en' ? `${filteredNewsItems.length} results` : `${filteredNewsItems.length}件`}
         </h2>
 
         {/* News Grid */}
@@ -727,7 +795,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
             gap: isMobile ? '24px 16px' : '40px 32px',
           }}>
             {currentPageItems.map(item => (
-              <NewsCard key={item.id} item={item} isMobile={isMobile} />
+              <NewsCard key={item.id} item={item} isMobile={isMobile} lang={lang} />
             ))}
           </div>
         ) : (
@@ -737,7 +805,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
             color: '#666',
           }}>
             <p style={{ fontSize: isMobile ? '16px' : '18px', marginBottom: '16px' }}>
-              条件に一致するニュースがありません
+              {lang === 'zh' ? '没有符合条件的新闻' : lang === 'en' ? 'No news matches the selected filters' : '条件に一致するニュースがありません'}
             </p>
             <button
               onClick={clearAllFilters}
@@ -751,7 +819,7 @@ export default function NewsListClient({ newsItems }: NewsListClientProps) {
                 fontSize: '14px',
               }}
             >
-              フィルターをクリア
+              {lang === 'zh' ? '清除筛选' : lang === 'en' ? 'Clear Filters' : 'フィルターをクリア'}
             </button>
           </div>
         )}

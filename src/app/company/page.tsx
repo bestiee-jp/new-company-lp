@@ -6,36 +6,40 @@ import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import RelatedPagesGrid from "@/components/RelatedPagesGrid";
-
-// Company info data
-const companyInfo = [
-  { label: '社名', value: '株式会社bestiee' },
-  { label: '代表者', value: '代表取締役CEO 後藤弘' },
-  { label: '事業内容', value: 'AI採用マッチングサービス・採用イベント・家庭教師マッチングサービスの企画・開発・運営' },
-  { label: '設立', value: '2024年3月6日' },
-  { label: '資本金', value: '1,000,000円' },
-  { label: '登記住所', value: '〒150-0043 東京都渋谷区道玄坂1丁目10番8号渋谷道玄坂東急ビル2F-C' },
-  { label: 'オフィス', value: '〒102-0074 東京都千代田区九段南2-3-1 青葉第一ビル 5F' },
-];
-
-// Related pages
-const relatedPages = [
-  { label: '会社情報', href: '/company', image: '/images/related-company.jpg' },
-  { label: '役員紹介', href: '/company/executives', image: '/images/related-executives.jpg' },
-  { label: '沿革', href: '/company/history', image: '/images/history-tib.jpg' },
-];
+import { useTranslation } from '@/hooks/useTranslation';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 export default function CompanyPage() {
+  const { t } = useTranslation();
+  const isMobile = useIsMobile();
+
+  // Company info data with translations
+  const companyInfo = [
+    { label: t('companyInfo.companyName'), value: t('companyInfo.companyNameValue') },
+    { label: t('companyInfo.ceo'), value: t('companyInfo.ceoValue') },
+    { label: t('companyInfo.business'), value: t('companyInfo.businessValue') },
+    { label: t('companyInfo.established'), value: t('companyInfo.establishedValue') },
+    { label: t('companyInfo.capital'), value: t('companyInfo.capitalValue') },
+    { label: t('companyInfo.registeredAddress'), value: t('companyInfo.registeredAddressValue') },
+    { label: t('companyInfo.office'), value: t('companyInfo.officeValue') },
+  ];
+
+  // Related pages with translations
+  const relatedPages = [
+    { label: t('nav.company'), href: '/company', image: '/images/related-company.jpg' },
+    { label: t('nav.executives'), href: '/company/executives', image: '/images/related-executives.jpg' },
+    { label: t('nav.history'), href: '/company/history', image: '/images/history-tib.jpg' },
+  ];
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
 
       <PageHero
-        title="会社情報"
-        subtitle="Company"
+        title={t('pages.company.title')}
+        subtitle={t('pages.company.subtitle')}
         breadcrumb={[
-          { label: 'トップ', href: '/' },
-          { label: '会社情報' },
+          { label: t('breadcrumb.top'), href: '/' },
+          { label: t('pages.company.title') },
         ]}
         decorative
       />
@@ -64,7 +68,7 @@ export default function CompanyPage() {
       {/* Company Info Table Section */}
       <section style={{ backgroundColor: 'white', padding: '0 5% 80px' }}>
         <div style={{ maxWidth: '1200px' }}>
-          <SectionHeader title="会社概要" padding="0 0 40px 0" />
+          <SectionHeader title={t('companyInfo.overview')} padding="0 0 40px 0" />
 
           {/* Info Table */}
           <div style={{ borderTop: '1px solid #e5e7eb' }}>
@@ -125,16 +129,16 @@ export default function CompanyPage() {
       {/* Access Section */}
       <section style={{ backgroundColor: '#f9fafb', padding: '80px 5%' }}>
         <div style={{ maxWidth: '1200px' }}>
-          <SectionHeader title="アクセス" padding="0 0 40px 0" />
+          <SectionHeader title={t('companyInfo.access')} padding="0 0 40px 0" />
 
           {/* Access Info */}
           <div style={{ marginBottom: '32px' }}>
             <p style={{ fontSize: '18px', fontWeight: '500', color: '#333', marginBottom: '16px' }}>
-              〒102-0074 東京都千代田区九段南2-3-1 青葉第一ビル 5F
+              {t('companyInfo.accessInfo')}
             </p>
             <div style={{ fontSize: '16px', color: '#666', lineHeight: '2' }}>
-              <p>東京メトロ東西線・半蔵門線 / 都営新宿線「九段下駅」徒歩6分</p>
-              <p>JR中央・総武線 / 東京メトロ有楽町線・南北線 / 都営新宿線「市ヶ谷駅」徒歩10分</p>
+              <p>{t('companyInfo.accessStation1')}</p>
+              <p>{t('companyInfo.accessStation2')}</p>
             </div>
           </div>
 

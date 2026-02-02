@@ -1,18 +1,22 @@
+'use client';
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function AIPolicyPage() {
+  const { t } = useTranslation();
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
 
       <PageHero
-        title="AI活用ポリシー"
-        subtitle="AI Policy"
+        title={t('pages.aiPolicy.title')}
+        subtitle={t('pages.aiPolicy.subtitle')}
         breadcrumb={[
-          { label: 'トップ', href: '/' },
-          { label: 'AI活用ポリシー' },
+          { label: t('breadcrumb.top'), href: '/' },
+          { label: t('pages.aiPolicy.title') },
         ]}
       />
 

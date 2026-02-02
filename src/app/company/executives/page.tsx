@@ -7,41 +7,50 @@ import Link from "next/link";
 import { DecorativeBands } from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { useTranslation } from '@/hooks/useTranslation';
 
-// Executive data
-const executives = [
-  {
-    title: '代表取締役 CEO',
-    name: '後藤 弘',
-    bio: '2024年、株式会社bestieeを創業し、代表取締役CEOに就任。AI面接練習サービス「FastPass」や採用イベント「AIチャレンジャーズフェス」を立ち上げ、AI×採用領域で事業を展開。開成高校、東京大学工学部を経て、現在は同大学院工学系研究科修士課程に在籍中。TBS『東大王』レギュラー出演（2021〜2024年）、「ミスター東大コンテスト2023」グランプリ受賞。Forbes JAPAN「2026年注目の100人」に選出。',
-    image: '/images/ceo.jpg',
-  },
-  {
-    title: '取締役 COO',
-    name: '備海 佑樹',
-    bio: '2024年、後藤と共に株式会社bestieeを創業し、COOに就任。新規事業開発およびプロダクト開発を統括。AIを活用したサービス設計・PMを強みとし、FastPassの開発を推進。開成高校、慶應義塾大学経済学部卒業。在学中はTikTok Shopや東南アジア（インドネシア）における新規ビジネスの研究に従事。',
-    image: '/images/coo.jpg',
-  },
-];
-
-// Core members data
-const coreMembers = [
-  {
-    title: 'ベストティーチ運営',
-    name: '伊藤 七海',
-    bio: '2024年12月、株式会社bestieeに参画。家庭教師マッチングサービス「ベストティーチ」の運営を担当。福井県立武生高等学校から塾なしで東京大学に現役合格。同大学教育学部卒業。TBS『東大王』に2019年より出演し、「理数系の絶対王者」として活躍。『東大王』で共に活動した後藤と、教育を通じてより多くの人に影響を届けるべくbestieeに参画。',
-    image: '/images/core-member-ito.jpeg',
-  },
-];
-
-// Navigation sections
-const navSections = [
-  { label: '取締役・CXO', id: 'executives' },
-  { label: 'コアメンバー', id: 'core-members' },
-];
+// Executive and core member image paths
+const executiveImages = {
+  ceo: '/images/ceo.jpg',
+  coo: '/images/coo.jpg',
+  coreMember1: '/images/core-member-ito.jpeg',
+};
 
 export default function ExecutivesPage() {
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
+
+  // Build executive data from translations
+  const executives = [
+    {
+      title: t('executives.ceo.title'),
+      name: t('executives.ceo.name'),
+      bio: t('executives.ceo.bio'),
+      image: executiveImages.ceo,
+    },
+    {
+      title: t('executives.coo.title'),
+      name: t('executives.coo.name'),
+      bio: t('executives.coo.bio'),
+      image: executiveImages.coo,
+    },
+  ];
+
+  // Build core members data from translations
+  const coreMembers = [
+    {
+      title: t('executives.coreMember1.title'),
+      name: t('executives.coreMember1.name'),
+      bio: t('executives.coreMember1.bio'),
+      image: executiveImages.coreMember1,
+    },
+  ];
+
+  // Navigation sections with translations
+  const navSections = [
+    { label: t('executives.sectionTitle'), id: 'executives' },
+    { label: t('executives.coreMembers'), id: 'core-members' },
+  ];
   const [showNav, setShowNav] = useState(true);
   const [activeSection, setActiveSection] = useState('executives');
   const relatedSectionRef = useRef<HTMLElement>(null);
@@ -92,7 +101,7 @@ export default function ExecutivesPage() {
               display: isMobile ? 'block' : 'inline-block',
               marginBottom: isMobile ? '8px' : 0,
             }}>
-              役員紹介
+              {t('pages.executives.title')}
             </h1>
             <span style={{
               fontSize: isMobile ? '12px' : '16px',
@@ -101,7 +110,7 @@ export default function ExecutivesPage() {
               verticalAlign: 'middle',
               display: isMobile ? 'block' : 'inline',
             }}>
-              2026年1月25日現在
+              {t('pages.executives.asOf')}
             </span>
           </div>
 
@@ -111,16 +120,16 @@ export default function ExecutivesPage() {
             color: '#666',
             marginBottom: isMobile ? '32px' : '60px',
           }}>
-            <Link href="/" style={{ color: '#666', textDecoration: 'none' }}>トップ</Link>
+            <Link href="/" style={{ color: '#666', textDecoration: 'none' }}>{t('breadcrumb.top')}</Link>
             <span style={{ margin: '0 8px' }}>-</span>
-            <Link href="/company" style={{ color: '#666', textDecoration: 'none' }}>会社情報</Link>
+            <Link href="/company" style={{ color: '#666', textDecoration: 'none' }}>{t('nav.company')}</Link>
             <span style={{ margin: '0 8px' }}>-</span>
-            <span>役員紹介</span>
+            <span>{t('nav.executives')}</span>
           </div>
         </div>
 
         {/* Section header with full-width border */}
-        <SectionHeader title="取締役・CXO" withBorder id="executives" padding={isMobile ? '0 5% 16px 5%' : '0 5% 20px 5%'} />
+        <SectionHeader title={t('executives.sectionTitle')} withBorder id="executives" padding={isMobile ? '0 5% 16px 5%' : '0 5% 20px 5%'} />
       </section>
 
       {/* Executives Content Section */}
@@ -304,7 +313,7 @@ export default function ExecutivesPage() {
       {/* Core Members Section */}
       <section ref={coreMembersSectionRef} style={{ backgroundColor: 'white', position: 'relative' }}>
         {/* Section header with full-width border */}
-        <SectionHeader title="コアメンバー" withBorder id="core-members" />
+        <SectionHeader title={t('executives.coreMembers')} withBorder id="core-members" />
 
         {/* Core Members Content */}
         <div style={{ padding: isMobile ? '40px 5%' : '80px 5%', paddingRight: isMobile ? '5%' : '300px' }}>
@@ -372,7 +381,7 @@ export default function ExecutivesPage() {
       {/* Related Pages Section */}
       <section ref={relatedSectionRef} style={{ backgroundColor: '#f8fafc', padding: isMobile ? '40px 5%' : '80px 5%' }}>
         {/* Section header */}
-        <SectionHeader title="関連ページ" padding={isMobile ? '0 0 24px 0' : '0 0 40px 0'} />
+        <SectionHeader title={t('footer.relatedPages')} padding={isMobile ? '0 0 24px 0' : '0 0 40px 0'} />
 
         {/* Related pages grid */}
         <div style={{
@@ -390,7 +399,7 @@ export default function ExecutivesPage() {
             }}>
               <img
                 src="/images/related-company.jpg"
-                alt="会社情報"
+                alt={t('nav.company')}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -405,7 +414,7 @@ export default function ExecutivesPage() {
                 padding: isMobile ? '16px' : '20px',
                 background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
               }}>
-                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>会社情報</span>
+                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>{t('nav.company')}</span>
               </div>
             </div>
           </a>
@@ -420,7 +429,7 @@ export default function ExecutivesPage() {
             }}>
               <img
                 src="/images/related-executives.jpg"
-                alt="役員紹介"
+                alt={t('nav.executives')}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -435,7 +444,7 @@ export default function ExecutivesPage() {
                 padding: isMobile ? '16px' : '20px',
                 background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
               }}>
-                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>役員紹介</span>
+                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>{t('nav.executives')}</span>
               </div>
             </div>
           </a>
@@ -450,7 +459,7 @@ export default function ExecutivesPage() {
             }}>
               <img
                 src="/images/related-history.jpg"
-                alt="沿革"
+                alt={t('nav.history')}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -465,7 +474,7 @@ export default function ExecutivesPage() {
                 padding: isMobile ? '16px' : '20px',
                 background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
               }}>
-                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>沿革</span>
+                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>{t('nav.history')}</span>
               </div>
             </div>
           </a>

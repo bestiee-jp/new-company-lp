@@ -1,0 +1,259 @@
+{
+  "nav": {
+    "aboutUs": "关于我们",
+    "service": "服务",
+    "news": "新闻",
+    "newsList": "新闻列表",
+    "company": "公司信息",
+    "contact": "联系我们",
+    "executives": "管理团队",
+    "history": "公司沿革"
+  },
+  "hero": {
+    "tagline": "为学习与相遇，注入心动"
+  },
+  "mission": {
+    "sectionTitle": "使命",
+    "tagline": "为学习与相遇，注入心动",
+    "paragraph1": "人生的转折点。",
+    "paragraph2": "总是伴随着看不见的「不安」和令人焦躁的「倦怠」。",
+    "paragraph2_sub": "对学习的恐惧、对求职的畏惧、对职业的迷茫。",
+    "paragraph2_sub2": "许多人被这种压力所困扰。",
+    "paragraph3": "所以，我们想把这些过程变成令人心动的体验。",
+    "paragraph4": "运用AI和技术的力量，",
+    "paragraph4_sub": "将摆在人们面前的「不安」转化为「热情」，",
+    "paragraph4_sub2": "将不断重复的「倦怠」变成对明天的「期待」。",
+    "aboutUsButton": "了解更多",
+    "ceoTitle": "bestiee株式会社 代表取締役 后藤弘",
+    "ceoDescription1": "东京大学大学院工学系研究科 硕士在读",
+    "ceoDescription2": "TBS「东大王」固定出演（2021-2024年）"
+  },
+  "contact": {
+    "sectionTitle": "联系我们",
+    "heading": "请随时与我们联系。",
+    "description": "我们通过AI招聘匹配、招聘活动等，为您提供多种优秀人才招聘方案。如有关于服务内容、报价咨询、媒体采访等问题，请随时联系我们。",
+    "button": "联系我们"
+  },
+  "footer": {
+    "aboutUs": "关于我们",
+    "service": "服务",
+    "news": "新闻",
+    "company": "公司信息",
+    "contact": "联系我们",
+    "executives": "管理团队",
+    "history": "公司沿革",
+    "securityPolicy": "信息安全政策",
+    "privacyPolicy": "隐私政策",
+    "aiPolicy": "AI政策",
+    "relatedPages": "相关页面",
+    "social": {
+      "xCeo": "X（CEO后藤弘）",
+      "xFastpass": "X（FastPass官方）",
+      "noteCeo": "note（CEO后藤弘）",
+      "noteFastpass": "note（FastPass官方）",
+      "youtubeCeo": "YouTube（CEO后藤弘）",
+      "youtubeAiFest": "YouTube（AI挑战者节）",
+      "linkedin": "LinkedIn",
+      "tiktok": "TikTok",
+      "facebook": "Facebook"
+    }
+  },
+  "breadcrumb": {
+    "top": "首页"
+  },
+  "pages": {
+    "mission": {
+      "title": "关于我们",
+      "subtitle": "About Us"
+    },
+    "service": {
+      "title": "服务",
+      "subtitle": "Service"
+    },
+    "company": {
+      "title": "公司信息",
+      "subtitle": "Company"
+    },
+    "contact": {
+      "title": "联系我们",
+      "subtitle": "Contact"
+    },
+    "executives": {
+      "title": "管理团队",
+      "asOf": "截至2026年1月25日"
+    },
+    "history": {
+      "title": "公司沿革",
+      "subtitle": "History"
+    },
+    "privacy": {
+      "title": "隐私政策",
+      "subtitle": "Privacy Policy"
+    },
+    "security": {
+      "title": "信息安全政策",
+      "subtitle": "Information Security Policy"
+    },
+    "aiPolicy": {
+      "title": "AI政策",
+      "subtitle": "AI Policy"
+    }
+  },
+  "values": {
+    "sectionTitle": "价值观",
+    "intro": "作为初创企业挑战重大社会课题所需要的，",
+    "intro2": "是真诚面对每一位客户，设计超越期待的体验，坚持到最后。",
+    "intro3": "这三个价值观，是我们实现使命的承诺。",
+    "value1": {
+      "tagline": "Be a Bestiee",
+      "title": "成为最好的伙伴",
+      "description": "我们希望成为客户在遇到困难时第一个想到的存在。不是提供浅层服务，而是建立坦诚相待、面对每个人课题共同解决的关系。就像公司名称来源的「bestiee」（最好的朋友）一样，做不可替代的伙伴。"
+    },
+    "value2": {
+      "tagline": "Design the 'Wow'",
+      "title": "创造令人心动的体验！",
+      "description": "细节中蕴藏着魔力。每一个按钮、每一句话、每一个体验，我们都在不断问自己「如何才能打动人心」。为了给客户带来超越期待的惊喜和感动，我们毫不妥协地设计「Wow」。"
+    },
+    "value3": {
+      "tagline": "Trust the Grind",
+      "title": "相信脚踏实地的努力",
+      "description": "无论多么出色的创意，没有执行就毫无价值。我们以不畏艰难、坚持到底为荣。每一个闪耀的成就背后，都是泥泞中的努力积累。热爱并相信这个过程，就是我们的强项。"
+    }
+  },
+  "service": {
+    "tagline": "从「不安」到「热情」。从「倦怠」到「期待」。",
+    "recruitment": "招聘支援",
+    "education": "教育",
+    "sectionTitle": "服务",
+    "viewDetails": "服务详情",
+    "fastpass": {
+      "name": "FastPass",
+      "description": "FastPass是利用AI面试练习数据的优秀学生专业招聘匹配服务。基于AI分析的面试数据，由专业顾问为您推荐最适合贵公司的学生。"
+    },
+    "aiFest": {
+      "name": "AI挑战者节",
+      "description": "AI挑战者节是汇聚日本最「热衷于AI」的150名优秀学生的大型招聘活动。在这里，您可以遇到能够在谈论业务的同时编写代码、能够加速贵公司在AI时代竞争力的人才。"
+    },
+    "meetup": {
+      "name": "FastPass meetup",
+      "description": "FastPass meetup是与AI精选的少数优秀学生进行深度交流的招聘活动。在这里，您可以体验大型活动难以实现的深度对话和相互理解。"
+    },
+    "bestTeach": {
+      "name": "Best Teach",
+      "description": "Best Teach是AI为您推荐最适合孩子的老师的家教服务。从大学、高中、兴趣爱好等350多个维度，让您从经验丰富的老师中进行选择。单次课程即可轻松体验。"
+    }
+  },
+  "companyInfo": {
+    "overview": "公司概要",
+    "access": "交通指南",
+    "companyName": "公司名称",
+    "companyNameValue": "bestiee株式会社",
+    "ceo": "代表取締役",
+    "ceoValue": "后藤 弘",
+    "business": "事业内容",
+    "businessValue": "AI招聘匹配服务、招聘活动、家教匹配服务的策划、开发和运营",
+    "established": "成立日期",
+    "establishedValue": "2024年3月6日",
+    "capital": "注册资本",
+    "capitalValue": "100万日元",
+    "registeredAddress": "注册地址",
+    "registeredAddressValue": "〒150-0043 东京都�的谷区道玄坂1丁目10番8号 涩谷道玄坂东急大厦2F-C",
+    "office": "办公地址",
+    "officeValue": "〒102-0074 东京都千代田区九段南2丁目3-1 青叶第一大厦5F",
+    "accessInfo": "〒102-0074 东京都千代田区九段南2丁目3-1 青叶第一大厦5F",
+    "accessStation1": "从九段下站步行6分钟（东京地铁东西线·半藏门线、都营新宿线）",
+    "accessStation2": "从市�的谷站步行10分钟（JR中央线·总武线、东京地铁有乐町线·南北线、都营新宿线）"
+  },
+  "executives": {
+    "sectionTitle": "董事·CXO",
+    "coreMembers": "核心成员",
+    "ceo": {
+      "title": "代表取締役CEO·创始人",
+      "name": "后藤 弘",
+      "bio": "2024年创立bestiee株式会社并担任CEO。推出AI面试练习服务「FastPass」和招聘活动「AI挑战者节」，在AI×招聘领域开展业务。开成高中毕业，东京大学工学部毕业，现就读于东京大学大学院工学系研究科硕士课程。TBS「东大王」固定出演（2021-2024年），「东大先生大赛2023」冠军。入选Forbes JAPAN「2026年值得关注的100人」。"
+    },
+    "coo": {
+      "title": "取締役COO·联合创始人",
+      "name": "美甘 祐希",
+      "bio": "2024年与后藤共同创立bestiee株式会社并担任COO。负责新业务开发和产品开发。擅长活用AI的服务设计和产品管理，主导FastPass的开发。开成高中毕业，庆应义塾大学经济学部毕业。大学期间，在东南亚（印度尼西亚）进行TikTok Shop和新业务相关的调研。"
+    },
+    "coreMember1": {
+      "title": "Best Teach运营",
+      "name": "伊藤七海",
+      "bio": "2024年12月加入bestiee株式会社。负责家教匹配服务「Best Teach」的运营。不上补习班直接从福井县立武生高中考入东京大学。东京大学教育学部毕业。2019年起作为「理数绝对王者」出演TBS「东大王」。为了通过教育影响更多人而加入bestiee，与「东大王」时期的后藤再次相遇。"
+    }
+  },
+  "history": {
+    "sectionTitle": "bestiee的历程",
+    "event2024": "bestiee株式会社成立",
+    "event2025_1": "家教服务「Best Teach」正式运营",
+    "event2025_2": "首届「AI挑战者节」举办",
+    "event2026": "利用AI面试练习数据的招聘匹配服务「FastPass」上线"
+  },
+  "contactForm": {
+    "intro1": "感谢您对我公司的关注。",
+    "intro2": "我们通过AI招聘匹配、招聘活动等，为您提供多种优秀人才招聘方案。",
+    "pastSupport": {
+      "title1": "从大企业到初创企业",
+      "title2": "30家以上",
+      "title3": "的支援实绩",
+      "enterprise": "大企业·巨型初创企业",
+      "startup": "初创企业"
+    },
+    "media": {
+      "title": "媒体报道"
+    },
+    "form": {
+      "title": "请填写以下表格。",
+      "clear": "清空",
+      "lastName": "姓",
+      "firstName": "名",
+      "companyName": "公司名称",
+      "companyNamePlaceholder": "例：ABC股份公司",
+      "department": "部门",
+      "position": "职位",
+      "phone": "电话号码",
+      "phonePlaceholder": "请使用半角数字和连字符输入",
+      "email": "公司邮箱",
+      "emailPlaceholder": "例：example@example.com",
+      "interestAreas": "您感兴趣的内容（可多选）",
+      "message": "咨询内容",
+      "privacyPolicy": "隐私政策",
+      "viewPrivacyPolicy": "（查看隐私政策）",
+      "agreeToPolicy": "同意上述内容",
+      "required": "必填",
+      "submit": "提交",
+      "submitting": "提交中...",
+      "successTitle": "提交完成",
+      "successMessage1": "感谢您的咨询。",
+      "successMessage2": "我们的团队会审核您的信息，尽快与您联系。",
+      "backToTop": "返回首页"
+    },
+    "validation": {
+      "lastNameRequired": "请输入姓。",
+      "firstNameRequired": "请输入名。",
+      "companyNameRequired": "请输入公司名称。",
+      "phoneRequired": "请输入电话号码。",
+      "emailRequired": "请输入公司邮箱。",
+      "areasRequired": "请至少选择一项感兴趣的内容。",
+      "messageRequired": "请输入咨询内容。",
+      "privacyRequired": "请同意隐私政策。",
+      "recaptchaRequired": "请完成reCAPTCHA验证。",
+      "submitFailed": "提交失败。请重试。"
+    },
+    "interestOptions": {
+      "fastpass": "AI面试练习·招聘匹配「FastPass」",
+      "aiFest": "大型招聘活动「AI挑战者节」",
+      "meetup": "小规模招聘活动「FastPass meetup」",
+      "bestTeach": "家教服务「Best Teach」",
+      "media": "媒体采访·新闻",
+      "other": "其他"
+    },
+    "mediaItems": {
+      "forbes": "入选Forbes JAPAN「2026年值得关注的100人」",
+      "toudaiou": "TBS「东大王」固定出演（2021-2024年）",
+      "dmm": "DMM龟山先生采访（M&A CAMP）",
+      "press": "Engineer Type / President Online 等刊载"
+    }
+  }
+}

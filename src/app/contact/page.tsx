@@ -6,8 +6,10 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function ContactPage() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     lastName: '',
     firstName: '',
@@ -146,15 +148,15 @@ export default function ContactPage() {
 
     // Validation
     const newErrors: { [key: string]: string } = {};
-    if (!formData.lastName) newErrors.lastName = '姓は必須です。';
-    if (!formData.firstName) newErrors.firstName = '名は必須です。';
-    if (!formData.companyName) newErrors.companyName = '会社名は必須です。';
-    if (!formData.phone) newErrors.phone = '電話番号は必須です。';
-    if (!formData.email) newErrors.email = '勤務先メールアドレスは必須です。';
-    if (formData.recruitmentAreas.length === 0) newErrors.recruitmentAreas = '採用に関わられている領域は必須です。';
-    if (!formData.message) newErrors.message = 'お問い合わせ内容は必須です。';
-    if (!formData.privacyAgreed) newErrors.privacyAgreed = 'プライバシーポリシーへの同意は必須です。';
-    if (!recaptchaToken) newErrors.recaptcha = 'reCAPTCHA認証を完了してください。';
+    if (!formData.lastName) newErrors.lastName = t('contactForm.validation.lastNameRequired');
+    if (!formData.firstName) newErrors.firstName = t('contactForm.validation.firstNameRequired');
+    if (!formData.companyName) newErrors.companyName = t('contactForm.validation.companyNameRequired');
+    if (!formData.phone) newErrors.phone = t('contactForm.validation.phoneRequired');
+    if (!formData.email) newErrors.email = t('contactForm.validation.emailRequired');
+    if (formData.recruitmentAreas.length === 0) newErrors.recruitmentAreas = t('contactForm.validation.areasRequired');
+    if (!formData.message) newErrors.message = t('contactForm.validation.messageRequired');
+    if (!formData.privacyAgreed) newErrors.privacyAgreed = t('contactForm.validation.privacyRequired');
+    if (!recaptchaToken) newErrors.recaptcha = t('contactForm.validation.recaptchaRequired');
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -194,7 +196,7 @@ export default function ContactPage() {
       setIsSubmitted(true);
     } catch (error) {
       console.error('Submission failed:', error);
-      setErrors({ submit: '送信に失敗しました。もう一度お試しください。' });
+      setErrors({ submit: t('contactForm.validation.submitFailed') });
       // Reset reCAPTCHA on error
       recaptchaRef.current?.reset();
       setRecaptchaToken(null);
@@ -208,11 +210,11 @@ export default function ContactPage() {
       <Header />
 
       <PageHero
-        title="お問い合わせ"
-        subtitle="Contact"
+        title={t('pages.contact.title')}
+        subtitle={t('pages.contact.subtitle')}
         breadcrumb={[
-          { label: 'トップ', href: '/' },
-          { label: 'お問い合わせ' },
+          { label: t('breadcrumb.top'), href: '/' },
+          { label: t('pages.contact.title') },
         ]}
       />
 
@@ -243,11 +245,11 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h2 style={{ fontSize: '24px', fontWeight: 'bold', color: '#333', marginBottom: '16px' }}>
-                送信が完了しました
+                {t('contactForm.form.successTitle')}
               </h2>
               <p style={{ fontSize: '16px', color: '#666', lineHeight: '1.8' }}>
-                お問い合わせいただきありがとうございます。<br />
-                内容を確認の上、担当者よりご連絡いたします。
+                {t('contactForm.form.successMessage1')}<br />
+                {t('contactForm.form.successMessage2')}
               </p>
               <Link
                 href="/"
@@ -265,7 +267,7 @@ export default function ContactPage() {
                 onMouseEnter={(e) => e.currentTarget.style.borderRadius = '8px'}
                 onMouseLeave={(e) => e.currentTarget.style.borderRadius = '50px'}
               >
-                トップページへ戻る
+                {t('contactForm.form.backToTop')}
               </Link>
             </div>
           ) : (
@@ -286,8 +288,8 @@ export default function ContactPage() {
                   marginBottom: '32px',
                 }}>
                   <p>
-                    弊社にご興味をお持ちいただき、誠にありがとうございます。<br />
-                    AI採用マッチング・採用イベントなど、優秀学生の新卒採用に関して幅広くご提案いたします。
+                    {t('contactForm.intro1')}<br />
+                    {t('contactForm.intro2')}
                   </p>
                 </div>
 
@@ -302,8 +304,8 @@ export default function ContactPage() {
                     marginBottom: '32px',
                     lineHeight: '1.6',
                   }}>
-                    大手・メガベンチャーからスタートアップまで<br />
-                    <span style={{ color: '#4d7cff' }}>30社以上</span>の支援実績
+                    {t('contactForm.pastSupport.title1')}<br />
+                    <span style={{ color: '#4d7cff' }}>{t('contactForm.pastSupport.title2')}</span>{t('contactForm.pastSupport.title3')}
                   </h3>
 
                   {/* Two Column Layout */}
@@ -312,11 +314,11 @@ export default function ContactPage() {
                     gridTemplateColumns: 'repeat(2, 1fr)',
                     gap: '32px',
                   }}>
-                    {/* Left Column - 大手・メガベンチャー */}
+                    {/* Left Column - Enterprise */}
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
                         <span style={{ fontSize: '24px' }}>🏢</span>
-                        <h4 style={{ fontSize: '16px', fontWeight: 'bold', color: '#333' }}>大手・メガベンチャー</h4>
+                        <h4 style={{ fontSize: '16px', fontWeight: 'bold', color: '#333' }}>{t('contactForm.pastSupport.enterprise')}</h4>
                       </div>
                       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                         {[
@@ -341,11 +343,11 @@ export default function ContactPage() {
                       </ul>
                     </div>
 
-                    {/* Right Column - スタートアップ */}
+                    {/* Right Column - Startups */}
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '16px' }}>
                         <span style={{ fontSize: '24px' }}>🚀</span>
-                        <h4 style={{ fontSize: '16px', fontWeight: 'bold', color: '#333' }}>スタートアップ</h4>
+                        <h4 style={{ fontSize: '16px', fontWeight: 'bold', color: '#333' }}>{t('contactForm.pastSupport.startup')}</h4>
                       </div>
                       <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                         {[
@@ -382,7 +384,7 @@ export default function ContactPage() {
                 <div style={{ marginTop: '40px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
                     <div style={{ width: '4px', height: '24px', background: 'linear-gradient(135deg, var(--bestiee-blue) 0%, var(--bestiee-blue-light) 100%)' }}></div>
-                    <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>メディア掲載実績</h3>
+                    <h3 style={{ fontSize: '18px', fontWeight: 'bold', color: '#333' }}>{t('contactForm.media.title')}</h3>
                   </div>
 
                   {/* Media Images */}
@@ -428,10 +430,10 @@ export default function ContactPage() {
                     gap: '12px',
                   }}>
                     {[
-                      'Forbes JAPAN「2026年注目の100人」選出',
-                      'TBS『東大王』レギュラー出演（2021-2024）',
-                      'DMM亀山氏と対談（M&A CAMP）',
-                      'エンジニアtype / プレジデントオンライン 掲載',
+                      t('contactForm.mediaItems.forbes'),
+                      t('contactForm.mediaItems.toudaiou'),
+                      t('contactForm.mediaItems.dmm'),
+                      t('contactForm.mediaItems.press'),
                     ].map((item, index) => (
                       <div key={index} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                         <span style={{ color: 'var(--bestiee-cyan)', fontSize: '20px', lineHeight: 1 }}>•</span>
@@ -450,7 +452,7 @@ export default function ContactPage() {
                     fontWeight: 'bold',
                     color: '#333',
                   }}>
-                    下記フォームにご記入ください。
+                    {t('contactForm.form.title')}
                   </h2>
                   <button
                     type="button"
@@ -485,7 +487,7 @@ export default function ContactPage() {
                       opacity: hasAnyInput() ? 1 : 0.6,
                     }}
                   >
-                    クリア
+                    {t('contactForm.form.clear')}
                   </button>
                 </div>
 
@@ -520,14 +522,14 @@ export default function ContactPage() {
                         marginBottom: '8px',
                       }}
                     >
-                      姓
+                      {t('contactForm.form.lastName')}
                       <span style={{
                         backgroundColor: '#dc2626',
                         color: 'white',
                         fontSize: '11px',
                         padding: '2px 8px',
                         borderRadius: '4px',
-                      }}>必須</span>
+                      }}>{t('contactForm.form.required')}</span>
                     </label>
                     <input
                       type="text"
@@ -568,14 +570,14 @@ export default function ContactPage() {
                         marginBottom: '8px',
                       }}
                     >
-                      名
+                      {t('contactForm.form.firstName')}
                       <span style={{
                         backgroundColor: '#dc2626',
                         color: 'white',
                         fontSize: '11px',
                         padding: '2px 8px',
                         borderRadius: '4px',
-                      }}>必須</span>
+                      }}>{t('contactForm.form.required')}</span>
                     </label>
                     <input
                       type="text"
@@ -616,14 +618,14 @@ export default function ContactPage() {
                         marginBottom: '8px',
                       }}
                     >
-                      会社名
+                      {t('contactForm.form.companyName')}
                       <span style={{
                         backgroundColor: '#dc2626',
                         color: 'white',
                         fontSize: '11px',
                         padding: '2px 8px',
                         borderRadius: '4px',
-                      }}>必須</span>
+                      }}>{t('contactForm.form.required')}</span>
                     </label>
                     <input
                       type="text"
@@ -631,7 +633,7 @@ export default function ContactPage() {
                       name="companyName"
                       value={formData.companyName}
                       onChange={handleChange}
-                      placeholder="例：株式会社●●●"
+                      placeholder={t('contactForm.form.companyNamePlaceholder')}
                       style={{
                         width: '100%',
                         padding: '12px 16px',
@@ -663,7 +665,7 @@ export default function ContactPage() {
                         marginBottom: '8px',
                       }}
                     >
-                      部署
+                      {t('contactForm.form.department')}
                     </label>
                     <input
                       type="text"
@@ -701,7 +703,7 @@ export default function ContactPage() {
                         marginBottom: '8px',
                       }}
                     >
-                      役職名
+                      {t('contactForm.form.position')}
                     </label>
                     <input
                       type="text"
@@ -741,14 +743,14 @@ export default function ContactPage() {
                         marginBottom: '8px',
                       }}
                     >
-                      電話番号
+                      {t('contactForm.form.phone')}
                       <span style={{
                         backgroundColor: '#dc2626',
                         color: 'white',
                         fontSize: '11px',
                         padding: '2px 8px',
                         borderRadius: '4px',
-                      }}>必須</span>
+                      }}>{t('contactForm.form.required')}</span>
                     </label>
                     <input
                       type="tel"
@@ -756,7 +758,7 @@ export default function ContactPage() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="半角数字+半角ハイフンで入力してください"
+                      placeholder={t('contactForm.form.phonePlaceholder')}
                       style={{
                         width: '100%',
                         padding: '12px 16px',
@@ -790,14 +792,14 @@ export default function ContactPage() {
                         marginBottom: '8px',
                       }}
                     >
-                      勤務先メールアドレス
+                      {t('contactForm.form.email')}
                       <span style={{
                         backgroundColor: '#dc2626',
                         color: 'white',
                         fontSize: '11px',
                         padding: '2px 8px',
                         borderRadius: '4px',
-                      }}>必須</span>
+                      }}>{t('contactForm.form.required')}</span>
                     </label>
                     <input
                       type="email"
@@ -805,7 +807,7 @@ export default function ContactPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
-                      placeholder="例：example@example.jp"
+                      placeholder={t('contactForm.form.emailPlaceholder')}
                       style={{
                         width: '100%',
                         padding: '12px 16px',
@@ -836,7 +838,7 @@ export default function ContactPage() {
                         marginBottom: '12px',
                       }}
                     >
-                      【ご興味のある内容を教えてください】（複数選択可）
+                      {t('contactForm.form.interestAreas')}
                       <span style={{
                         backgroundColor: '#dc2626',
                         color: 'white',
@@ -844,7 +846,7 @@ export default function ContactPage() {
                         padding: '2px 8px',
                         borderRadius: '4px',
                         marginLeft: '8px',
-                      }}>必須</span>
+                      }}>{t('contactForm.form.required')}</span>
                     </label>
                     <div style={{
                       padding: '12px',
@@ -858,12 +860,12 @@ export default function ContactPage() {
                       gap: '10px',
                     }}>
                       {[
-                        'AI面接練習データ活用の採用マッチング「FastPass」',
-                        '大規模採用イベント「AIチャレンジャーズフェス」',
-                        '少人数制採用イベント「FastPass meetup」',
-                        '家庭教師サービス「ベストティーチ」',
-                        'メディア取材・掲載',
-                        'その他',
+                        t('contactForm.interestOptions.fastpass'),
+                        t('contactForm.interestOptions.aiFest'),
+                        t('contactForm.interestOptions.meetup'),
+                        t('contactForm.interestOptions.bestTeach'),
+                        t('contactForm.interestOptions.media'),
+                        t('contactForm.interestOptions.other'),
                       ].map((option) => (
                         <label
                           key={option}
@@ -907,14 +909,14 @@ export default function ContactPage() {
                         marginBottom: '8px',
                       }}
                     >
-                      お問い合わせ内容
+                      {t('contactForm.form.message')}
                       <span style={{
                         backgroundColor: '#dc2626',
                         color: 'white',
                         fontSize: '11px',
                         padding: '2px 8px',
                         borderRadius: '4px',
-                      }}>必須</span>
+                      }}>{t('contactForm.form.required')}</span>
                     </label>
                     <textarea
                       id="message"
@@ -947,7 +949,7 @@ export default function ContactPage() {
                   {/* Privacy Policy */}
                   <div style={{ marginBottom: '16px' }}>
                     <p style={{ fontSize: '14px', color: '#333', marginBottom: '4px' }}>
-                      プライバシーポリシー
+                      {t('contactForm.form.privacyPolicy')}
                     </p>
                     <a
                       href="/privacy"
@@ -957,7 +959,7 @@ export default function ContactPage() {
                         textDecoration: 'none',
                       }}
                     >
-                      (プライバシーポリシーを見る)
+                      {t('contactForm.form.viewPrivacyPolicy')}
                     </a>
                   </div>
 
@@ -998,14 +1000,14 @@ export default function ContactPage() {
                           cursor: 'pointer',
                         }}
                       />
-                      上記に同意する
+                      {t('contactForm.form.agreeToPolicy')}
                       <span style={{
                         backgroundColor: '#dc2626',
                         color: 'white',
                         fontSize: '11px',
                         padding: '2px 8px',
                         borderRadius: '4px',
-                      }}>必須</span>
+                      }}>{t('contactForm.form.required')}</span>
                     </label>
                   </div>
 
@@ -1042,7 +1044,7 @@ export default function ContactPage() {
                       if (!isSubmitting && isFormComplete()) e.currentTarget.style.backgroundColor = 'var(--bestiee-blue-light)';
                     }}
                   >
-                    {isSubmitting ? '送信中...' : '送信する'}
+                    {isSubmitting ? t('contactForm.form.submitting') : t('contactForm.form.submit')}
                   </button>
                 </form>
               </div>

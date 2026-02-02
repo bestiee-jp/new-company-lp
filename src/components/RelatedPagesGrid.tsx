@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import SectionHeader from './SectionHeader';
+import { useTranslation } from '@/hooks/useTranslation';
 
 interface PageLink {
   label: string;
@@ -19,14 +20,16 @@ interface RelatedPagesGridProps {
 
 export default function RelatedPagesGrid({
   pages,
-  title = '関連ページ',
+  title,
   backgroundColor = 'white',
   padding = '80px 5%',
 }: RelatedPagesGridProps) {
+  const { t } = useTranslation();
+  const displayTitle = title || t('footer.relatedPages');
   return (
     <section style={{ backgroundColor, padding }}>
       <div style={{ maxWidth: '1200px' }}>
-        <SectionHeader title={title} padding="0 0 40px 0" />
+        <SectionHeader title={displayTitle} padding="0 0 40px 0" />
 
         <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap' }}>
           {pages.map((page, index) => (

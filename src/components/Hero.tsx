@@ -1,9 +1,11 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Hero() {
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const { t } = useTranslation();
 
   // Trigger animation after video is ready or fallback after 500ms
   useEffect(() => {
@@ -89,7 +91,7 @@ export default function Hero() {
                   transition: 'opacity 4s ease-out 3s, transform 4s cubic-bezier(0.16, 1, 0.3, 1) 3s',
                 }}
               >
-                学びと出会いに、ワクワクを
+                {t('hero.tagline')}
               </span>
             </div>
           </div>

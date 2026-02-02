@@ -6,27 +6,29 @@ import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import Link from "next/link";
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function HistoryPage() {
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
 
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
 
       <PageHero
-        title="沿革"
-        subtitle="History"
+        title={t('pages.history.title')}
+        subtitle={t('pages.history.subtitle')}
         breadcrumb={[
-          { label: 'トップ', href: '/' },
-          { label: '会社情報', href: '/company' },
-          { label: '沿革' },
+          { label: t('breadcrumb.top'), href: '/' },
+          { label: t('nav.company'), href: '/company' },
+          { label: t('nav.history') },
         ]}
       />
 
       {/* History Section */}
       <section style={{ backgroundColor: 'white' }}>
-        <SectionHeader title="bestieeの歴史" withBorder />
+        <SectionHeader title={t('history.sectionTitle')} withBorder />
 
         {/* Timeline Content */}
         <div style={{ position: 'relative' }}>
@@ -174,7 +176,7 @@ export default function HistoryPage() {
                       flexShrink: 0,
                     }} />
                   )}
-                  <span style={{ fontSize: isMobile ? '16px' : '20px', color: '#333' }}>株式会社bestiee設立</span>
+                  <span style={{ fontSize: isMobile ? '16px' : '20px', color: '#333' }}>{t('history.event2024')}</span>
                 </div>
               </div>
             </div>
@@ -222,7 +224,7 @@ export default function HistoryPage() {
                       flexShrink: 0,
                     }} />
                   )}
-                  <span style={{ fontSize: isMobile ? '16px' : '20px', color: '#333', textAlign: isMobile ? 'left' : 'right' }}>家庭教師サービス「ベストティーチ」正式リリース</span>
+                  <span style={{ fontSize: isMobile ? '16px' : '20px', color: '#333', textAlign: isMobile ? 'left' : 'right' }}>{t('history.event2025_1')}</span>
                   {/* Horizontal line */}
                   {!isMobile && (
                     <div style={{
@@ -257,7 +259,7 @@ export default function HistoryPage() {
                       flexShrink: 0,
                     }} />
                   )}
-                  <span style={{ fontSize: isMobile ? '16px' : '20px', color: '#333', textAlign: isMobile ? 'left' : 'right' }}>AIチャレンジャーズフェス第1回開催</span>
+                  <span style={{ fontSize: isMobile ? '16px' : '20px', color: '#333', textAlign: isMobile ? 'left' : 'right' }}>{t('history.event2025_2')}</span>
                   {/* Horizontal line */}
                   {!isMobile && (
                     <div style={{
@@ -478,7 +480,7 @@ export default function HistoryPage() {
                       flexShrink: 0,
                     }} />
                   )}
-                  <span style={{ fontSize: isMobile ? '16px' : '20px', color: '#333' }}>AI面接練習データを活用した採用マッチングサービス「FastPass」リリース</span>
+                  <span style={{ fontSize: isMobile ? '16px' : '20px', color: '#333' }}>{t('history.event2026')}</span>
                 </div>
               </div>
             </div>
@@ -491,7 +493,7 @@ export default function HistoryPage() {
         {/* Section header */}
         <div className="flex items-center gap-4" style={{ marginBottom: isMobile ? '24px' : '40px' }}>
           <div style={{ width: '4px', height: '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
-          <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.1em', fontWeight: '500' }}>関連ページ</span>
+          <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.1em', fontWeight: '500' }}>{t('footer.relatedPages')}</span>
         </div>
 
         {/* Related pages grid */}
@@ -510,7 +512,7 @@ export default function HistoryPage() {
             }}>
               <img
                 src="/images/related-company.jpg"
-                alt="会社情報"
+                alt={t('nav.company')}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -525,7 +527,7 @@ export default function HistoryPage() {
                 padding: isMobile ? '16px' : '20px',
                 background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
               }}>
-                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>会社情報</span>
+                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>{t('nav.company')}</span>
               </div>
             </div>
           </Link>
@@ -540,7 +542,7 @@ export default function HistoryPage() {
             }}>
               <img
                 src="/images/related-executives.jpg"
-                alt="役員紹介"
+                alt={t('nav.executives')}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -555,7 +557,7 @@ export default function HistoryPage() {
                 padding: isMobile ? '16px' : '20px',
                 background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
               }}>
-                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>役員紹介</span>
+                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>{t('nav.executives')}</span>
               </div>
             </div>
           </Link>
@@ -570,7 +572,7 @@ export default function HistoryPage() {
             }}>
               <img
                 src="/images/history-tib.jpg"
-                alt="沿革"
+                alt={t('nav.history')}
                 style={{
                   width: '100%',
                   height: '100%',
@@ -585,7 +587,7 @@ export default function HistoryPage() {
                 padding: isMobile ? '16px' : '20px',
                 background: 'linear-gradient(transparent, rgba(0,0,0,0.7))',
               }}>
-                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>沿革</span>
+                <span style={{ color: 'white', fontSize: isMobile ? '16px' : '18px', fontWeight: '600' }}>{t('nav.history')}</span>
               </div>
             </div>
           </Link>

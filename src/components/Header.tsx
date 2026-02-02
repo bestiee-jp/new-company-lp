@@ -5,6 +5,8 @@ import Link from 'next/link';
 import BestieeLogo from './BestieeLogo';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { slideMenuItems, dropdownMenus } from '@/data/navigation';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from '@/hooks/useTranslation';
 
 // Chevron Down Icon
 function ChevronDown() {
@@ -101,7 +103,8 @@ export default function Header() {
   const [showFixedHamburger, setShowFixedHamburger] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [lang, setLang] = useState<'ja' | 'en'>('ja');
+  const { lang, setLang } = useLanguage();
+  const { t } = useTranslation();
   const isMobile = useIsMobile();
   const [expandedSubmenu, setExpandedSubmenu] = useState<string | null>(null);
 
@@ -146,25 +149,25 @@ export default function Header() {
             {!isMobile && (
               <nav className="flex items-center gap-10">
                 <NavItem
-                  label="私たちについて"
+                  label={t('nav.aboutUs')}
                   href="/mission"
                   onMouseEnter={() => setOpenDropdown(null)}
                 />
                 <NavItem
-                  label="サービス"
+                  label={t('nav.service')}
                   href="/service"
                   onMouseEnter={() => setOpenDropdown(null)}
                 />
                 <NavItem
-                  label="ニュース"
+                  label={t('nav.news')}
                   href="/news"
                   onMouseEnter={() => setOpenDropdown(null)}
                 />
                 <NavItem
-                  label="会社情報"
+                  label={t('nav.company')}
                   hasDropdown
-                  isOpen={openDropdown === '会社情報'}
-                  onMouseEnter={() => setOpenDropdown('会社情報')}
+                  isOpen={openDropdown === 'company'}
+                  onMouseEnter={() => setOpenDropdown('company')}
                 />
               </nav>
             )}
@@ -199,7 +202,7 @@ export default function Header() {
       <div className="h-px bg-black w-full"></div>
 
       {/* Full-width Mega Menu Dropdown - only on desktop */}
-      {!isMobile && openDropdown && dropdownMenus[openDropdown] && (
+      {!isMobile && openDropdown === 'company' && (
         <div
           onMouseLeave={() => setOpenDropdown(null)}
           style={{
@@ -221,12 +224,16 @@ export default function Header() {
           <div style={{ padding: '40px 5%' }}>
             {/* Section Title */}
             <div style={{ fontSize: '14px', color: '#888', marginBottom: '24px' }}>
-              {dropdownMenus[openDropdown].title}
+              {t('nav.company')}
             </div>
 
             {/* Menu Items Grid */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0 60px' }}>
-              {dropdownMenus[openDropdown].items.map((item, index) => {
+              {[
+                { label: t('nav.company'), href: '/company' },
+                { label: t('nav.executives'), href: '/company/executives' },
+                { label: t('nav.history'), href: '/company/history' },
+              ].map((item, index) => {
                 const content = (
                   <>
                     {/* Arrow Icon */}
@@ -247,7 +254,7 @@ export default function Header() {
                   </>
                 );
 
-                return item.href ? (
+                return (
                   <Link
                     key={index}
                     href={item.href}
@@ -261,19 +268,6 @@ export default function Header() {
                   >
                     {content}
                   </Link>
-                ) : (
-                  <a
-                    key={index}
-                    href="#"
-                    className="group flex items-center gap-3 text-black"
-                    style={{
-                      fontSize: '16px',
-                      padding: '16px 0',
-                      borderBottom: '1px solid #e5e7eb',
-                    }}
-                  >
-                    {content}
-                  </a>
                 );
               })}
             </div>
@@ -363,6 +357,13 @@ export default function Header() {
               >
                 EN
               </button>
+              <span className="text-gray-400">|</span>
+              <button
+                onClick={() => setLang('zh')}
+                className={lang === 'zh' ? 'font-medium' : 'opacity-50'}
+              >
+                中文
+              </button>
             </div>
             {/* Close Button */}
             <button
@@ -380,7 +381,21 @@ export default function Header() {
 
         {/* Menu Items */}
         <div style={{ padding: isMobile ? '20px' : '40px' }}>
-          {slideMenuItems.map((item, index) => {
+          {[
+            { label: t('nav.aboutUs'), sublabel: 'About Us', href: '/mission' },
+            { label: t('nav.service'), sublabel: 'Service', href: '/service' },
+            { label: t('nav.news'), sublabel: 'News', href: '/news' },
+            {
+              label: t('nav.company'),
+              sublabel: 'Company',
+              hasSubmenu: true,
+              subItems: [
+                { label: t('nav.company'), href: '/company' },
+                { label: t('nav.executives'), href: '/company/executives' },
+                { label: t('nav.history'), href: '/company/history' },
+              ],
+            },
+          ].map((item, index) => {
             const isExpanded = expandedSubmenu === item.label;
 
             const content = (
@@ -526,7 +541,7 @@ export default function Header() {
             onClick={() => setIsMenuOpen(false)}
           >
             <span className="relative inline-block">
-              お問い合わせ
+              {t('nav.contact')}
               <span className="absolute left-0 bottom-[-2px] h-[1px] bg-black transition-all duration-[400ms] w-0 group-hover:w-full"></span>
             </span>
           </Link>

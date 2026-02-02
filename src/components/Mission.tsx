@@ -1,9 +1,11 @@
 'use client';
 
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function Mission() {
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
 
   return (
     <section className="relative">
@@ -17,7 +19,7 @@ export default function Mission() {
           }}
         >
           <div style={{ width: '4px', height: isMobile ? '24px' : '28px', background: 'var(--bestiee-gradient-vertical)' }}></div>
-          <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>ミッション</span>
+          <span style={{ color: 'black', fontSize: isMobile ? '18px' : '22px', letterSpacing: '0.2em', fontWeight: '500' }}>{t('mission.sectionTitle')}</span>
         </div>
       </div>
 
@@ -58,9 +60,9 @@ export default function Mission() {
             lineHeight: '2',
             color: '#333'
           }}>
-            <p style={{ fontWeight: 'bold', fontSize: isMobile ? '20px' : '30px' }}>株式会社bestiee代表 後藤 弘</p>
-            <p>東京大学工学系研究科 修士課程在籍中</p>
-            <p>TBS『東大王』レギュラー出演（2021〜2024）</p>
+            <p style={{ fontWeight: 'bold', fontSize: isMobile ? '20px' : '30px' }}>{t('mission.ceoTitle')}</p>
+            <p>{t('mission.ceoDescription1')}</p>
+            <p>{t('mission.ceoDescription2')}</p>
           </div>
         </div>
 
@@ -75,7 +77,7 @@ export default function Mission() {
               marginBottom: isMobile ? '24px' : '64px'
             }}
           >
-            学びと出会いに、ワクワクを
+            {t('mission.tagline')}
           </h3>
 
           {/* Body paragraphs */}
@@ -89,28 +91,28 @@ export default function Mission() {
               gap: isMobile ? '16px' : '24px',
             }}
           >
-            <p>人生の分岐点。</p>
+            <p>{t('mission.paragraph1')}</p>
             <p>
-              そこには常に、見えない「不安」や、やり場のない「退屈」がつきまといます。
+              {t('mission.paragraph2')}
               {!isMobile && <br />}
-              勉強への苦手意識、就活に対する恐れ、キャリアへの迷い。
+              {t('mission.paragraph2_sub')}
               {!isMobile && <br />}
-              多くの人が、その重圧の前で立ち尽くしてしまう現実があります。
+              {t('mission.paragraph2_sub2')}
             </p>
-            <p>だからこそ、私たちはそのプロセス自体を、心躍る体験へと変えていきたい。</p>
+            <p>{t('mission.paragraph3')}</p>
             <p>
-              私たちは、AIとテクノロジーの力を使い、
+              {t('mission.paragraph4')}
               {!isMobile && <br />}
-              人々の前に立ちはだかる「不安」を「熱狂」へ、
+              {t('mission.paragraph4_sub')}
               {!isMobile && <br />}
-              繰り返される「退屈」を、明日への「期待」へと変えていきます。
+              {t('mission.paragraph4_sub2')}
             </p>
           </div>
 
           {/* About us button */}
           <div style={{ marginTop: isMobile ? '32px' : '60px' }}>
             <a
-              href="#"
+              href="/mission"
               className="inline-flex items-center justify-between bg-black text-white"
               style={{
                 padding: isMobile ? '16px 24px' : '24px 40px',
@@ -122,7 +124,7 @@ export default function Mission() {
               onMouseEnter={(e) => (e.currentTarget.style.borderRadius = '8px')}
               onMouseLeave={(e) => (e.currentTarget.style.borderRadius = '50px')}
             >
-              <span>私たちについて</span>
+              <span>{t('mission.aboutUsButton')}</span>
               <svg
                 width={isMobile ? "20" : "28"}
                 height={isMobile ? "20" : "28"}

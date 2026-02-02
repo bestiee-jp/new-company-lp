@@ -4,10 +4,29 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useIsMobile } from '@/hooks/useIsMobile';
 import { ArrowIcon } from '@/components/icons';
-import { companyLinkCards } from '@/data/companyLinks';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function CompanyLinks() {
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
+
+  // Build company link cards with translations
+  const companyLinkCards = [
+    {
+      id: 'company',
+      label: t('nav.company'),
+      href: '/company',
+      image: '/images/company-office.jpg',
+      imageAlt: t('nav.company'),
+    },
+    {
+      id: 'history',
+      label: t('nav.history'),
+      href: '/company/history',
+      image: '/images/history-tib.jpg',
+      imageAlt: t('nav.history'),
+    },
+  ];
 
   return (
     <section className="bg-white" style={{ paddingTop: isMobile ? '40px' : '80px', paddingBottom: isMobile ? '40px' : '80px' }}>

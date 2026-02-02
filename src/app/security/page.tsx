@@ -1,18 +1,22 @@
+'use client';
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function SecurityPage() {
+  const { t } = useTranslation();
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
 
       <PageHero
-        title="情報セキュリティ基本方針"
-        subtitle="Information Security Policy"
+        title={t('pages.security.title')}
+        subtitle={t('pages.security.subtitle')}
         breadcrumb={[
-          { label: 'トップ', href: '/' },
-          { label: '情報セキュリティ基本方針' },
+          { label: t('breadcrumb.top'), href: '/' },
+          { label: t('pages.security.title') },
         ]}
       />
 

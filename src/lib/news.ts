@@ -3,10 +3,18 @@ import newsData from './news-data.json';
 export interface NewsArticle {
   slug: string;
   title: string;
+  title_en: string;
+  title_zh: string;
   date: string;
   category: string;
+  category_en: string;
+  category_zh: string;
   theme: string;
+  theme_en: string;
+  theme_zh: string;
   content: string;
+  content_en: string;
+  content_zh: string;
   image: string;
   imageType: string;
 }
@@ -14,9 +22,15 @@ export interface NewsArticle {
 export interface NewsMetadata {
   slug: string;
   title: string;
+  title_en: string;
+  title_zh: string;
   date: string;
   category: string;
+  category_en: string;
+  category_zh: string;
   theme: string;
+  theme_en: string;
+  theme_zh: string;
   image: string;
   imageType: string;
 }
@@ -48,12 +62,18 @@ export function getAllNewsArticles(): NewsArticle[] {
  * Get news metadata only (for list pages)
  */
 export function getAllNewsMetadata(): NewsMetadata[] {
-  return articles.map(({ slug, title, date, category, theme, image, imageType }) => ({
+  return articles.map(({ slug, title, title_en, title_zh, date, category, category_en, category_zh, theme, theme_en, theme_zh, image, imageType }) => ({
     slug,
     title,
+    title_en,
+    title_zh,
     date,
     category,
+    category_en,
+    category_zh,
     theme,
+    theme_en,
+    theme_zh,
     image,
     imageType,
   }));

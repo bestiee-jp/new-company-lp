@@ -1,15 +1,22 @@
 'use client';
 
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface BreadcrumbItem {
   label: string;
+  label_en?: string;
+  label_zh?: string;
   href?: string;
 }
 
 interface PageHeroProps {
   title: string;
+  title_en?: string;
+  title_zh?: string;
   subtitle: string;
+  subtitle_en?: string;
+  subtitle_zh?: string;
   breadcrumb: BreadcrumbItem[];
   decorative?: boolean;
 }
@@ -76,7 +83,11 @@ export function DecorativeBands() {
   );
 }
 
-export default function PageHero({ title, subtitle, breadcrumb, decorative = false }: PageHeroProps) {
+export default function PageHero({ title, title_en, title_zh, subtitle, subtitle_en, subtitle_zh, breadcrumb, decorative = false }: PageHeroProps) {
+  const { lang } = useLanguage();
+  const displayTitle = lang === 'zh' && title_zh ? title_zh : lang === 'en' && title_en ? title_en : title;
+  const displaySubtitle = lang === 'zh' && subtitle_zh ? subtitle_zh : lang === 'en' && subtitle_en ? subtitle_en : subtitle;
+
   return (
     <section style={{
       backgroundColor: decorative ? 'white' : '#f8fafc',
@@ -98,14 +109,14 @@ export default function PageHero({ title, subtitle, breadcrumb, decorative = fal
             color: 'black',
             display: decorative ? 'inline-block' : undefined,
           }}>
-            {title}
+            {displayTitle}
           </h1>
           <p style={{
             fontSize: decorative ? '18px' : '16px',
             color: '#666',
             marginTop: decorative ? '16px' : '12px',
           }}>
-            {subtitle}
+            {displaySubtitle}
           </p>
         </div>
 
@@ -116,18 +127,21 @@ export default function PageHero({ title, subtitle, breadcrumb, decorative = fal
           marginTop: decorative ? undefined : '24px',
           marginBottom: decorative ? '60px' : undefined,
         }}>
-          {breadcrumb.map((item, index) => (
-            <span key={index}>
-              {index > 0 && <span style={{ margin: '0 8px' }}>-</span>}
-              {item.href ? (
-                <Link href={item.href} style={{ color: '#666', textDecoration: 'none' }}>
-                  {item.label}
-                </Link>
-              ) : (
-                <span>{item.label}</span>
-              )}
-            </span>
-          ))}
+          {breadcrumb.map((item, index) => {
+            const displayLabel = lang === 'zh' && item.label_zh ? item.label_zh : lang === 'en' && item.label_en ? item.label_en : item.label;
+            return (
+              <span key={index}>
+                {index > 0 && <span style={{ margin: '0 8px' }}>-</span>}
+                {item.href ? (
+                  <Link href={item.href} style={{ color: '#666', textDecoration: 'none' }}>
+                    {displayLabel}
+                  </Link>
+                ) : (
+                  <span>{displayLabel}</span>
+                )}
+              </span>
+            );
+          })}
         </div>
       </div>
     </section>

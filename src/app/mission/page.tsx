@@ -6,26 +6,28 @@ import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import SectionHeader from "@/components/SectionHeader";
 import { useIsMobile } from '@/hooks/useIsMobile';
+import { useTranslation } from '@/hooks/useTranslation';
 
 export default function MissionPage() {
   const isMobile = useIsMobile();
+  const { t } = useTranslation();
 
   return (
     <main className="min-h-screen flex flex-col">
       <Header />
 
       <PageHero
-        title="私たちについて"
-        subtitle="About Us"
+        title={t('pages.mission.title')}
+        subtitle={t('pages.mission.subtitle')}
         breadcrumb={[
-          { label: 'トップ', href: '/' },
-          { label: '私たちについて' },
+          { label: t('breadcrumb.top'), href: '/' },
+          { label: t('pages.mission.title') },
         ]}
       />
 
       {/* Mission Section */}
       <section style={{ backgroundColor: 'white', position: 'relative', overflow: 'hidden' }}>
-        <SectionHeader title="ミッション" withBorder />
+        <SectionHeader title={t('mission.sectionTitle')} withBorder />
 
         {/* Content */}
         <div style={{
@@ -53,28 +55,28 @@ export default function MissionPage() {
               lineHeight: '1.6',
               marginBottom: isMobile ? '32px' : '60px',
             }}>
-              学びと出会いに、ワクワクを
+              {t('mission.tagline')}
             </h2>
 
             <div style={{ fontSize: isMobile ? '14px' : '16px', lineHeight: '2.2', color: '#333' }}>
               <p style={{ marginBottom: isMobile ? '24px' : '32px' }}>
-                人生の分岐点。
+                {t('mission.paragraph1')}
               </p>
 
               <p style={{ marginBottom: isMobile ? '24px' : '32px' }}>
-                そこには常に、見えない「不安」や、やり場のない「退屈」がつきまといます。{!isMobile && <br />}
-                勉強への苦手意識、就活に対する恐れ、キャリアへの迷い。{!isMobile && <br />}
-                多くの人が、その重圧の前で立ち尽くしてしまう現実があります。
+                {t('mission.paragraph2')}{!isMobile && <br />}
+                {t('mission.paragraph2_sub')}{!isMobile && <br />}
+                {t('mission.paragraph2_sub2')}
               </p>
 
               <p style={{ marginBottom: isMobile ? '24px' : '32px' }}>
-                だからこそ、私たちはそのプロセス自体を、心躍る体験へと変えていきたい。
+                {t('mission.paragraph3')}
               </p>
 
               <p>
-                私たちは、AIとテクノロジーの力を使い、{!isMobile && <br />}
-                人々の前に立ちはだかる「不安」を「熱狂」へ、{!isMobile && <br />}
-                繰り返される「退屈」を、明日への「期待」へと変えていきます。
+                {t('mission.paragraph4')}{!isMobile && <br />}
+                {t('mission.paragraph4_sub')}{!isMobile && <br />}
+                {t('mission.paragraph4_sub2')}
               </p>
             </div>
           </div>
@@ -100,7 +102,7 @@ export default function MissionPage() {
 
       {/* Values Section */}
       <section style={{ backgroundColor: 'white', position: 'relative' }}>
-        <SectionHeader title="バリュー" withBorder />
+        <SectionHeader title={t('values.sectionTitle')} withBorder />
 
         {/* Values Content */}
         <div style={{ padding: isMobile ? '40px 5% 60px' : '80px 5% 100px' }}>
@@ -112,9 +114,9 @@ export default function MissionPage() {
             marginBottom: isMobile ? '48px' : '80px',
             maxWidth: '800px',
           }}>
-            スタートアップである私たちが、大きな社会課題に挑むために必要なこと。{!isMobile && <br />}
-            それは、一人ひとりのお客様に深く向き合い、期待を超える体験を設計し、最後まで泥臭くやり抜くこと。{!isMobile && <br />}
-            この3つのバリューは、私たちがミッションを実現するための約束です。
+            {t('values.intro')}{!isMobile && <br />}
+            {t('values.intro2')}{!isMobile && <br />}
+            {t('values.intro3')}
           </p>
 
           {/* Value 1 */}
@@ -133,7 +135,7 @@ export default function MissionPage() {
                 letterSpacing: '0.05em',
                 marginBottom: '8px',
               }}>
-                Be a Bestiee
+                {t('values.value1.tagline')}
               </p>
               <h3 style={{
                 fontSize: isMobile ? '22px' : '28px',
@@ -141,18 +143,14 @@ export default function MissionPage() {
                 color: 'black',
                 marginBottom: isMobile ? '16px' : '24px',
               }}>
-                最高の相棒であれ
+                {t('values.value1.title')}
               </h3>
               <p style={{
                 fontSize: isMobile ? '14px' : '16px',
                 lineHeight: '2',
                 color: '#333',
               }}>
-                私たちは、お客様にとって「困ったときに真っ先に頼りたくなる存在」を目指します。
-                表面的なサービス提供ではなく、本音で語り合える関係性を築き、
-                一人ひとりの課題に寄り添い、共に解決していく。
-                社名の由来である「bestie（親友）」のように、
-                かけがえのないパートナーであり続けます。
+                {t('values.value1.description')}
               </p>
             </div>
             <div style={{
@@ -189,7 +187,7 @@ export default function MissionPage() {
                 letterSpacing: '0.05em',
                 marginBottom: '8px',
               }}>
-                Design the &apos;Wow&apos;
+                {t('values.value2.tagline')}
               </p>
               <h3 style={{
                 fontSize: isMobile ? '22px' : '28px',
@@ -197,18 +195,14 @@ export default function MissionPage() {
                 color: 'black',
                 marginBottom: isMobile ? '16px' : '24px',
               }}>
-                人の心を動かす仕掛けを！
+                {t('values.value2.title')}
               </h3>
               <p style={{
                 fontSize: isMobile ? '14px' : '16px',
                 lineHeight: '2',
                 color: '#333',
               }}>
-                細部にこそ、感動は宿る。
-                ボタンひとつ、言葉ひとつ、体験のすべてにおいて
-                「どうすれば人の心を動かせるか」を問い続けます。
-                期待を超える驚きと喜びを届けるために、
-                私たちは妥協なく「Wow」を設計し続けます。
+                {t('values.value2.description')}
               </p>
             </div>
             <div style={{
@@ -244,7 +238,7 @@ export default function MissionPage() {
                 letterSpacing: '0.05em',
                 marginBottom: '8px',
               }}>
-                Trust the Grind
+                {t('values.value3.tagline')}
               </p>
               <h3 style={{
                 fontSize: isMobile ? '22px' : '28px',
@@ -252,17 +246,14 @@ export default function MissionPage() {
                 color: 'black',
                 marginBottom: isMobile ? '16px' : '24px',
               }}>
-                泥臭さを、愛せ
+                {t('values.value3.title')}
               </h3>
               <p style={{
                 fontSize: isMobile ? '14px' : '16px',
                 lineHeight: '2',
                 color: '#333',
               }}>
-                どんなに優れたアイデアも、実行しなければ価値は届かない。
-                私たちは、地道な努力を厭わず、最後までやり抜くことを誇りとします。
-                華やかな成果の裏には、必ず泥臭い積み重ねがある。
-                その過程を愛し、信じ抜く姿勢が、私たちの強さです。
+                {t('values.value3.description')}
               </p>
             </div>
             <div style={{

@@ -47,6 +47,16 @@ async function verifyRecaptcha(token: string): Promise<boolean> {
   }
 }
 
+// Map interest keys to Japanese labels for Discord
+const interestKeyToLabel: Record<string, string> = {
+  fastpass: 'AI面接練習データ活用の採用マッチング「FastPass」',
+  aiFest: '大規模採用イベント「AIチャレンジャーズフェス」',
+  meetup: '少人数制採用イベント「FastPass meetup」',
+  bestTeach: '家庭教師サービス「ベストティーチ」',
+  media: 'メディア取材・掲載',
+  other: 'その他',
+};
+
 // Send notification to Discord
 async function sendToDiscord(formData: ContactFormData): Promise<boolean> {
   const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
@@ -55,6 +65,11 @@ async function sendToDiscord(formData: ContactFormData): Promise<boolean> {
     console.error('DISCORD_WEBHOOK_URL is not configured');
     return false;
   }
+
+  // Convert keys to Japanese labels
+  const areasLabels = formData.recruitmentAreas
+    .map(key => interestKeyToLabel[key] || key)
+    .join(', ');
 
   const embedMessage = {
     embeds: [{
@@ -67,7 +82,7 @@ async function sendToDiscord(formData: ContactFormData): Promise<boolean> {
         { name: '役職', value: formData.position || '未入力', inline: true },
         { name: '電話番号', value: formData.phone, inline: true },
         { name: 'メールアドレス', value: formData.email, inline: true },
-        { name: '採用領域', value: formData.recruitmentAreas.join(', '), inline: false },
+        { name: '採用領域', value: areasLabels, inline: false },
         { name: 'お問い合わせ内容', value: formData.message, inline: false },
       ],
       timestamp: new Date().toISOString(),
@@ -99,6 +114,10 @@ async function sendToGoogleSheets(formData: ContactFormData): Promise<boolean> {
     return false;
   }
 
+  // Convert keys to Japanese labels
+  const areasLabels = formData.recruitmentAreas
+    .map(key => interestKeyToLabel[key] || key);
+
   try {
     await fetch(scriptUrl, {
       method: 'POST',
@@ -113,7 +132,7 @@ async function sendToGoogleSheets(formData: ContactFormData): Promise<boolean> {
         position: formData.position,
         phone: formData.phone,
         email: formData.email,
-        recruitmentAreas: formData.recruitmentAreas,
+        recruitmentAreas: areasLabels,
         message: formData.message,
       }),
     });

@@ -864,15 +864,15 @@ export default function ContactPage() {
                       gap: '10px',
                     }}>
                       {[
-                        t('contactForm.interestOptions.fastpass'),
-                        t('contactForm.interestOptions.aiFest'),
-                        t('contactForm.interestOptions.meetup'),
-                        t('contactForm.interestOptions.bestTeach'),
-                        t('contactForm.interestOptions.media'),
-                        t('contactForm.interestOptions.other'),
+                        { key: 'fastpass', label: t('contactForm.interestOptions.fastpass') },
+                        { key: 'aiFest', label: t('contactForm.interestOptions.aiFest') },
+                        { key: 'meetup', label: t('contactForm.interestOptions.meetup') },
+                        { key: 'bestTeach', label: t('contactForm.interestOptions.bestTeach') },
+                        { key: 'media', label: t('contactForm.interestOptions.media') },
+                        { key: 'other', label: t('contactForm.interestOptions.other') },
                       ].map((option) => (
                         <label
-                          key={option}
+                          key={option.key}
                           style={{
                             display: 'flex',
                             alignItems: 'center',
@@ -884,8 +884,8 @@ export default function ContactPage() {
                         >
                           <input
                             type="checkbox"
-                            checked={formData.recruitmentAreas.includes(option)}
-                            onChange={() => handleCheckboxChange(option)}
+                            checked={formData.recruitmentAreas.includes(option.key)}
+                            onChange={() => handleCheckboxChange(option.key)}
                             onFocus={() => handleFieldFocus('recruitmentAreas')}
                             style={{
                               width: '16px',
@@ -893,7 +893,7 @@ export default function ContactPage() {
                               cursor: 'pointer',
                             }}
                           />
-                          {option}
+                          {option.label}
                         </label>
                       ))}
                     </div>

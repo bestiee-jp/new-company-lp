@@ -414,7 +414,7 @@ export default function ContactPage() {
                       }}
                     />
                     <img
-                      src="/media/Forbes.png"
+                      src="/media/Forbes.webp"
                       alt="Forbes JAPAN 2026年総予測"
                       style={{
                         width: '100%',

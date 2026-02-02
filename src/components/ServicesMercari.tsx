@@ -25,7 +25,7 @@ const slideConfigs = [
     key: 'fastpass',
     category: 'Services',
     bgColor: '#1E5AA8', // bestiee-blue
-    image: '/images/fastpass.png',
+    image: '/images/fastpass.webp',
     scale: 1.3,
   },
   {
@@ -46,7 +46,7 @@ const slideConfigs = [
     key: 'bestTeach',
     category: 'Services',
     bgColor: '#EAEAEA',
-    image: '/images/service-bestteach.png',
+    image: '/images/service-bestteach.webp',
     scale: 1.7,
   },
 ];

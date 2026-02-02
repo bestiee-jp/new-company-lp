@@ -23,7 +23,7 @@ export const recruitmentServices: ServiceItem[] = [
   {
     name: 'FastPass',
     description: '「FastPass」は、AI面接練習データを活用した、ハイクラス学生特化の採用マッチングサービスです。AIが解析した面接データをもとに、エージェントが貴社に最適な学生を紹介します。',
-    image: '/images/fastpass.png',
+    image: '/images/fastpass.webp',
   },
   {
     name: 'AIチャレンジャーズフェス',
@@ -42,7 +42,7 @@ export const educationServices: ServiceItem[] = [
   {
     name: 'ベストティーチ',
     description: '「ベストティーチ」は、AIがお子さまにぴったりの先生を提案してくれる家庭教師サービスです。出身塾や出身高、趣味など350以上の項目から指導経験豊富な先生を選べて、単発1回からお試しできます。',
-    image: '/images/service-bestteach.png',
+    image: '/images/service-bestteach.webp',
   },
 ];
 

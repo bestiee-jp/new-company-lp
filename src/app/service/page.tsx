@@ -88,7 +88,7 @@ export default function ServicePage() {
     {
       name: t('service.fastpass.name'),
       description: t('service.fastpass.description'),
-      image: '/images/fastpass.png',
+      image: '/images/fastpass.webp',
     },
     {
       name: t('service.aiFest.name'),
@@ -106,7 +106,7 @@ export default function ServicePage() {
     {
       name: t('service.bestTeach.name'),
       description: t('service.bestTeach.description'),
-      image: '/images/service-bestteach.png',
+      image: '/images/service-bestteach.webp',
     },
   ];
 

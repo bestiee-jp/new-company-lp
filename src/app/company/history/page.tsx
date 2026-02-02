@@ -337,7 +337,7 @@ export default function HistoryPage() {
                     zIndex: 2,
                   }}>
                     <img
-                      src="/images/history-bestteach.png"
+                      src="/images/history-bestteach.webp"
                       alt="ベストティーチ"
                       style={{ width: '100%', height: '100%', objectFit: 'contain', padding: isMobile ? '12px' : '16px' }}
                     />
@@ -418,7 +418,7 @@ export default function HistoryPage() {
                   borderRadius: '8px',
                 }}>
                   <img
-                    src="/images/fastpass.png"
+                    src="/images/fastpass.webp"
                     alt="FastPass"
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />

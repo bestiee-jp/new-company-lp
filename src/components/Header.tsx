@@ -169,6 +169,11 @@ export default function Header() {
                   isOpen={openDropdown === 'company'}
                   onMouseEnter={() => setOpenDropdown('company')}
                 />
+                <NavItem
+                  label={t('nav.contact')}
+                  href="/contact"
+                  onMouseEnter={() => setOpenDropdown(null)}
+                />
                 {/* Language Switcher */}
                 <div
                   className="flex items-center gap-2 ml-4"

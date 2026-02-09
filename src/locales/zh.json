@@ -197,7 +197,7 @@
   },
   "contactForm": {
     "intro1": "感谢您对我公司的关注。",
-    "intro2": "我们通过AI招聘匹配、招聘活动等，为您提供多种优秀人才招聘方案。",
+    "intro2": "除了通过AI招聘匹配、招聘活动等提供应届生招聘支援外，我们还承接演讲、活动出演及媒体出演的委托。欢迎随时与我们联系。",
     "pastSupport": {
       "title1": "从大企业到初创企业",
       "title2": "30家以上",
@@ -206,7 +206,7 @@
       "startup": "初创企业"
     },
     "media": {
-      "title": "媒体报道"
+      "title": "媒体出演·演讲实绩"
     },
     "form": {
       "title": "请填写以下表格。",
@@ -251,14 +251,18 @@
       "aiFest": "大型招聘活动「AI挑战者节」",
       "meetup": "小规模招聘活动「FastPass meetup」",
       "bestTeach": "东大王的家教「Best Teach」",
+      "speaking": "演讲·活动出演委托",
       "media": "媒体采访·新闻",
       "other": "其他"
     },
     "mediaItems": {
+      "toudaiou": "TBS「东大王」固定出演（2019-2024年）",
       "forbes": "入选Forbes JAPAN「2026年值得关注的100人」",
-      "toudaiou": "TBS「东大王」固定出演（2021-2024年）",
-      "dmm": "DMM龟山先生采访（M&A CAMP）",
-      "press": "Engineer Type / President Online 等刊载"
+      "kouno": "与前数字大臣河野太郎对谈（AI挑战者节2025 主题演讲）",
+      "dmm": "与DMM会长龟山敬司对谈（M&A CAMP）",
+      "albirex": "新潟Albirex BC开幕战开球仪式＋球场知识竞赛活动",
+      "lecture": "面向小学生至高中生的演讲实绩",
+      "press": "Engineer Type / President Online / ABEMA 刊载·出演"
     }
   }
 }

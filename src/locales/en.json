@@ -197,7 +197,7 @@
   },
   "contactForm": {
     "intro1": "Thank you for your interest in our company.",
-    "intro2": "We offer a wide range of proposals for recruiting outstanding students through AI recruitment matching, recruitment events, and more.",
+    "intro2": "In addition to new graduate recruitment support through AI recruitment matching and recruitment events, we also accept requests for speaking engagements, event appearances, and media appearances. Please feel free to contact us.",
     "pastSupport": {
       "title1": "From enterprise to startups",
       "title2": "30+",
@@ -206,7 +206,7 @@
       "startup": "Startups"
     },
     "media": {
-      "title": "Media Coverage"
+      "title": "Media Appearances & Speaking Engagements"
     },
     "form": {
       "title": "Please fill in the form below.",
@@ -251,14 +251,18 @@
       "aiFest": "Large-scale Recruitment Event 'AI Challengers Fest'",
       "meetup": "Small-group Recruitment Event 'FastPass meetup'",
       "bestTeach": "Toudaiou's Tutoring 'Best Teach'",
+      "speaking": "Speaking & Event Appearance Requests",
       "media": "Media Coverage & Press",
       "other": "Other"
     },
     "mediaItems": {
+      "toudaiou": "Regular cast on TBS 'Toudaiou' (2019-2024)",
       "forbes": "Selected for Forbes JAPAN '100 People to Watch in 2026'",
-      "toudaiou": "Regular cast on TBS 'Toudaiou' (2021-2024)",
-      "dmm": "Interview with DMM's Kameyama (M&A CAMP)",
-      "press": "Featured in Engineer Type / President Online"
+      "kouno": "Discussion with former Digital Minister Taro Kono (AI Challengers Fest 2025 Keynote)",
+      "dmm": "Discussion with DMM Chairman Keishi Kameyama (M&A CAMP)",
+      "albirex": "Niigata Albirex BC Opening Day First Pitch + Stadium Quiz Rally",
+      "lecture": "Speaking engagements for elementary to high school students",
+      "press": "Featured in Engineer Type / President Online / ABEMA"
     }
   }
 }

@@ -66,7 +66,7 @@ export default function Hero() {
             }}
           >
             <h1
-              className="text-[clamp(67px,17vw,168px)] font-bold leading-none text-black tracking-tight"
+              className="text-[clamp(40px,14vw,168px)] font-bold leading-none text-black tracking-tight whitespace-nowrap"
               style={{ textShadow: '0 0 5px rgba(30, 90, 168, 0.8), 0 0 10px rgba(0, 163, 224, 0.7), 0 0 15px rgba(0, 163, 224, 0.5), 0 0 25px rgba(77, 217, 217, 0.4)' }}
             >
               TURN FEAR
@@ -84,14 +84,14 @@ export default function Hero() {
             }}
           >
             <h1
-              className="text-[clamp(67px,17vw,168px)] font-bold leading-none text-black tracking-tight"
+              className="text-[clamp(40px,14vw,168px)] font-bold leading-none text-black tracking-tight whitespace-nowrap"
               style={{ textShadow: '0 0 5px rgba(30, 90, 168, 0.8), 0 0 10px rgba(0, 163, 224, 0.7), 0 0 15px rgba(0, 163, 224, 0.5), 0 0 25px rgba(77, 217, 217, 0.4)' }}
             >
               INTO
             </h1>
             <div className="flex flex-col">
               <span
-                className="text-[clamp(34px,7vw,67px)] italic"
+                className="text-[min(5vw,67px)] italic whitespace-nowrap"
                 style={{
                   fontFamily: 'var(--font-satisfy), cursive',
                   backgroundImage: 'linear-gradient(90deg, var(--bestiee-blue-light) 0%, var(--bestiee-cyan) 50%, #6EE7E7 100%)',
@@ -107,7 +107,7 @@ export default function Hero() {
                 turn fear into passion
               </span>
               <span
-                className="text-[clamp(22px,4.2vw,39px)] text-white font-medium tracking-wide"
+                className="text-[min(3.5vw,39px)] text-white font-medium tracking-wide whitespace-nowrap"
                 style={{
                   visibility: isMounted ? 'visible' : 'hidden',
                   opacity: isVideoReady ? 1 : 0,
@@ -131,7 +131,7 @@ export default function Hero() {
             }}
           >
             <h1
-              className="text-[clamp(67px,17vw,168px)] font-bold leading-none text-black tracking-tight"
+              className="text-[clamp(40px,14vw,168px)] font-bold leading-none text-black tracking-tight whitespace-nowrap"
               style={{ textShadow: '0 0 5px rgba(30, 90, 168, 0.8), 0 0 10px rgba(0, 163, 224, 0.7), 0 0 15px rgba(0, 163, 224, 0.5), 0 0 25px rgba(77, 217, 217, 0.4)' }}
             >
               PASSION.
